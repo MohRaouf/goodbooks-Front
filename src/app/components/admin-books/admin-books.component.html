@@ -1,0 +1,25 @@
+<table class="table table-bordered table-dark ">
+    <thead class="text-warning">
+        <tr class="h5">
+            <th scope="col">Name</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Description</th>
+            <th scope="col">Author</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor= "let book of books" class="align-middle">
+            <td>{{book.name}}</td>
+            <td>Dump Data</td>
+            <td>{{book.description}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.category}}</td>
+            <td>
+                <i class="fa fa-pencil-square icon-style mr-3"></i>
+                <i class="fa fa-trash icon-style" style="color: red;"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>

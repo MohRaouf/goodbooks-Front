@@ -1,0 +1,20 @@
+.custom{
+    width: 80%;
+    height: 90%;
+}
+.header{
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 20px 50px rgb(56, 32, 0) inset;
+}
+.theme{
+    background-color: rgba(31, 31, 31, 0.95);
+}
+.nav-theme{
+    background-color: rgb(57, 58, 63);
+}
+
+.selected{
+    background-color: rgb(233, 171, 0);
+    box-shadow: 2px 2px 3px gray;
+}
+
