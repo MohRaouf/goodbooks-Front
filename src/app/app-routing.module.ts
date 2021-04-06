@@ -9,10 +9,19 @@ import { AdminGuard } from './guards/admin.guard';
 import { AdminBooksComponent }from './components/admin-books/admin-books.component';
 import { AdminAuthorsComponent }from './components/admin-authors/admin-authors.component';
 import { AdminCategoriesComponent }from './components/admin-categories/admin-categories.component';
-
+import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
+import { PublicBooksComponent } from './components/public-books/public-books.component';
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path:"home", component:HomeComponent ,pathMatch:"full"},
+  { path:"home", component:HomeComponent ,children:[
+    {
+      path:'',
+      component:HomePublicViewComponent,
+    },{
+      path:"books",
+      component:PublicBooksComponent,
+    }
+  ]},
   {
      path: "admin", 
      component: AdminBoardComponent, 

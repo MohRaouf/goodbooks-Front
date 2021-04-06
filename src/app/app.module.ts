@@ -26,6 +26,10 @@ import { AdminAuthorsComponent } from './components/admin-authors/admin-authors.
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './components/user/user.component';
+import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PublicBooksComponent } from './components/public-books/public-books.component';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
@@ -38,6 +42,9 @@ import { UserComponent } from './components/user/user.component';
     AdminAuthorsComponent,
     AdminCategoriesComponent,
     UserComponent,
+    HomePublicViewComponent,
+    FooterComponent,
+    PublicBooksComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -48,6 +55,7 @@ import { UserComponent } from './components/user/user.component';
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxPaginationModule
     
   ],
   providers: [

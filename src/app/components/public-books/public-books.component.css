@@ -1,0 +1,20 @@
+ngb-pagination ::ng-deep .page-link {
+    background-color: #343A40;
+    color: #FFC107;
+}
+ngb-pagination ::ng-deep .page-item.active .page-link{
+    background-color: #343A40;
+    color: #FFC107;
+}
+ngb-pagination ::ng-deep .page-item.disabled .page-link{
+    background-color: #343A40;
+    color: #FFC107;
+}
+ngb-pagination ::ng-deep .page-link:focus,
+ngb-pagination ::ng-deep .page-link:hover,
+ngb-pagination ::ng-deep .page-link:focus,
+ngb-pagination ::ng-deep .page-link:hover{
+    background-color: #FFC107;
+    color: #343A40;
+    border-color: #FFC107;
+}
