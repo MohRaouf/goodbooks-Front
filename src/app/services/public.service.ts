@@ -18,3 +18,12 @@ export class PublicService {
     return this.client.get(`${config.apiUrl}/authors`, { observe: 'response' })
   }
 }
+/*getBooks(page:number,count:number) {
+  //Login
+  const params = {
+    page: page,
+    count: count
+  }
+
+  return this.client.get(`${config.apiUrl}/books?page=${page}&count=${count}`, { observe: 'response' })
+}*/

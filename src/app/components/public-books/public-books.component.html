@@ -1,21 +1,28 @@
 <h2 class="text-warning ml-5 mt-3 mb-3 "> Books</h2>
 
 <div class="container">
-  <div class="row ">
-<div  *ngFor="let book of booksArray | slice: (page-1) * booksPerPage : page * booksPerPage">
-    <div class="col col-md-2 col-sm-6 ">
-      <a href="" class="">
-        <img class=" " src="{{book.photo}}"  alt=""  width="160" height="200">
-      </a>    
+  <div class="row ml-5 ">
+    
+    <div  class="mx-3 my-3" *ngFor="let book of booksArray | slice: (page-1) * booksPerPage : page * booksPerPage"> 
+        
+      <div class="hovereffect ">
+        <img class="img-responsive" src="{{book.photo}}" alt="" width="160" height="200">
+        <div class="overlay ">
+           <h2 class="text-warning">{{book.name}}</h2>
+           <a class="info" href="#">View Details</a>
+        </div>
+         
+          </div>
+ 
        
     </div>
-    <div width=160>
-    <h4 class="text-warning  " width="160"> {{book.name}}</h4></div>
-</div>
-  </div>
+<!--<div  *ngFor="let book of booksArray | slice: (page-1) * booksPerPage : page * booksPerPage">
+
+  
+
+  </div>-->
 </div>
  
-<ngb-pagination 
-  [(page)]="page"
-  [pageSize]="booksPerPage"
-  [collectionSize]="totalBooks"></ngb-pagination>
+ <div class="d-flex justify-content-center">
+  <ngb-pagination [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+</div>

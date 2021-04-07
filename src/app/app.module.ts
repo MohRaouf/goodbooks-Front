@@ -31,7 +31,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
-import { PublicAuthorsComponent } from './components/public-authors/public-authors.component'; 
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
+import { FooterElementsComponent } from './components/footer-elements/footer-elements.component'; 
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { PublicAuthorsComponent } from './components/public-authors/public-autho
     PublicBooksComponent,
     PublicCategoriesComponent,
     PublicAuthorsComponent,
+    FooterElementsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

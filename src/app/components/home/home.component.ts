@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal ,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+ 
+  subscriber: any
+  invalidCred: boolean = false;
+  constructor(private modalService:NgbModal,private authService: AuthService, private router: Router) { }
 
-  constructor(private modalService:NgbModal){}
-  
+  ngOnDestroy(): void {
+    console.log('Login Component Destroy')
+    this.subscriber && this.subscriber.unsubscribe();
+  }
   validatingForm: any;
   register:boolean=false;
   closeResult = '';
@@ -88,13 +96,29 @@ myForm = new FormGroup({
 } 
 
 submitForm2() {
- /* const newStudent: Student = {
-    id: this.myService.maxId + 1,
-    name: this.myForm.controls.name.value,
-    city: this.myForm.controls.name.value,
-    email: this.myForm.controls.name.value
-  }*/
+  const loginInfo = {
+    username: this.myForm2.controls.username.value,
+    password: this.myForm2.controls.password.value,
+  }
+  this.subscriber = this.authService.login(loginInfo).subscribe((success:boolean) => {
+    
+    console.log(success)
+    this.router.navigate(['/user']) ? success  : this.invalidCred = true;
+    
 
+    // if (success) {
+    //    this.router.navigate(['/']);
+    // }
+    // else {
+    //   this.invalidCred = true;
+    // }
+  },
+    (err) => {
+      console.log(err)
+    }, () => {
+      // this.router.navigate(['/']);
+    })
+    console.log(loginInfo)
 }
 
 }
