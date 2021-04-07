@@ -11,6 +11,9 @@ import { AdminAuthorsComponent }from './components/admin-authors/admin-authors.c
 import { AdminCategoriesComponent }from './components/admin-categories/admin-categories.component';
 import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component'; 
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component'; 
+
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path:"home", component:HomeComponent ,children:[
@@ -20,6 +23,12 @@ const routes: Routes = [
     },{
       path:"books",
       component:PublicBooksComponent,
+    },{
+      path:"categories",
+      component:PublicCategoriesComponent,
+    },{
+      path:"authors",
+      component:PublicAuthorsComponent,
     }
   ]},
   {

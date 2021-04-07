@@ -11,4 +11,10 @@ export class PublicService {
     //Login
     return this.client.get(`${config.apiUrl}/books`, { observe: 'response' })
   }
+  getAllCategories(){
+    return this.client.get(`${config.apiUrl}/categories`, { observe: 'response' })
+  }
+  getAllAuthors(){
+    return this.client.get(`${config.apiUrl}/authors`, { observe: 'response' })
+  }
 }

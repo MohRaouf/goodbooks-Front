@@ -29,7 +29,9 @@ import { UserComponent } from './components/user/user.component';
 import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
-import {NgxPaginationModule} from 'ngx-pagination'; 
+import {NgxPaginationModule} from 'ngx-pagination';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component'; 
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HomePublicViewComponent,
     FooterComponent,
     PublicBooksComponent,
+    PublicCategoriesComponent,
+    PublicAuthorsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

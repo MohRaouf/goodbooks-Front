@@ -1,0 +1,33 @@
+<h2 class="text-warning ml-5 mt-3 mb-3 ">Authors</h2>
+<div class="container">
+  <div class="row ">
+<div  *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage">
+    <div class="col col-md-2 col-sm-6 ">
+      <a href="" class="">
+        <img class="rounded-circle" src="{{author.photo}}"  alt=""  width="160" height="160">
+      </a>    
+       
+    </div>
+    <div width=160>
+    <h4 class="text-warning  " width="160"> {{author.fname}} {{author.lname}}</h4></div>
+</div>
+  </div>
+</div>
+<ngb-pagination 
+[(page)]="page"
+[pageSize]="authorsPerPage"
+[collectionSize]="totalAuthors"></ngb-pagination>
+
+<!--<div class="container">
+  <div class="row ">
+
+    <div class="col col-md-2 col-sm-6 ">
+      <a href="" class="">
+        <img class="rounded-circle" src="assets/book1.jpg"  alt=""  width="160" height="160">
+      </a>
+      <figcaption class="">
+        <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+      </figcaption>
+    </div>
+  </div>
+  </div>-->

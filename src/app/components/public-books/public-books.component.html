@@ -1,4 +1,4 @@
-<h2 class="text-warning ml-5 mt-3 mb-3 "></h2>
+<h2 class="text-warning ml-5 mt-3 mb-3 "> Books</h2>
 
 <div class="container">
   <div class="row ">
@@ -6,14 +6,15 @@
     <div class="col col-md-2 col-sm-6 ">
       <a href="" class="">
         <img class=" " src="{{book.photo}}"  alt=""  width="160" height="200">
-      </a>
-      <figcaption class="">
-        <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> {{book.name}} </a> </p>
-      </figcaption>
+      </a>    
+       
     </div>
+    <div width=160>
+    <h4 class="text-warning  " width="160"> {{book.name}}</h4></div>
 </div>
   </div>
 </div>
+ 
 <ngb-pagination 
   [(page)]="page"
   [pageSize]="booksPerPage"
