@@ -8,7 +8,44 @@
 .icon-style:hover{
     transform: scale(1.2);
 }
+.icon-style:active{
+    transform: scale(1);
+}
 table td {
-    font-size: 18px;
+    /* font-size: 18px; */
+    vertical-align: middle;
+    padding: 10px;
+}
+table tr {
+    width: 100%;
     vertical-align: middle;
 }
+.loading{
+    /* transform: scale(2); */
+    font-size: 35px; 
+    width: 3rem;   
+    height: 3rem;
+}
+
+.add-effect{
+    cursor: pointer;
+}
+.add-effect:hover{
+    transform: scale(1.05);
+}
+.add-effect:active{
+    transform: scale(1);
+}
+
+.form-theme{
+    background-color: rgb(31, 34, 44);
+}
+
+.desc-style{
+font-size: 14px;
+}
+/* .ph-style{
+    height: 40px;
+    width: 150px;
+} */
+

@@ -1,5 +1,5 @@
 <div class="login-box">
-    <h3 class="text-warning text-center mb-5">ADMIN DASHBOARD</h3>
+    <h1 class="text-warning text-center mb-5 font-weight-bold">ADMIN DASHBOARD</h1>
     <form [formGroup]=loginForm ng-submit="submitForm()">
         <div class="user-box">
             <input type="text" name="" required="" (blur)="usernameFocus()" (focus)="usernameFocus()" 
@@ -11,7 +11,7 @@
             <label>Password</label>
         </div>
         <div class="" *ngIf="!usernameStatus && usernameFocused">
-            <p class="invalid" >Username must be longer than 4 characters</p>
+            <h4 class="invalid" >Username must be longer than 4 characters</h4>
         </div>
         <div class="" *ngIf="!passwordStatus && passwordFocused">
             <p class="invalid" >Password cannot be of length more than 4</p>
@@ -19,7 +19,7 @@
         <div class="" *ngIf="invalidCred">
             <p class="invalid" >Invalid username or password</p>
         </div>
-        <div class="" *ngIf="serverErr">
+        <div class="" *ngIf="serverError">
             <p class="invalid" >Internal server error, try again later !</p>
         </div>
          
@@ -35,3 +35,5 @@
 
     </form>
 </div>
+
+

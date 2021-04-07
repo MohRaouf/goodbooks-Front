@@ -4,6 +4,7 @@ import { of, Observable } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { config } from '../config'
 import { Tokens } from '../auth/tokens';
+import { text } from '@fortawesome/fontawesome-svg-core';
 // import { access } from 'node:fs';
 
 @Injectable({
@@ -17,10 +18,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(userCred: { username: string, password: string }): Observable<boolean> {
+  login(userCred: any): Observable<boolean> {
     return this.http.post<any>(`${config.apiUrl}/admins/login`, userCred)
       .pipe(
-        // tap(tokens => console.log(`tokens : ${tokens}`)),
         tap(tokens => this.doLoginUser(userCred.username, tokens)),
         mapTo(true),
         catchError(error => {
@@ -30,13 +30,17 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<any>(`${config.apiUrl}/admins/logout`, {
-      'refreshToken': this.getRefreshToken()
-    }).pipe(
-      tap(() => this.doLogoutUser()),
+    return this.http.post(`${config.apiUrl}/admins/logout`,
+    {'refreshToken': this.getRefreshToken()},{ responseType: 'text'})
+    .pipe(
+      tap((res) => {
+        console.log(res)
+        this.doLogoutUser()
+      }),
       mapTo(true),
       catchError(error => {
-        alert(error.error);
+        console.log(error)
+        alert(error);
         return of(false);
       }));
   }
@@ -82,7 +86,7 @@ export class AuthService {
   private getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN);
   }
-  private removeTokens() {
+  public removeTokens() {
     localStorage.removeItem(this.ACCESS_TOKEN);
     localStorage.removeItem(this.REFRESH_TOKEN);
   }

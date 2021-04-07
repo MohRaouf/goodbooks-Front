@@ -12,13 +12,18 @@
     background-color: rgba(0, 0, 0, 0.7);
 } */
 
+
 .invalid {
     display: inline-block;
-    font-size: smaller;
+    font-weight: 400;
+    font-size: 14px;
     border: 1px solid red;
     color: red;
     padding: 5px 5px 5px 5px;
+    background-color: rgba(0, 0, 0, 0.76);
+
 }
+
 
 .login-box {
     position: absolute;
@@ -32,6 +37,7 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
 }
+
 
 .login-box h2 {
     margin: 0 0 30px;

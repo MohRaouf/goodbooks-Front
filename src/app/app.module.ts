@@ -26,6 +26,7 @@ import { AdminAuthorsComponent } from './components/admin-authors/admin-authors.
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './components/user/user.component';
+import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UserComponent } from './components/user/user.component';
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RxReactiveFormsModule
     
   ],
   providers: [

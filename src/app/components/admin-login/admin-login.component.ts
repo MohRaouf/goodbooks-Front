@@ -43,7 +43,7 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
     return this.loginForm.controls.password.valid
   }
   invalidCred: boolean = false;
-  serverErr: boolean = false;
+  serverError: boolean = false;
   submitForm() {
     const loginInfo = {
       username: this.loginForm.controls.username.value,
@@ -57,17 +57,16 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
 
       this.subscriber = this.authService.login(loginInfo).subscribe((success:boolean) => {
       console.log(success)
-      this.router.navigate(['/admin']) ? success  : this.invalidCred = true;
-
-
-      // if (success) {
-      //    this.router.navigate(['/']);
-      // }
-      // else {
-      //   this.invalidCred = true;
-      // }
+      if(success){
+        this.router.navigate(['/admin'])
+        console.log("invalid username or password")
+      }else{
+        this.invalidCred = true;
+        console.log("invalid username or password")
+      } 
     },
       (err) => {
+        console.log("invalid username or password")
         console.log(err)
       }, () => {
         // this.router.navigate(['/']);

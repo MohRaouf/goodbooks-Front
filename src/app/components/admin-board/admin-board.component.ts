@@ -12,23 +12,30 @@ export class AdminBoardComponent implements OnInit {
 
   subscriber:any;
 
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
   user :string ="null"
   ngOnInit(): void {
-    
-    this.subscriber = this.adminService.getAllBooks({name:"newBook",author:"unknow",category:"none",description:"this is a new Book"}).subscribe((response: any) => {
-      console.log(response)
+    this.router.navigate(['/admin/books']);
 
-      // if (response.status == 201) {
-      // }
-      // else {
-      // }
-    },
-      (err) => {
-        console.log(err)
-      }, () => {
-        // this.router.navigate(['/']);
-      })
+    // this.subscriber = this.adminService.getAllBooks({name:"newBook",author:"unknow",category:"none",description:"this is a new Book"}).subscribe((response: any) => {
+    //   console.log(response)
+
+    //   // if (response.status == 201) {
+    //   // }
+    //   // else {
+    //   // }
+    // },
+    //   (err) => {
+    //     console.log(err)
+    //   }, () => {
+    //     // this.router.navigate(['/']);
+    //   })
+  }
+  signOut(){
+    this.authService.logout().subscribe((loggedOut)=>{
+      console.log(loggedOut)
+      loggedOut && this.router.navigate(['/admins/login'])
+    })
   }
 
 }

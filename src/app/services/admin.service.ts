@@ -12,8 +12,48 @@ export class AdminService {
 
   constructor(private client: HttpClient) { }
 
-  getAllBooks(newBook:{name:string,author:string,category:string,description:string}) {
-    //Login
+  getAllBooks() {
+    return this.client.get(`${config.apiUrl}/books`,{ observe: 'response' })
+  }
+
+  insertBook(newBook:any) {
     return this.client.post(`${config.apiUrl}/books`, newBook,{ observe: 'response' })
+  }
+
+  updateBook(bookId:any,newBook:any) {
+    return this.client.patch(`${config.apiUrl}/books/${bookId}`, newBook,{ observe: 'response' })
+  }
+  deleteBook(bookId:any) {
+    return this.client.delete(`${config.apiUrl}/books/${bookId}`,{ observe: 'response' })
+  }
+
+  getAllAuthors(){
+    return this.client.get(`${config.apiUrl}/authors`,{observe:'response'})
+  }
+
+  insertAuthor(newAuthor:any) {
+    return this.client.post(`${config.apiUrl}/authors`, newAuthor,{ observe: 'response' })
+  }
+
+  updateAuthor(bookId:any,newBook:any) {
+    return this.client.patch(`${config.apiUrl}/authors/${bookId}`, newBook,{ observe: 'response' })
+  }
+  deleteAuthor(bookId:any) {
+    return this.client.delete(`${config.apiUrl}/authors/${bookId}`,{ observe: 'response' })
+  }
+
+  getAllCategories(){
+    return this.client.get(`${config.apiUrl}/categories`,{observe:'response'})
+  }
+
+  insertCategory(newCategory:any) {
+    return this.client.post(`${config.apiUrl}/categories`, newCategory,{ observe: 'response' })
+  }
+
+  updateCategory(categoryId:any,newCategory:any) {
+    return this.client.patch(`${config.apiUrl}/categories/${categoryId}`, newCategory,{ observe: 'response' })
+  }
+  deleteCategory(categoryId:any) {
+    return this.client.delete(`${config.apiUrl}/categories/${categoryId}`,{ observe: 'response' })
   }
 }
