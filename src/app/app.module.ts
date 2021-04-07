@@ -29,7 +29,15 @@ import { UserComponent } from './components/user/user.component';
 import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
-import {NgxPaginationModule} from 'ngx-pagination'; 
+import {NgxPaginationModule} from 'ngx-pagination';
+import { PopularBooksComponent } from './components/popular-books/popular-books.component';
+import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
+import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component'; 
 
 @NgModule({
   declarations: [
@@ -45,6 +53,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HomePublicViewComponent,
     FooterComponent,
     PublicBooksComponent,
+    PopularBooksComponent,
+    PopularAuthorsComponent,
+    PopularCategoriesComponent,
+    PublicAuthorsComponent,
+    AuthorDetailsComponent,
+    CategoryDetailsComponent,
+    BookDetailsComponent,
+    PublicCategoriesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

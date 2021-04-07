@@ -11,5 +11,38 @@ body {
 body{
     background-color: #1b1d1f;
 }
-html, body { height: 100%; }
+/* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.col{
+    max-width: 200px; 
+    max-height: 200px;
+}
+h5{
+    text-align: center;
+}
+.cat-img{
+    max-height: 150px;
+}
+h3,h5{
+    color:gold;
+}
+ngb-pagination ::ng-deep .page-link {
+    background-color: #343A40;
+    color: #FFC107;
+}
+ngb-pagination ::ng-deep .page-item.active .page-link{
+    background-color: #343A40;
+    color: #FFC107;
+}
+ngb-pagination ::ng-deep .page-item.disabled .page-link{
+    background-color: #343A40;
+    color: #FFC107;
+}
+ngb-pagination ::ng-deep .page-link:focus,
+ngb-pagination ::ng-deep .page-link:hover,
+ngb-pagination ::ng-deep .page-link:focus,
+ngb-pagination ::ng-deep .page-link:hover{
+    background-color: #FFC107;
+    color: #343A40;
+    border-color: #FFC107;
+}

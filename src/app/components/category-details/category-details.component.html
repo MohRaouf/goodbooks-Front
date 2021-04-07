@@ -1,0 +1,132 @@
+<h2 class="text-warning ml-5 mt-3 mb-3 ">{{category.name}}</h2>
+
+<div class="container">
+  <div class="row ">
+<div  *ngFor="let mybook of categoryBooks | slice: (page-1) * booksPerPage : page * booksPerPage">
+    <div class="col col-md-2 col-sm-6 ">
+      <a routerLink="/home/books/{{mybook._id}}" class="">
+        <img class=" " src="{{mybook.photo}}"  alt=""  width="160" height="200">
+      </a>
+      <figcaption class="">
+        <p><a class="text-decoration-none text-warning d-flex justify-content-center" routerLink="/home/books/{{mybook._id}}"> {{mybook.name}} </a> </p>
+        <p><a class="text-decoration-none text-warning d-flex justify-content-center" routerLink="/home/authors/{{mybook.authorId._id}}"> {{mybook.authorId.fname}} {{mybook.authorId.lname}}</a> </p>
+      </figcaption>
+    </div>
+</div>
+  </div>
+</div>
+<ngb-pagination 
+  [(page)]="page"
+  [pageSize]="booksPerPage"
+  [collectionSize]="totalBooks"></ngb-pagination>
+<!-- <div class="container">
+  <div class="row ">
+    <div class="col col-md-2 col-sm-6 ">
+      <a href="" class="">
+        <img class=" " src="assets/book1.jpg"  alt=""  width="160" height="200">
+      </a>
+      <figcaption class="">
+        <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+      </figcaption>
+    </div>
+    <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt=""  width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div>
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+            <img class=" " src="assets/book1.jpg"  alt="" width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center " href="#"> Francois morine </a> </p>
+        </figcaption>
+      </div> -->
+
+  <!-- </div>
+</div>
+<div class="pagination mt-4">
+  <a href="#">&laquo;</a>
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+</div>  -->

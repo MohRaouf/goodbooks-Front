@@ -1,0 +1,32 @@
+<div class="row mb-5  ">
+    <div class="col-3   authorCont ml-5 mt-5 mb-3 "  >
+        <div class="bookImage d-flex justify-content-end">
+     <img  src={{author.photo}}   alt="Random first slide">
+    </div>
+ </div> 
+ <div class="col-8 mt-5">
+    <h2 class="text-warning font-weight-bold  mb-3">{{author.fname}} {{author.lname}}</h2>
+   <h4   class="  text-light mb-3"> {{author.dob}}</h4>
+   <!-- <p class="text-light col-5 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea id mollitia, obcaecati dicta, consectetur est repellat totam unde sint voluptatibus alias fuga tempora molestiae. Eius itaque deleniti aliquid ut porro.</p> -->
+ </div>
+ </div>
+
+ <div class="container">
+    <div class="row ">
+  <div  *ngFor="let book of authorBooks | slice: (page-1) * booksPerPage : page * booksPerPage">
+      <div class="col col-md-2 col-sm-6 ">
+        <a href="" class="">
+          <img class=" " src="{{book.photo}}"  alt=""  width="160" height="200">
+        </a>
+        <figcaption class="">
+          <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> {{book.name}} </a> </p>
+        </figcaption>
+      </div>
+  </div>
+    </div>
+  </div>
+  <ngb-pagination 
+    [(page)]="page"
+    [pageSize]="booksPerPage"
+    [collectionSize]="totalBooks"></ngb-pagination>
+ 

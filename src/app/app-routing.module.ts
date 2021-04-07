@@ -11,6 +11,11 @@ import { AdminAuthorsComponent }from './components/admin-authors/admin-authors.c
 import { AdminCategoriesComponent }from './components/admin-categories/admin-categories.component';
 import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path:"home", component:HomeComponent ,children:[
@@ -20,6 +25,23 @@ const routes: Routes = [
     },{
       path:"books",
       component:PublicBooksComponent,
+    },{
+      path:"authors",
+      component:PublicAuthorsComponent
+    },{
+      path:"categories",
+      component:PublicCategoriesComponent
+    }
+    ,{
+      path:"books/:id",
+      component:BookDetailsComponent
+    },{
+      path:"authors/:id",
+      component:AuthorDetailsComponent
+    },
+    {
+      path:"categories/:id",
+      component:CategoryDetailsComponent
     }
   ]},
   {

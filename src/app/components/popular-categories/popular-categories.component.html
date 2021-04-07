@@ -1,0 +1,11 @@
+<div class="container border border-warning rounded-3">
+  <h3>Popular Categories</h3>
+      <div class="row row-cols-1 row-cols-md-6 mb-3"  >
+          <div class="col" *ngFor="let category of topCategories">
+            <div class="card bg-dark" >
+              <!-- <img src={{category.photo}} class="card-img-top " alt="img4"> -->
+              <div class="card-body"><a routerLink="categories/{{category._id}}"> <h5 class="card-title">{{category.name}}</h5></a></div>
+            </div>
+          </div>
+      </div>
+</div>

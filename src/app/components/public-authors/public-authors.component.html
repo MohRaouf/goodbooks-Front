@@ -1,0 +1,19 @@
+<h2 class="text-warning ml-5 mt-3 mb-3 "></h2>
+
+<div class="container">
+  <div class="row ">
+<div  *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage">
+    <div class="col col-md-2 col-sm-6 ">
+      <a routerLink={{author._id.toString()}} class="">
+        <img class=" " src="{{author.photo}}"  alt=""  width="160" height="200">
+      </a>
+      <figcaption class="">
+        <p><a class="text-decoration-none text-warning d-flex justify-content-center" routerLink={{author._id.toString()}}> {{author.fname}} </a> </p>
+      </figcaption>
+</div>
+  </div>
+</div>
+<ngb-pagination 
+  [(page)]="page"
+  [pageSize]="authorsPerPage"
+  [collectionSize]="totalAuthors"></ngb-pagination>

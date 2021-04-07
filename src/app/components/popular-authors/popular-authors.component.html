@@ -1,0 +1,11 @@
+<div class="container border border-warning rounded-3">
+  <h3>Popular Authors</h3>
+      <div class="row row-cols-1 row-cols-md-6 mb-3"  >
+          <div class="col" *ngFor="let author of topAuthors">
+            <div class="card bg-dark" >
+              <a routerLink="authors/{{author._id}}"><img src={{author.photo}} class="card-img-top " alt="img4"></a>
+              <div class="card-body"> <h5 class="card-title">{{author.fname}}</h5></div>
+            </div>
+          </div>
+      </div>
+</div>
