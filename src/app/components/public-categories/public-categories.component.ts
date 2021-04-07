@@ -12,7 +12,7 @@ export class PublicCategoriesComponent implements OnInit {
    CategoryArray:Array<Category>=[];
    totalCategories:number=0;
    page:number=1
-   CategoriesPerPage:number=12;
+   CategoriesPerPage:number=10;
   constructor(private publicService: PublicService) { }
   ngOnInit(): void {
     this.subscriber = this.publicService.getAllCategories().subscribe((response: any) => {
