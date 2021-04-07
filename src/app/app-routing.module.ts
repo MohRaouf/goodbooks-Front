@@ -9,10 +9,55 @@ import { AdminGuard } from './guards/admin.guard';
 import { AdminBooksComponent }from './components/admin-books/admin-books.component';
 import { AdminAuthorsComponent }from './components/admin-authors/admin-authors.component';
 import { AdminCategoriesComponent }from './components/admin-categories/admin-categories.component';
-
+import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
+import { PublicBooksComponent } from './components/public-books/public-books.component';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component'; 
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component'; 
+import { UserComponent } from './components/user/user.component';
+import { FooterElementsComponent } from './components/footer-elements/footer-elements.component'; 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path:"home", component:HomeComponent ,pathMatch:"full"},
+  { path:"home", component:HomeComponent ,children:[
+    {
+      path:'',
+      component:HomePublicViewComponent,
+    },{
+      path:"books",
+      component:PublicBooksComponent,
+    },{
+      path:"categories",
+      component:PublicCategoriesComponent,
+    },{
+      path:"authors",
+      component:PublicAuthorsComponent,
+    },{
+      path:"aboutus",
+      component:FooterElementsComponent,
+    },
+    {
+      path:"contact",
+      component:FooterElementsComponent,
+    },{
+      path:"terms",
+      component:FooterElementsComponent,
+    },
+  ]},
+ 
+  { path:"user", component:UserComponent ,children:[
+    {
+      path:'',
+      component:HomePublicViewComponent,
+    },{
+      path:"books",
+      component:PublicBooksComponent,
+    },{
+      path:"categories",
+      component:PublicCategoriesComponent,
+    },{
+      path:"authors",
+      component:PublicAuthorsComponent,
+    }
+  ]},
   {
      path: "admin", 
      component: AdminBoardComponent, 

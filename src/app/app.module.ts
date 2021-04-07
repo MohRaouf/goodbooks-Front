@@ -26,7 +26,13 @@ import { AdminAuthorsComponent } from './components/admin-authors/admin-authors.
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './components/user/user.component';
-import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
+import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PublicBooksComponent } from './components/public-books/public-books.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
+import { FooterElementsComponent } from './components/footer-elements/footer-elements.component'; 
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
     AdminAuthorsComponent,
     AdminCategoriesComponent,
     UserComponent,
+    HomePublicViewComponent,
+    FooterComponent,
+    PublicBooksComponent,
+    PublicCategoriesComponent,
+    PublicAuthorsComponent,
+    FooterElementsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -49,7 +61,7 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RxReactiveFormsModule
+    NgxPaginationModule
     
   ],
   providers: [
