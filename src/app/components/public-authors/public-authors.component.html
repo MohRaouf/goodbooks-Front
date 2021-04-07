@@ -1,22 +1,29 @@
 <h2 class="text-warning ml-5 mt-3 mb-3 ">Authors</h2>
 <div class="container">
-  <div class="row ">
-<div  *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage">
-    <div class="col col-md-2 col-sm-6 ">
-      <a href="" class="">
-        <img class="rounded-circle" src="{{author.photo}}"  alt=""  width="160" height="160">
-      </a>    
+  <div class="row ml-5 ">
+    
+    <div  class="mx-3 my-3" *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage"> 
+      <div class="hovereffect">
+        <img class="img-responsive rounded-circle" src="assets/imgs/login-bg.jpg" alt=""  width="160" height="160">
+            <div class="overlay">
+                <h2 class="text-warning">{{author.fname}}</h2>
+				<p>
+					<a href="#">More Details</a>
+				</p>
+            </div>
+    </div>
        
     </div>
-    <div width=160>
-    <h4 class="text-warning  " width="160"> {{author.fname}} {{author.lname}}</h4></div>
+
 </div>
-  </div>
 </div>
-<ngb-pagination 
-[(page)]="page"
-[pageSize]="authorsPerPage"
-[collectionSize]="totalAuthors"></ngb-pagination>
+<div class="d-flex justify-content-center ">
+  <ngb-pagination *ngIf="totalAuthors>authorsPerPage"
+    [(page)]="page"
+    [pageSize]="authorsPerPage"
+    [collectionSize]="totalAuthors"></ngb-pagination></div>
+  
+ 
 
 <!--<div class="container">
   <div class="row ">

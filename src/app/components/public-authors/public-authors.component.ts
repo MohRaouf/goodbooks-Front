@@ -12,7 +12,7 @@ export class PublicAuthorsComponent implements OnInit {
   authorsArray:Array<Author>=[];
   totalAuthors:number=0;
   page:number=1
-  authorsPerPage:number=12;
+  authorsPerPage:number=10;
  constructor(private publicService: PublicService) { }
 
 
