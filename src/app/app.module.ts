@@ -10,7 +10,6 @@ import { AdminBoardComponent } from './components/admin-board/admin-board.compon
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule ,NgModel} from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
-import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
 // import { AuthModule } from './auth/auth.module';
 
 import { CommonModule } from '@angular/common';
@@ -32,15 +31,22 @@ import { PublicBooksComponent } from './components/public-books/public-books.com
 import {NgxPaginationModule} from 'ngx-pagination';
 import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
 import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
-import { FooterElementsComponent } from './components/footer-elements/footer-elements.component'; 
-
+import { FooterElementsComponent } from './components/footer-elements/footer-elements.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { RatingAndShelveComponent } from './components/rating-and-shelve/rating-and-shelve.component';
+import { PopularBlocksComponent } from './components/popular-books/popular-blocks.component';
+import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
+import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
+import { ErrorComponent } from './components/error/error.component'; 
+ 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLoginComponent,
     AdminBoardComponent,
     HomeComponent,
-    BookShelfComponent,
     AdminBooksComponent,
     AdminAuthorsComponent,
     AdminCategoriesComponent,
@@ -51,6 +57,15 @@ import { FooterElementsComponent } from './components/footer-elements/footer-ele
     PublicCategoriesComponent,
     PublicAuthorsComponent,
     FooterElementsComponent,
+    CategoryDetailsComponent,
+    BookDetailsComponent,
+    AuthorDetailsComponent,
+    RatingAndShelveComponent,
+    PopularBlocksComponent,
+    PopularAuthorsComponent,
+    PopularCategoriesComponent,
+    ErrorComponent,
+     
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -61,7 +76,8 @@ import { FooterElementsComponent } from './components/footer-elements/footer-ele
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
     
   ],
   providers: [

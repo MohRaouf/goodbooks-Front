@@ -4,11 +4,13 @@
     
     <div  class="mx-3 my-3" *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage"> 
       <div class="hovereffect">
-        <img class="img-responsive rounded-circle" src="assets/imgs/login-bg.jpg" alt=""  width="160" height="160">
+        <img class="img-responsive rounded-circle" *ngIf="author.photo;else unknown" src="{{author.photo}}" alt=""  width="160" height="160">
+       <ng-template #unknown>        <img class="img-responsive rounded-circle"  src="/assets/imgs/unknown_user.png"alt=""  width="160" height="160">
+       </ng-template>
             <div class="overlay">
                 <h2 class="text-warning">{{author.fname}}</h2>
 				<p>
-					<a href="#">More Details</a>
+					<a routerLink={{author._id.toString()}} >More Details</a>
 				</p>
             </div>
     </div>

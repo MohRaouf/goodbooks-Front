@@ -6,10 +6,11 @@
     <div  class="mx-3 my-3" *ngFor="let book of booksArray | slice: (page-1) * booksPerPage : page * booksPerPage"> 
         
       <div class="hovereffect ">
-        <img class="img-responsive" src="{{book.photo}}" alt="" width="160" height="200">
+        <img class="img-responsive" *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160" height="200">
+         <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown_book.jpg" alt="" width="160" height="200"></ng-template>
         <div class="overlay ">
            <h2 class="text-warning">{{book.name}}</h2>
-           <a class="info" href="#">View Details</a>
+           <a class="info" routerLink={{book._id}}>View Details</a>
         </div>
          
           </div>
@@ -21,5 +22,5 @@
 </div>
  
  <div class="d-flex justify-content-center">
-  <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>

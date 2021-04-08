@@ -1,0 +1,58 @@
+<div class="row  ">
+    <div class="col-3 pr-0 ">
+        <div class="  d-flex justify-content-end">
+     <img class="  ml-5 mt-5 mb-3"*ngIf="book.photo;else unknown"src={{book.photo}} alt="Random first slide"  width="160" height="220">
+    </div>
+     <ng-template #unknown><img class="  ml-5 mt-5 mb-3" src="assets/imgs/unknown_book.jpg" alt="Random first slide"  width="160" height="220"></ng-template>
+      <app-rating-and-shelve></app-rating-and-shelve>
+ </div> 
+    <div class="col-8 mt-5">
+        <h2 class="text-warning font-weight-bold  mb-3">{{book.name}}</h2>
+       <h4> <a class="text-decoration-none text-light  mb-3" style="display: block;" routerLink="/home/authors/{{author._id}}">{{author.fname}} {{author.lname}}</a></h4>
+       <h4> <a class="text-decoration-none text-light " style="display: block;" routerLink="/home/categories/{{category._id}}">{{category.name}}</a></h4>
+       <div class="form-group">
+         <h4> <ngb-rating [rate]="book.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating></h4>
+         <div class="form-text ">
+         <!--<div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
+         <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>--> 
+         </div>
+       </div>
+       <p class="text-light col-5">{{book.description}}</p>
+    </div>
+</div>
+ <div class="row">
+     <div class="container mt-2">
+         <div class="row d-flex justify-content-center">
+             <div class="col-md-8 ml-5">
+                 <div class="headings d-flex justify-content-between align-items-center mb-3">
+                     <h4 class="text-warning">Reviews</h4>
+                 </div>
+          
+                 <div class="card p-3 mb-2 bg-dark">
+                     <div class="d-flex justify-content-between align-items-center">
+                         <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/C4egmYM.jpg" width="40" class="user-img rounded-circle mr-2"> <span><h5 class="font-weight-bold text-warning">olan_sams</h5> <h6 class="font-weight-bold text-light">Loving your work and profile! </h6></span> </div>  
+                     </div>
+                   
+                 </div>
+                 <div class="card p-3 mb-2 bg-dark">
+                     <div class="d-flex justify-content-between align-items-center">
+                         <div class="user d-flex flex-row align-items-center"> <img src="https://i.imgur.com/C4egmYM.jpg" width="40" class="user-img rounded-circle mr-2"> <span><h5 class="font-weight-bold text-warning">olan_sams</h5> <h6 class="font-weight-bold text-light">Loving your work and profile! </h6></span> </div>  
+                     </div>
+                   
+                 </div>
+                 <div class="card p-3 mb-2 bg-dark">
+                     <div class="d-flex justify-content-between align-items-center">
+                         
+                         <textarea class="form-control col-9  " placeholder="write a comment..." rows="2"></textarea>
+                 <br>
+                 <button type="button" class="btn btn-warning pull-right col-2">Post</button> 
+                     </div>
+                   
+                 </div>
+                  
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+

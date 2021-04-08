@@ -1,0 +1,18 @@
+<div class="container border border-warning rounded-3 mb-3">
+    <h3 class="text-warning my-2">Popular Authors</h3>
+        <div class="row row-cols-1 row-cols-md-6 mb-3"  >
+            <div class="col" *ngFor="let author of topAuthors">
+             
+              <div class="hovereffect ">
+                <img class="img-responsive" *ngIf="author.photo;else unknown" src="{{author.photo}}" alt="" width="160" height="200">
+                 <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown_user.png" alt="" width="160" height="200"></ng-template>
+                <div class="overlay ">
+                   <h2 class="text-warning">{{author.fname}}</h2>
+                   <a class="info"  routerLink="authors/{{author._id}}">View Details</a>
+                </div>
+                 
+                  </div>
+         
+            </div>
+        </div>
+  </div>

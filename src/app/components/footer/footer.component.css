@@ -2,7 +2,7 @@ footer {
   
 
   bottom: 0;
-   position: absolute;
+   position: fixed;
     width: 100%;
     /* Set the fixed height of the footer here */
 }
