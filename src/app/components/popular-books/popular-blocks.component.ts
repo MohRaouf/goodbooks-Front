@@ -1,6 +1,6 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { Book } from '../models/books';
+import { Book } from '../../models/books';
 @Component({
   selector: 'app-popular-blocks',
   templateUrl: './popular-blocks.component.html',

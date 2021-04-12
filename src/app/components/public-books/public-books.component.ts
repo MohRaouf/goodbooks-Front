@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { Book } from 'src/app/components/models/books';
+import { Book } from 'src/app/models/books';
 @Component({
   selector: 'app-public-books',
   templateUrl: './public-books.component.html',

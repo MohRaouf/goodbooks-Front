@@ -5,4 +5,5 @@ photo:  String
 dob:  Date 
 gender:  String
 books: Array<number>
+_id:number
 }

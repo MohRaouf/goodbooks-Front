@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PublicService } from 'src/app/services/public.service';
-import { Book } from '../models/books';
+import { Book } from '../../models/books';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({

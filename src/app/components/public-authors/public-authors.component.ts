@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { Author } from 'src/app/components/models/authors';
+import { Author } from 'src/app/models/authors';
 @Component({
   selector: 'app-public-authors',
   templateUrl: './public-authors.component.html',

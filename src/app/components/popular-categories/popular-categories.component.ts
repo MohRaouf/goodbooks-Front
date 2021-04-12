@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { Category } from '../models/categories';
+import { Category } from '../../models/categories';
 
 @Component({
   selector: 'app-popular-categories',

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { Author } from '../models/authors';
+import { Author } from '../../models/authors';
 
 @Component({
   selector: 'app-popular-authors',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
-import { Category } from 'src/app/components/models/categories';
+import { Category } from 'src/app/models/categories';
 @Component({
   selector: 'app-public-categories',
   templateUrl: './public-categories.component.html',
