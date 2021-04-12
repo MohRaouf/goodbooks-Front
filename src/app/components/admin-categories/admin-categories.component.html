@@ -18,7 +18,6 @@
     </thead>
     <tbody>
 
-
         <tr *ngFor="let category of categories" class="align-middle">
             <td>{{category.name}}</td>
             <td><img [src]="category.photo" alt="no Photo" style="width: 60px;height: 100px;"></td>
@@ -31,8 +30,6 @@
         </tr>
     </tbody>
 </table>
-
-
 
 <ng-template #content let-modal >
     <div class="form-theme">
