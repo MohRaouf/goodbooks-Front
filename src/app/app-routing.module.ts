@@ -3,16 +3,76 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { AdminBoardComponent } from './components/admin-board/admin-board.component';
 import { HomeComponent }from './components/home/home.component';
-import { BookShelfComponent }from './components/book-shelf/book-shelf.component';
 import {AuthGuard} from './guards/auth.guard'
 import { AdminGuard } from './guards/admin.guard';
 import { AdminBooksComponent }from './components/admin-books/admin-books.component';
 import { AdminAuthorsComponent }from './components/admin-authors/admin-authors.component';
 import { AdminCategoriesComponent }from './components/admin-categories/admin-categories.component';
-
+import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
+import { PublicBooksComponent } from './components/public-books/public-books.component';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component'; 
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component'; 
+import { UserComponent } from './components/user/user.component';
+import { FooterElementsComponent } from './components/footer-elements/footer-elements.component'; 
+import { CategoryDetailsComponent } from './components/category-details/category-details.component'; 
+import { BookDetailsComponent } from './components/book-details/book-details.component'; 
+import { AuthorDetailsComponent } from './components/author-details/author-details.component'; 
+import { ErrorComponent } from './components/error/error.component'; 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path:"home", component:HomeComponent ,pathMatch:"full"},
+  { path:"home", component:HomeComponent ,children:[
+    {
+      path:'',
+      component:HomePublicViewComponent,
+    },{
+      path:"books",
+      component:PublicBooksComponent,
+    },{
+      path:"categories",
+      component:PublicCategoriesComponent,
+    },{
+      path:"authors",
+      component:PublicAuthorsComponent,
+    },{
+      path:"categories/:id",
+      component:CategoryDetailsComponent
+    },{
+      path:"books/:id",
+      component:BookDetailsComponent
+    },{
+      path:"authors/:id",
+      component:AuthorDetailsComponent
+    }
+    
+    ,{
+      path:"aboutus",
+      component:FooterElementsComponent,
+    },
+    {
+      path:"contact",
+      component:FooterElementsComponent,
+    },{
+      path:"terms",
+      component:FooterElementsComponent,
+    },
+    {path:"**",component:ErrorComponent}
+  ]},
+ 
+  { path:"user", component:UserComponent ,children:[
+    {
+      path:'',
+      component:HomePublicViewComponent,
+    },{
+      path:"books",
+      component:PublicBooksComponent,
+    },{
+      path:"categories",
+      component:PublicCategoriesComponent,
+    },{
+      path:"authors",
+      component:PublicAuthorsComponent,
+    }
+  ]},
   {
      path: "admin", 
      component: AdminBoardComponent, 
@@ -38,9 +98,10 @@ const routes: Routes = [
     ],
 
 },
-  { path: "admins/login", component: AdminLoginComponent, pathMatch: "full",canActivate:[AuthGuard] }
+  { path: "admins/login", component: AdminLoginComponent, pathMatch: "full",canActivate:[AuthGuard] },
   // { path: "uhome", component: UHomeComponent,canActivate:[ AuthGuard] },
   // { path: "booshelf", component: BookShelfComponent,canActivate:[ AuthGuard] },
+ {path:"**",component:ErrorComponent}
 ];
 
 @NgModule({
