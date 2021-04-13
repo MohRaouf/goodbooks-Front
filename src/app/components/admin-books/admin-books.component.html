@@ -1,5 +1,15 @@
+<div class="spinner-border text-warning loading" role="status" *ngIf="loading">
+    <span class="sr-only loading">Loading...</span>
+  </div>
+<div class="text-right mb-3 ">
+    <button class="add-effect btn btn-warning m-0 pb-0" name="add" #add (click)= "open(content, add,null)">
+        <span class="text-warning h5 text-dark font-weight-bold mt-0">Add Book</span>
+        <i class="fa fa-plus-circle h5 add-style text-dark  ml-2"></i>
+    </button>
+</div>
+
 <table class="table table-bordered table-dark ">
-    <thead class="text-warning">
+        <thead class="text-warning">
         <tr class="h5">
             <th scope="col">Name</th>
             <th scope="col">Photo</th>
@@ -10,16 +20,127 @@
         </tr>
     </thead>
     <tbody>
+<!-- 
+<div  class="align-middle"  *ngFor= "let book of books" class="align-middle">
+    <tr>
+        <th rowspan="2"><img [src]="book.photo" alt="no Photo" style="width: 150px;height: 200px;"></th>
+        <th >{{book.name}}</th>
+        <th rowspan="4">   
+            <i class="fa fa-pencil-square icon-style mr-3"></i>
+            <i class="fa fa-trash icon-style" style="color: red;"></i>
+        </th>
+      </tr>
+      <tr>
+        <td  class="text-justify desc-style">{{book.description}}</td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td>{{book.authorId.fname +" "+book.authorId.lname}}</td>
+    </tr>
+      <tr>
+        <td>Category:</td>
+        <td>{{book.categoryId.name}}</td>
+    </tr>
+</div> -->
+
+
+
         <tr *ngFor= "let book of books" class="align-middle">
             <td>{{book.name}}</td>
-            <td>Dump Data</td>
-            <td>{{book.description}}</td>
-            <td>{{book.author}}</td>
-            <td>{{book.category}}</td>
-            <td>
-                <i class="fa fa-pencil-square icon-style mr-3"></i>
-                <i class="fa fa-trash icon-style" style="color: red;"></i>
+            <td><img [src]="book.photo" alt="no Photo" style="width: 60px;height: 100px;"></td>
+            <td class="text-justify desc-style">{{book.description}}</td>
+            <td>{{book.authorId.fname +" "+book.authorId.lname}}</td>
+            <td>{{book.categoryId.name}}</td>
+            <td style="width: 9%;">
+                <i class="fa fa-pencil-square icon-style mr-3" name="update" #update (click)="open(content,update,book)"></i>
+                <i class="fa fa-trash icon-style" style="color: red;" data-toggle="modal" (click)= "confirm(delete,book._id)"></i>
             </td>
         </tr>
     </tbody>
 </table>
+
+
+
+<ng-template #content let-modal >
+    <div class="form-theme">
+    <div class="modal-header text-center">
+        <h2 class="modal-title h1 font-weight-bold text-warning" id="modal-basic-title ">NEW BOOK</h2>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span class="text-warning" aria-hidden="true ">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body ">
+        <form [formGroup]=bookForm >
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <input id="name" placeholder="Book Name" (focus)="focusName()"class="form-control form-theme text-white" formControlName="name">
+                </div>
+
+                <div class="input-group mb-2">
+                  <input type="file" (change)="onImgChange($event)" class="custom-file-input form-control form-theme" formControlName="photo" id="photo">
+                  <label class="custom-file-label form-theme  text-white" for="photo">{{bookForm.controls.photo.value||"Choose Photo"}}</label>
+                </div>
+
+                  <div class="input-group mb-2">
+                    <textarea style="height: 18vh;" id="decription" (focus)="focusDescription()"  placeholder="Book Description" 
+                    class="form-control form-theme  text-white " aria-label="With textarea " formControlName="description"></textarea>
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <select  class="custom-select form-control form-theme  text-white" id="author" formControlName="author"  aria-placeholder="Book Author">
+                        <option value="" disabled selected>Choose Author [ unknown ]</option>
+                        <option *ngFor= "let author of authors; index as i" [value]="author._id">{{author.fname + " " + author.lname}}</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <select class="custom-select form-control form-theme  text-white" id="category" formControlName="category" aria-placeholder="Book Category">
+                        <option value="" disabled selected>Choose Category [ unknown ]</option>
+                        <option *ngFor= "let category of categories" [value]="category._id">{{category.name}}</option>
+                    </select>
+                  </div>           
+            </div>
+
+            <hr>
+            <div class="alert alert-danger  mb-2" *ngIf="!bookForm.controls.name.valid && nameFocused">
+                <p class=" m-0" >Name must be more than 3 characters</p>
+            </div>
+            <div class="alert alert-danger mb-2"  *ngIf="!bookForm.controls.description.valid && descriptionFocused">
+                <p class=" m-0">Description must more that 10 characters</p>
+            </div>
+            <div class="alert alert-danger mb-2"  *ngIf="!bookForm.controls.photo.valid && photoChanged">
+                <p class=" m-0">Bad Photo</p>
+            </div>
+
+            <div class="alert alert-info mb-2"  *ngIf="!imgParsed && photoChanged">
+                <p class=" m-0">Parsing the Photo . . . </p>
+            </div>
+
+            <div class="mb-1 mt-3 text-center text-dark">
+                <button type="submit" class="btn btn-warning text-dark font-weight-bold " (click)="modal.close('Save click')" [disabled]="bookForm.invalid">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</ng-template>
+
+
+
+<ng-template #delete let-modal >
+    <div class="form-theme">
+    <div class="modal-header text-center">
+        <h2 class="modal-title h1 font-weight-bold text-warning m-0" id="modal-basic-title ">CONFIRMATION</h2>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span class="text-warning" aria-hidden="true ">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body text-center">
+        <p class="h5 text-danger mb-1" >Are you sure to delete this book </p>
+    </div>
+    <div class="modal-footer text-right">    
+        <button type="button"  class=" mr-2 text-dark font-weight-bold btn btn-danger " (click)="modal.close('Save click')" >Confirm</button>
+        <button type="button" class="btn btn-warning text-dark font-weight-bold "(click)="modal.dismiss('Cross click')" >Cancel</button>
+    </div>
+</div>
+</ng-template>

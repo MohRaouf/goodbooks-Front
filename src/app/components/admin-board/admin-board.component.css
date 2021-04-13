@@ -1,10 +1,11 @@
 .custom{
     width: 80%;
-    height: 90%;
+    height: 100%;
 }
 .header{
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 5px 20px 50px rgb(56, 32, 0) inset;
+
 }
 .theme{
     background-color: rgba(31, 31, 31, 0.95);
@@ -18,3 +19,16 @@
     box-shadow: 2px 2px 3px gray;
 }
 
+.wrapper {
+    position: absolute;
+    right: 0;
+}
+.nav-custom{
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+.add-effect{
+    padding: 7px;
+    width:150px;
+}

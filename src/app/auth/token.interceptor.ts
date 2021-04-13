@@ -3,7 +3,6 @@ import { AuthService } from '../services/auth.service';
 import { catchError, filter, take, switchMap, tap } from 'rxjs/operators';
 
 
-
 import {
   HttpRequest,
   HttpHandler,
@@ -12,6 +11,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -20,9 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
 
-  constructor(public authService: AuthService) {
-
-  }
+  constructor(public authService: AuthService , public router:Router) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -33,8 +31,20 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(catchError(error => {
+
       if (error instanceof HttpErrorResponse && error.status === 401) {
+
+        if(request.url.includes("refresh")) {
+          /* Invalid Refresh Token -> Clear Local Storage */
+          this.authService.removeTokens() 
+          /* Navigate to the Parent Route */
+          if(this.router.routerState.snapshot.url.includes('/admin'))
+            this.router.navigate(['/admins/login']);
+          else this.router.navigate(['/home']);     
+        } 
+
         return this.handle401Error(request, next)
+
       } else {
         return throwError(error);
       }
@@ -69,7 +79,9 @@ export class TokenInterceptor implements HttpInterceptor {
         take(1),
         switchMap(accessToken => {
           return next.handle(this.addToken(request, accessToken));
-        }));
+        })
+       
+        );
     }
   }
 }

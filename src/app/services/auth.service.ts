@@ -4,6 +4,8 @@ import { of, Observable } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { config } from '../config'
 import { Tokens } from '../auth/tokens';
+import { text } from '@fortawesome/fontawesome-svg-core';
+import { Router } from '@angular/router';
 // import { access } from 'node:fs';
 
 @Injectable({
@@ -15,12 +17,15 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   public loggedUser: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ,public router:Router) { }
 
-  login(userCred: { username: string, password: string }): Observable<boolean> {
-    return this.http.post<any>(`${config.apiUrl}/admins/login`, userCred)
+  login(userCred: any): Observable<boolean> {
+    // endPoint='admins/login' ? this.router.routerState.snapshot.url.includes('/admin'):'users/login'
+    let endPoint;
+    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/login' : endPoint='users/login'
+
+    return this.http.post<any>(`${config.apiUrl}/${endPoint}`, userCred)
       .pipe(
-        // tap(tokens => console.log(`tokens : ${tokens}`)),
         tap(tokens => this.doLoginUser(userCred.username, tokens)),
         mapTo(true),
         catchError(error => {
@@ -30,19 +35,29 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<any>(`${config.apiUrl}/admins/logout`, {
-      'refreshToken': this.getRefreshToken()
-    }).pipe(
-      tap(() => this.doLogoutUser()),
+    let endPoint;
+    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/logout' : endPoint='users/logout'
+
+    return this.http.post(`${config.apiUrl}/${endPoint}`,
+    {'refreshToken': this.getRefreshToken()},{ responseType: 'text'})
+    .pipe(
+      tap((res) => {
+        console.log(res)
+        this.doLogoutUser()
+      }),
       mapTo(true),
       catchError(error => {
-        alert(error.error);
+        console.log(error)
+        alert(error);
         return of(false);
       }));
   }
 
   refreshToken() {
-    return this.http.post<any>(`${config.apiUrl}/admins/refresh`,
+    let endPoint;
+    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/refresh' : endPoint='users/refresh'
+
+    return this.http.post<any>(`${config.apiUrl}/${endPoint}`,
       { 'refreshToken': this.getRefreshToken() })
       .pipe(
         tap((tokens: Tokens) => {
@@ -82,7 +97,7 @@ export class AuthService {
   private getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN);
   }
-  private removeTokens() {
+  public removeTokens() {
     localStorage.removeItem(this.ACCESS_TOKEN);
     localStorage.removeItem(this.REFRESH_TOKEN);
   }
