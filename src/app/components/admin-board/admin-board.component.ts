@@ -12,24 +12,12 @@ export class AdminBoardComponent implements OnInit {
 
   subscriber:any;
 
-  constructor(private authService: AuthService, private router: Router) { }
-  user :string ="null"
+  constructor(private authService: AuthService,private adminService: AdminService, private router: Router) { }
   ngOnInit(): void {
-    this.router.navigate(['/admin/books']);
-
-    // this.subscriber = this.adminService.getAllBooks({name:"newBook",author:"unknow",category:"none",description:"this is a new Book"}).subscribe((response: any) => {
-    //   console.log(response)
-
-    //   // if (response.status == 201) {
-    //   // }
-    //   // else {
-    //   // }
-    // },
-    //   (err) => {
-    //     console.log(err)
-    //   }, () => {
-    //     // this.router.navigate(['/']);
-    //   })
+    this.adminService.getAdminInfo().subscribe((response: any) => {
+      console.log(response.body) 
+      this.router.navigate(['/admin/books']);
+    })
   }
   signOut(){
     this.authService.logout().subscribe((loggedOut)=>{
@@ -37,5 +25,4 @@ export class AdminBoardComponent implements OnInit {
       loggedOut && this.router.navigate(['/admins/login'])
     })
   }
-
 }

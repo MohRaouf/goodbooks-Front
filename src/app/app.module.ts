@@ -10,21 +10,14 @@ import { AdminBoardComponent } from './components/admin-board/admin-board.compon
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule ,NgModel} from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
-// import { AuthModule } from './auth/auth.module';
-
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-// import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
-// import { RandomGuard } from '../guards/random.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AdminGuard } from './guards/admin.guard';
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
 import { AdminAuthorsComponent } from './components/admin-authors/admin-authors.component';
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserComponent } from './components/user/user.component';
 import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
@@ -50,7 +43,6 @@ import { ErrorComponent } from './components/error/error.component';
     AdminBooksComponent,
     AdminAuthorsComponent,
     AdminCategoriesComponent,
-    UserComponent,
     HomePublicViewComponent,
     FooterComponent,
     PublicBooksComponent,

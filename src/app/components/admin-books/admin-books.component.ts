@@ -6,7 +6,7 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Observable, Subscriber } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
 import { Book, Category, Author } from '../../models/admin-models'
-import {convertToBase64} from '../../helpers/image-helpers'
+import { convertToBase64 } from '../../helpers/image-helpers'
 
 @Component({
   selector: 'app-admin-books',
@@ -30,20 +30,23 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loading = true;
     this.adminService.getAllBooks().subscribe((response: any) => {
+      console.log(response)
       this.books = response.body
+      console.log(this.books)
       this.loading = false;
     })
 
     this.adminService.getAllAuthors().subscribe((response: any) => {
       this.authors = response.body;
+      console.log("Authors ===== >", this.authors)
       this.authors = this.authors.map(({ _id, fname, lname, photo, dob, gender }) => ({
         _id, fname, lname, photo, dob, gender
       }))
     })
-    
+
     this.adminService.getAllCategories().subscribe((response: any) => {
       this.categories = response.body;
-      this.categories = this.categories.map(({ _id, name, photo}) => ({
+      this.categories = this.categories.map(({ _id, name, photo }) => ({
         _id, name, photo
       }))
     })
@@ -58,10 +61,10 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
   /* Insert - update Modals */
   open(content: any, caller: any, book: any) {
     /* Incase of updating book - populate its data in the modal */
-   caller.name!="add" && this.bookForm.patchValue({name:book.name, description:book.description});
+    caller.name != "add" && this.bookForm.patchValue({ name: book.name, description: book.description });
     this.modalService.open(content).result.then((result) => {
       /* Check for the caller either update or insert and execute its method */
-      caller.name == "add" ? this.insertBook() : this.updateBook(book); 
+      caller.name == "add" ? this.insertBook() : this.updateBook(book);
       this.closeResult = `Closed with: ${content}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -122,17 +125,20 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
     }
   }
 
-
-  insertBook() {
-    const newBook = {
+  getFormObject() {
+    return {
       name: this.bookForm.controls.name.value,
       photo: this.bookPhoto,
       description: this.bookForm.controls.description.value,
-      author: this.bookForm.controls.author.value,
-      category: this.bookForm.controls.category.value
+      authorId: this.bookForm.controls.author.value,
+      categoryId: this.bookForm.controls.category.value
     }
+  }
 
-    this.subscriber = this.adminService.insertBook(newBook).subscribe((response: any) => {
+  /****************** Insert - Update - Delete *******************/
+  /** Insert */
+  insertBook() {
+    this.subscriber = this.adminService.insertBook(this.getFormObject()).subscribe((response: any) => {
       response.status == 201 ? this.showSuccess = true : this.showFailed = true;
       // setTimeout(() => {this.showFailed = false;this.showSuccess = false;}, 3000);
     }, (err) => {
@@ -140,10 +146,10 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
     }, () => {
       this.router.navigate(['/admin']);
     })
-    console.log(newBook)
+    console.log(this.getFormObject())
   }
 
-
+  /** Delete */
   deleteBook(bookId: any) {
     this.subscriber = this.adminService.deleteBook(bookId).subscribe((response: any) => {
       response.status == 200 ? this.showSuccess = true : this.showFailed = true;
@@ -155,18 +161,11 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
     })
   }
 
-
+  /**Update */
   updateBook(book: any) {
-    const newBook = {
-      name: this.bookForm.controls.name.value,
-      photo: this.bookPhoto,
-      description: this.bookForm.controls.description.value,
-      author: this.bookForm.controls.author.value,
-      category: this.bookForm.controls.category.value
-    }
-
-    this.subscriber = this.adminService.updateBook(book._id, newBook).subscribe((response: any) => {
-      response.status == 201 ? this.showSuccess = true : this.showFailed = true;
+    this.subscriber = this.adminService.updateBook(book._id, this.getFormObject()).subscribe((response:any) => {
+      console.log(response)
+      response.status == 202 ? this.showSuccess = true : this.showFailed = true;
       // setTimeout(() => {this.showFailed = false;this.showSuccess = false;}, 3000);
     }, (err) => {
       // alert(err)
@@ -174,7 +173,7 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
     }, () => {
       // this.router.navigate(['/admin']);
     })
-    console.log(newBook)
+    console.log("Update book with Data ===> ",this.getFormObject())
   }
 }
 

@@ -5,6 +5,7 @@ import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { config } from '../config'
 import { Tokens } from '../auth/tokens';
 import { text } from '@fortawesome/fontawesome-svg-core';
+import { Router } from '@angular/router';
 // import { access } from 'node:fs';
 
 @Injectable({
@@ -16,10 +17,14 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   public loggedUser: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ,public router:Router) { }
 
   login(userCred: any): Observable<boolean> {
-    return this.http.post<any>(`${config.apiUrl}/admins/login`, userCred)
+    // endPoint='admins/login' ? this.router.routerState.snapshot.url.includes('/admin'):'users/login'
+    let endPoint;
+    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/login' : endPoint='users/login'
+
+    return this.http.post<any>(`${config.apiUrl}/${endPoint}`, userCred)
       .pipe(
         tap(tokens => this.doLoginUser(userCred.username, tokens)),
         mapTo(true),
@@ -30,7 +35,10 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post(`${config.apiUrl}/admins/logout`,
+    let endPoint;
+    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/logout' : endPoint='users/logout'
+
+    return this.http.post(`${config.apiUrl}/${endPoint}`,
     {'refreshToken': this.getRefreshToken()},{ responseType: 'text'})
     .pipe(
       tap((res) => {
@@ -46,7 +54,10 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<any>(`${config.apiUrl}/admins/refresh`,
+    let endPoint;
+    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/refresh' : endPoint='users/refresh'
+
+    return this.http.post<any>(`${config.apiUrl}/${endPoint}`,
       { 'refreshToken': this.getRefreshToken() })
       .pipe(
         tap((tokens: Tokens) => {

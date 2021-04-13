@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
-import { catchError, mapTo, tap } from 'rxjs/operators';
 import { config } from '../config'
 
 
@@ -11,6 +9,10 @@ import { config } from '../config'
 export class AdminService {
 
   constructor(private client: HttpClient) { }
+
+  getAdminInfo() {
+    return this.client.get(`${config.apiUrl}/admins/login`,{ observe: 'response' })
+  }
 
   getAllBooks() {
     return this.client.get(`${config.apiUrl}/books`,{ observe: 'response' })
@@ -35,11 +37,11 @@ export class AdminService {
     return this.client.post(`${config.apiUrl}/authors`, newAuthor,{ observe: 'response' })
   }
 
-  updateAuthor(bookId:any,newBook:any) {
-    return this.client.patch(`${config.apiUrl}/authors/${bookId}`, newBook,{ observe: 'response' })
+  updateAuthor(authorId:any,newAuthor:any) {
+    return this.client.patch(`${config.apiUrl}/authors/${authorId}`, newAuthor,{ observe: 'response' })
   }
-  deleteAuthor(bookId:any) {
-    return this.client.delete(`${config.apiUrl}/authors/${bookId}`,{ observe: 'response' })
+  deleteAuthor(authorId:any) {
+    return this.client.delete(`${config.apiUrl}/authors/${authorId}`,{ observe: 'response' })
   }
 
   getAllCategories(){

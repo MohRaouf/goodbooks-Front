@@ -67,7 +67,7 @@ date:Date= new Date("11-22-2115")
       /* Check for the caller either update or insert and execute its method */
       caller.name == "add" ? this.insertAuthor() : this.updateAuthor(author); 
     }, (reason) => {
-      console.log(reason)
+      console.log(this.closeResult)
     });
   }
 
@@ -146,6 +146,7 @@ date:Date= new Date("11-22-2115")
     }, (err) => {
       console.log(err)
     }, () => {
+      this.authorForm.reset()
       this.router.navigate(['/admin']);
     })
   }
@@ -160,6 +161,7 @@ date:Date= new Date("11-22-2115")
       // alert(err)
       console.log(err)
     }, () => {
+      this.authorForm.reset()
       this.router.navigate(['/admin']);
     })
     console.log(this.getFormObject())
