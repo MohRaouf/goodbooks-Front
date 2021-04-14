@@ -1,5 +1,11 @@
-<h2 class="text-warning ml-5 mt-3 mb-3 ">Authors</h2>
-<div class="container">
+
+<h1 class="text-warning col-3 mx-5 my-3" style="font-family: Georgia"> Authors</h1>
+<div class = "d-flex justify-content-center ">
+<div class="spinner-border text-warning loading " role="status" *ngIf="loading">
+  <span class="sr-only loading">Loading...</span>
+</div>
+</div>
+<div class="container d-flex justify-content-center mb-3">
   <div class="row ml-5 ">
     
     <div  class="mx-3 my-3" *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage"> 
@@ -8,13 +14,13 @@
        <ng-template #unknown>        <img class="img-responsive rounded-circle"  src="/assets/imgs/unknown_user.png"alt=""  width="160" height="160">
        </ng-template>
             <div class="overlay">
-                <h2 class="text-warning">{{author.fname}}</h2>
+            <h2 class="text-warning"></h2>
 				<p>
 					<a routerLink={{author._id.toString()}} >More Details</a>
 				</p>
             </div>
     </div>
-       
+    <p class=" text-warning font-weight-bold h6 AuthorName"  >{{author.fname}} {{author.lname}}</p>
     </div>
 
 </div>

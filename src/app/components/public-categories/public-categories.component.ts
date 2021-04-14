@@ -7,7 +7,7 @@ import { Category } from 'src/app/models/categories';
   styleUrls: ['./public-categories.component.css']
 })
 export class PublicCategoriesComponent implements OnInit {
-
+  loading:boolean=true;
   subscriber:any;
    CategoryArray:Array<Category>=[];
    totalCategories:number=0;
@@ -15,9 +15,11 @@ export class PublicCategoriesComponent implements OnInit {
    CategoriesPerPage:number=10;
   constructor(private publicService: PublicService) { }
   ngOnInit(): void {
+    this.loading=true;
     this.subscriber = this.publicService.getAllCategories().subscribe((response: any) => {
       console.log(response.body)
       this.CategoryArray=response.body
       this.totalCategories=this.CategoryArray.length
+      this.loading=false
   }) }
 }

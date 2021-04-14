@@ -1,20 +1,26 @@
-<h2 class="text-warning ml-5 mt-3 mb-3 "> Categories</h2>
-
-<div class="container">
+<h1 class="text-warning mx-5 my-3" style="font-family: Georgia"> Categories</h1>
+<div class = "d-flex justify-content-center ">
+  <div class="spinner-border text-warning loading " role="status" *ngIf="loading">
+    <span class="sr-only loading">Loading...</span>
+  </div>
+  </div>
+<div class="container d-flex justify-content-center">
   <div class="row ml-5 ">
     
     <div  class="mx-3 my-3" *ngFor="let Category of CategoryArray | slice: (page-1) * CategoriesPerPage : page * CategoriesPerPage"> 
-        
+      <div class="card bg-dark" style="width: 10rem;">
       <div class="hovereffect">
-        <img class="img-responsive" src="assets/imgs/login-bg.jpg" alt="" width="160" height="200">
+        <img class="img-responsive" src="{{Category.photo}}" alt="" width="160" height="200">
             <div class="overlay ">
-                <h2 class="text-warning">{{Category.name}}</h2>
+                <h2 class="text-warning"> </h2>
 				<p>
 					<a routerLink={{Category._id}}>View Books</a>
 				</p>
             </div>
     </div>
-       
+    <div class =" card-title d-flex justify-content-center mt-3 mb-2">
+      <p class=" text-warning font-weight-bold h6"  >{{Category.name}}</p></div>
+       </div>
     </div>
 
 </div>
