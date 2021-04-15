@@ -1,19 +1,20 @@
-<div class="container border border-warning rounded-3 mt-5 mb-5 ">
-  <h3 class="text-warning my-2">Popular Books</h3>
-        <div class="row row-cols-1 row-cols-md-6 mb-3 mt-3"  >
-            <div class="col" *ngFor="let book of topBooks">
-             
-              <div class="hovereffect ">
-                <img class="img-responsive" *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160" height="200">
-                 <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown_book.jpg" alt="" width="160" height="200"></ng-template>
-                <div class="overlay ">
-                   <h2 class="text-warning">{{book.name}}</h2>
-                   <a class="info" routerLink="books/{{book._id}}">View Details</a>
-                </div>
-                 
-                  </div>
-         
+<div class="justify-content-center d-flex my-3"><h3 class="text-warning">Popular Books</h3></div>
+<div class="container border border-warning rounded-3 mb-3 justify-content-center d-flex">
+  <div class="row row-cols-1 row-cols-md-6 my-3 d-flex justify-content-center"  >
+    <div class="col" *ngFor="let book of topBooks">
+      <div class="card bg-dark" style="width: 10rem;">
+        <div class="hovereffect ">
+          <img class="img-responsive" *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160" height="200">
+          <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown_book.jpg" alt="" width="160" height="200"></ng-template>
+            <div class="overlay ">
+                <a class="info" routerLink="books/{{book._id}}">View Details</a>
             </div>
         </div>
+        <div class =" card-title d-flex justify-content-center mt-3 mb-2">
+            <p><a class="text-warning" routerLink="books/{{book._id}}">{{book.name}}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
  

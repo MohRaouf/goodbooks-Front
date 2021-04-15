@@ -1,24 +1,18 @@
-<div class="container border border-warning rounded-3 mb-3">
-    <h3 class="text-warning mb-3">Popular Categories</h3>
-        <div class="row row-cols-1 row-cols-md-6 mb-3"  >
+<div class=" justify-content-center d-flex my-3"><h3 class="text-warning ">Popular Categories</h3></div>
+<div class="container border border-warning rounded-3 mb-3">  
+        <div class="row row-cols-1 row-cols-md-6 my-3 d-flex justify-content-center">
             <div class="col" *ngFor="let category of topCategories">
+                <div class="card bg-dark" style="width: 10rem;">
                 <div class="hovereffect">
                     <img class="img-responsive" src="assets/imgs/login-bg.jpg" alt="" width="160" height="200">
                         <div class="overlay ">
-                            <h2 class="text-warning">{{category.name}}</h2>
-                            <p>
-                                <a routerLink="categories/{{category._id}}">View Books</a>
-                            </p>
+                            <a class="info" routerLink="categories/{{category._id}}">View Details</a>
                         </div>
                 </div>
-            
-            
-            
-            
-            
-            
-            
-                
+                <div class =" card-title d-flex justify-content-center mt-3 mb-2">
+                    <p><a class="text-warning" routerLink="categories/{{category._id}}">{{category.name}}</a></p>
+                </div>
+               </div>
             </div>
         </div>
   </div>
