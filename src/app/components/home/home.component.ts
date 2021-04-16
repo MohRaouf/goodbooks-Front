@@ -1,49 +1,40 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import {
-  FormsModule,
-  FormControl,
-  FormGroup,
   NgForm,
-  Validators,
-  FormBuilder,
 } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import { password, requiredTrue } from '@rxweb/reactive-form-validators';
-import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { convertToBase64 } from '../../helpers/image-helpers';
-import * as e from 'express';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   subscriber: any;
   invalidCred: boolean = false;
   constructor(
     private modalService: NgbModal,
-    private formBuilder: FormBuilder,
     private userSevice: UserService,
     private authService: AuthService,
-    private router: Router
   ) { }
   ngOnInit() {
-    console.log('onInit Triggered');
-    if (this.authService.isLoggedIn()) {
-      this.isLoggedIn = true;
 
-      /** get user info to populate the profile photo and username */
-      this.userSevice.getUserInfo().subscribe((response: any) => {
-        console.log(response.body);
-      });
-    } else {
-      this.isLoggedIn = false;
-    }
+    /** get user info to populate the profile photo and username */
+    this.userSevice.getUserInfo().subscribe((response: any) => {
+      console.log(response.body);
+      console.log('onInit Triggered');
+      if (this.authService.isLoggedIn()) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+
   }
 
   ngOnDestroy(): void {
@@ -55,9 +46,6 @@ export class HomeComponent implements OnInit {
   isLoggedIn: boolean = false;
 
   open(content: any, e: any) {
-    // this.register = e.target.id == "SignIn" ? true : false;
-    // console.log(this.register)
-
     this.loading = false;
     this.success = false;
     this.duplicatedUsername = false;
@@ -65,7 +53,6 @@ export class HomeComponent implements OnInit {
     this.loginFailed = false;
     this.loginLoading = false;
     this.loginSuccess = false;
-
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -87,19 +74,22 @@ export class HomeComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   photo: any;
   invalidPhoto: boolean = false;
   img: any = ""
   onImgChange($event: any) {
-    this.img = $event.target.files[0];
-    if (this.img) {
-      convertToBase64(this.img).subscribe((data) => {
-        this.photo = data;
-        console.log(this.img);
-        this.invalidPhoto = this.img.size < 2048090 ? false : true;
-        console.log(this.invalidPhoto);
-      });
+    this.photo=""
+    this.img=""
+    this.invalidPhoto=false;
+    this.img = $event.target.files[0]
+    if (this.img.size<2048090) {
+        convertToBase64(this.img).subscribe((data) => {
+        this.photo=data;
+        // this.invalidPhoto = this.img.size < 2048090 ? (this.bookPhoto = data) : true;
+      })
     }
+    else{this.invalidPhoto=true;}
   }
 
   loading: boolean = false;
@@ -118,6 +108,8 @@ export class HomeComponent implements OnInit {
       username: signUpForm.value.username,
       password: signUpForm.value.password,
     };
+    this.failed=false;
+    this.duplicatedUsername=false;
     console.log(newUser);
     this.subscriber = this.userSevice.registerUser(newUser).subscribe(
       (res) => {
@@ -147,19 +139,13 @@ export class HomeComponent implements OnInit {
     this.subscriber = this.authService.login(loginInfo).subscribe(
       (success: boolean) => {
         this.loginSuccess = false;
+        this.loginLoading = false;
         if (success) {
-          this.loginLoading = false;
           this.loginSuccess = true
           this.loginFailed = false;
           this.modalService.dismissAll();
           this.ngOnInit()
         } else { this.loginFailed = true }
-        signInForm.reset()
-      },
-      (err) => {
-        console.log(err)
-        this.loginLoading = false;
-        this.loginFailed = true;
         signInForm.reset()
       });
     console.log(loginInfo);

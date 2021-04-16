@@ -73,7 +73,8 @@ const routes: Routes = [
     children: [
       {
         path: '', // child route path
-        component: AdminBooksComponent,// child route component that the router renders
+        redirectTo:'books',
+        pathMatch:'full'
       },
       {
         path: 'books', // child route path
