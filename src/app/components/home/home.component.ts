@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { PublicService } from 'src/app/services/public.service';
 import { convertToBase64 } from '../../helpers/image-helpers';
 
 @Component({
@@ -17,13 +18,11 @@ import { convertToBase64 } from '../../helpers/image-helpers';
 export class HomeComponent implements OnInit, OnDestroy {
   subscriber: any;
   invalidCred: boolean = false;
-  constructor(
-    private modalService: NgbModal,
-    private userSevice: UserService,
-    private authService: AuthService,
-  ) { }
+  SearchOption:string="All";
+  keyWords:string="";
+  constructor(private modalService: NgbModal,private userSevice : UserService, private authService: AuthService,private publicService:PublicService, private router: Router) { }
   ngOnInit() {
-
+    
     /** get user info to populate the profile photo and username */
     this.userSevice.getUserInfo().subscribe((response: any) => {
       console.log(response.body);
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.isLoggedIn = false;
       }
     });
-
   }
 
   ngOnDestroy(): void {
@@ -42,8 +40,33 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriber && this.subscriber.unsubscribe();
   }
 
+  ngOnInit() {
+    /** get user info to populate the profile photo and username */
+    this.userSevice.getUserInfo().subscribe((response: any) => {
+      console.log(response.body);
+      console.log('onInit Triggered');
+      if (this.authService.isLoggedIn()) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+    this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat )
+    this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
+  }
+  chooseSearch(e:any){
+    console.log(e.target.innerText)
+    this.SearchOption= e.target.innerText
+      }
+    Search(e:any){
+    this.publicService.searchCategory=this.SearchOption
+     this.publicService.searchedName = this.keyWords
+     this.publicService.updateSearch(this.SearchOption,this.keyWords)
+     
+    }
   closeResult: any;
   isLoggedIn: boolean = false;
+
 
   open(content: any, e: any) {
     this.loading = false;

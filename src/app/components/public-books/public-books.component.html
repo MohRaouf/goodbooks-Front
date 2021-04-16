@@ -1,20 +1,28 @@
-<h2 class="text-warning ml-5 mt-3 mb-3 "> Books</h2>
 
+
+<h1 class="text-warning col-3 mx-5 my-3" style="font-family: Georgia"> Books</h1>
+<div class = "d-flex justify-content-center ">
+  <div class="spinner-border text-warning loading " role="status" *ngIf="loading">
+    <span class="sr-only loading">Loading...</span>
+  </div>
+  </div>
 <div class="container">
-  <div class="row ml-5 ">
+  <div class="row ml-5 " >
     
-    <div  class="mx-3 my-3" *ngFor="let book of booksArray | slice: (page-1) * booksPerPage : page * booksPerPage"> 
+    <div  class="mx-3 my-3" *ngFor="let book of booksArray"> 
         
+      <div class="card bg-dark" style="width: 10rem;">
+      
       <div class="hovereffect ">
-        <img class="img-responsive" *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160" height="200">
-         <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown_book.jpg" alt="" width="160" height="200"></ng-template>
+        <img class="img-responsive " *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160" height="200">
+         <ng-template #unknown> <img class="img-responsive "  src="/assets/imgs/unknown_book.jpg" alt="" width="160" height="200"></ng-template>
         <div class="overlay ">
-           <h2 class="text-warning">{{book.name}}</h2>
            <a class="info" routerLink={{book._id}}>View Details</a>
-        </div>
-         
+        </div> 
           </div>
- 
+          <div class =" card-title d-flex justify-content-center mt-3 mb-2">
+          <p class=" text-warning font-weight-bold h6"  >{{book.name}}</p></div>
+        </div>  
        
     </div>
 
@@ -22,5 +30,5 @@
 </div>
  
  <div class="d-flex justify-content-center">
-  <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"  (pageChange)="showPageIndex(page)"></ngb-pagination>
 </div>

@@ -7,7 +7,7 @@ import { Author } from 'src/app/models/authors';
   styleUrls: ['./public-authors.component.css']
 })
 export class PublicAuthorsComponent implements OnInit {
-
+  loading: boolean = true;
   subscriber:any;
   authorsArray:Array<Author>=[];
   totalAuthors:number=0;
@@ -17,11 +17,22 @@ export class PublicAuthorsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.subscriber = this.publicService.getAllAuthors().subscribe((response: any) => {
+    this.loading = true;
+    this.subscriber = this.publicService.getAllAuthors(1,this.authorsPerPage).subscribe((response: any) => {
       console.log(response.body)
-      this.authorsArray=response.body
-      this.totalAuthors=this.authorsArray.length
+      this.authorsArray=response.body.allAuthors
+      this.totalAuthors=response.body.countAuthors
+      this.loading = false;
   }) 
   }
-
+  showPageIndex(pageIndex:any){
+    this.page = pageIndex;
+    console.log(this.page);
+    this.subscriber = this.publicService.getAllAuthors(this.page,this.authorsPerPage).subscribe((response: any) => {
+      console.log(response.body)
+      this.authorsArray=response.body.allAuthors
+      this.totalAuthors=response.body.countAuthors
+      this.loading = false;
+  }) 
+  }
 }

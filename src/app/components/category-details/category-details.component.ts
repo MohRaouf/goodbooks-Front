@@ -9,7 +9,7 @@ import { Category } from '../../models/categories';
 })
 export class CategoryDetailsComponent implements OnInit {
 
-  category:Category={_id:0,name:"",books:[]};
+  category:Category={_id:0,name:"",photo:"",books:[]};
   subscriber:any;
   totalBooks:number=0;
   page:number=1;
