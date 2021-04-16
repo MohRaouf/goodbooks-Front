@@ -96,7 +96,7 @@
                   <div class="input-group mb-2">
                     <select class="custom-select form-control form-theme  text-white" id="category" formControlName="category" aria-placeholder="Book Category">
                         <option value="" disabled selected>Choose Category [ unknown ]</option>
-                        <option *ngFor= "let category of categories" value="category._id">{{category.name}}</option>
+                        <option *ngFor= "let category of categories" [value]="category._id">{{category.name}}</option>
                     </select>
                   </div>           
             </div>

@@ -49,7 +49,6 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
     this.modalService.open(content).result.then((result) => {
       /* Check for the caller either update or insert and execute its method */
       caller.name == "add" ? this.insertCategory() : this.updateCategory(category);
-      this.closeResult = `Closed with: ${content}`;
     }, (reason) => {
       console.log(reason)
     });

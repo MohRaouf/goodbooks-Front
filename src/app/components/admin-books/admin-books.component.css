@@ -28,7 +28,8 @@ table tr {
 }
 
 .add-effect{
-    cursor: pointer;
+    padding: 7px;
+    width:150px;
 }
 .add-effect:hover{
     transform: scale(1.05);

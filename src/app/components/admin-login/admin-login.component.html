@@ -1,5 +1,5 @@
 <div class="login-box">
-    <h1 class="text-warning text-center mb-5 font-weight-bold">ADMIN DASHBOARD</h1>
+    <h3 class="text-warning text-center mb-5 font-weight-bold">ADMIN DASHBOARD</h3>
     <form [formGroup]=loginForm ng-submit="submitForm()">
         <div class="user-box">
             <input type="text" name="" required="" (blur)="usernameFocus()" (focus)="usernameFocus()" 
@@ -32,7 +32,6 @@
                 <button type="submit" (click)="submitForm()" [disabled]="!usernameStatus || !passwordStatus ? true:null" >LOGIN</button>       
             </a>
         </div>
-
     </form>
 </div>
 

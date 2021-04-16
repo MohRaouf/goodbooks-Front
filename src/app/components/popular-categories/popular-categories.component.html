@@ -1,0 +1,24 @@
+<div class="container border border-warning rounded-3 mb-3">
+    <h3 class="text-warning mb-3">Popular Categories</h3>
+        <div class="row row-cols-1 row-cols-md-6 mb-3"  >
+            <div class="col" *ngFor="let category of topCategories">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="assets/imgs/login-bg.jpg" alt="" width="160" height="200">
+                        <div class="overlay ">
+                            <h2 class="text-warning">{{category.name}}</h2>
+                            <p>
+                                <a routerLink="categories/{{category._id}}">View Books</a>
+                            </p>
+                        </div>
+                </div>
+            
+            
+            
+            
+            
+            
+            
+                
+            </div>
+        </div>
+  </div>

@@ -1,0 +1,49 @@
+
+<h1 class="text-warning col-3 mx-5 my-3" style="font-family: Georgia"> Authors</h1>
+<div class = "d-flex justify-content-center ">
+<div class="spinner-border text-warning loading " role="status" *ngIf="loading">
+  <span class="sr-only loading">Loading...</span>
+</div>
+</div>
+<div class="container d-flex justify-content-center mb-3">
+  <div class="row ml-5 ">
+    
+    <div  class="mx-3 my-3" *ngFor="let author of authorsArray "> 
+      <div class="hovereffect">
+        <img class="img-responsive rounded-circle" *ngIf="author.photo;else unknown" src="{{author.photo}}" alt=""  width="160" height="160">
+       <ng-template #unknown>        <img class="img-responsive rounded-circle"  src="/assets/imgs/unknown_user.png"alt=""  width="160" height="160">
+       </ng-template>
+            <div class="overlay">
+            <h2 class="text-warning"></h2>
+				<p>
+					<a routerLink={{author._id.toString()}} >More Details</a>
+				</p>
+            </div>
+    </div>
+    <p class=" text-warning font-weight-bold h6 AuthorName"  >{{author.fname}} {{author.lname}}</p>
+    </div>
+
+</div>
+</div>
+<div class="d-flex justify-content-center ">
+  <ngb-pagination *ngIf="totalAuthors>authorsPerPage"
+    [(page)]="page"
+    [pageSize]="authorsPerPage"
+    [collectionSize]="totalAuthors"
+    (pageChange)="showPageIndex(page)"></ngb-pagination></div>
+  
+ 
+
+<!--<div class="container">
+  <div class="row ">
+
+    <div class="col col-md-2 col-sm-6 ">
+      <a href="" class="">
+        <img class="rounded-circle" src="assets/book1.jpg"  alt=""  width="160" height="160">
+      </a>
+      <figcaption class="">
+        <p><a class="text-decoration-none text-warning d-flex justify-content-center" href="#"> Francois morine </a> </p>
+      </figcaption>
+    </div>
+  </div>
+  </div>-->

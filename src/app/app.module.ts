@@ -10,35 +10,56 @@ import { AdminBoardComponent } from './components/admin-board/admin-board.compon
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule ,NgModel} from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
-import { BookShelfComponent } from './components/book-shelf/book-shelf.component';
-// import { AuthModule } from './auth/auth.module';
-
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-// import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
-// import { RandomGuard } from '../guards/random.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AdminGuard } from './guards/admin.guard';
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
 import { AdminAuthorsComponent } from './components/admin-authors/admin-authors.component';
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserComponent } from './components/user/user.component';
-import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
-
+import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PublicBooksComponent } from './components/public-books/public-books.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
+import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
+import { FooterElementsComponent } from './components/footer-elements/footer-elements.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { RatingAndShelveComponent } from './components/rating-and-shelve/rating-and-shelve.component';
+import { PopularBlocksComponent } from './components/popular-books/popular-blocks.component';
+import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
+import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
+import { ErrorComponent } from './components/error/error.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component'; 
+ 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLoginComponent,
     AdminBoardComponent,
     HomeComponent,
-    BookShelfComponent,
     AdminBooksComponent,
     AdminAuthorsComponent,
     AdminCategoriesComponent,
-    UserComponent,
+    HomePublicViewComponent,
+    FooterComponent,
+    PublicBooksComponent,
+    PublicCategoriesComponent,
+    PublicAuthorsComponent,
+    FooterElementsComponent,
+    CategoryDetailsComponent,
+    BookDetailsComponent,
+    AuthorDetailsComponent,
+    RatingAndShelveComponent,
+    PopularBlocksComponent,
+    PopularAuthorsComponent,
+    PopularCategoriesComponent,
+    ErrorComponent,
+    SearchResultsComponent,
+     
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -49,7 +70,8 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RxReactiveFormsModule
+    NgxPaginationModule,
+    FormsModule
     
   ],
   providers: [
