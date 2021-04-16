@@ -28,10 +28,12 @@ export class AuthService {
       .pipe(
         tap(tokens => this.doLoginUser(userCred.username, tokens)),
         mapTo(true),
-        catchError(error => {
-          alert(error.error);
-          return of(false);
-        }));
+        // catchError(error => {
+        //   alert(error.error);
+        //   return of(false);
+        // })
+        
+        );
   }
 
   logout() {

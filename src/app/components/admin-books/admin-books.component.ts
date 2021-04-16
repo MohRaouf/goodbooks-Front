@@ -85,7 +85,7 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
   bookForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]),
     photo: new FormControl('',
-      [RxwebValidators.image({ maxHeight: 2000, maxWidth: 2000 }),
+      [RxwebValidators.image({ maxHeight: 200, maxWidth: 200 }),
       RxwebValidators.extension({ extensions: ["jpeg", "jpg", "png"] })
       ]),
     description: new FormControl('', [Validators.required, Validators.maxLength(350), Validators.minLength(4)]),
@@ -121,6 +121,8 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
         this.imgParsed = true
         this.bookPhoto = data
         console.log(img)
+        console.log(this.bookForm.controls.photo.valid)
+
       })
     }
   }

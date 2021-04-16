@@ -111,6 +111,8 @@ date:Date= new Date("11-22-2115")
         this.imgParsed = true
         this.authorPhoto = data
         console.log(img)
+        console.log(this.authorForm.controls.photo.valid)
+
       })
     }
   }
