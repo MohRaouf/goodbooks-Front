@@ -21,20 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   SearchOption:string="All";
   keyWords:string="";
   constructor(private modalService: NgbModal,private userSevice : UserService, private authService: AuthService,private publicService:PublicService, private router: Router) { }
-  ngOnInit() {
-    
-    /** get user info to populate the profile photo and username */
-    this.userSevice.getUserInfo().subscribe((response: any) => {
-      console.log(response.body);
-      console.log('onInit Triggered');
-      if (this.authService.isLoggedIn()) {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    });
-  }
-
+   
   ngOnDestroy(): void {
     console.log('Login Component Destroy');
     this.subscriber && this.subscriber.unsubscribe();
