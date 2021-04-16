@@ -1,11 +1,35 @@
-<p class="text-warning">{{searchCat}}</p>
-<p class="text-warning">{{searchedNa}}</p>
-<ul *ngFor="let book of booksArray ">
-    <li class="text-warning">{{book.name}}</li>
-</ul>
-<ul *ngFor="let category of categoryArray ">
-    <li class="text-warning">{{category.name}}</li>
-</ul>
-<ul *ngFor="let author of authorArray ">
-    <li class="text-warning">{{author.fname}} {{author.lname}}</li>
-</ul>
+
+<h2 class="text-warning col-3 mx-5 my-5" style="font-family: Georgia"> Search Results</h2>
+<div class="d-flex justify-content-center">
+<table class="table col-8">
+    <thead class="thead-dark">
+      <tr>
+         
+        <th class="text-warning"scope="col">Image</th>
+        <th class="text-warning"scope="col">Name</th>
+        <th class="text-warning"scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let book of booksArray  ">
+ 
+        <td>   <img class="img-responsive" src="{{book.photo}}" alt="" width="80" height="100"></td>
+        <td class="text-light"> {{book.name}}</td>
+        <td class="text-light">Book</td>
+      </tr>
+      <tr  *ngFor="let category of categoryArray   ">
+        
+        <td>   <img class="img-responsive" src="{{category.photo}}" alt="" width="80" height="100"></td>
+        <td class="text-light"> {{category.name}}</td>
+        <td class="text-light">Category</td>
+      </tr>
+      <tr  *ngFor="let author of authorArray   ">
+          
+        <td>   <img class="img-responsive" src="{{author.photo}}" alt="" width="80" height="100"></td>
+        <td class="text-light"> {{author.fname}} {{author.lname}}</td>
+        <td class="text-light">Author</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
