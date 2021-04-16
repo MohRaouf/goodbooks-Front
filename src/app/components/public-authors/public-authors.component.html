@@ -8,7 +8,7 @@
 <div class="container d-flex justify-content-center mb-3">
   <div class="row ml-5 ">
     
-    <div  class="mx-3 my-3" *ngFor="let author of authorsArray | slice: (page-1) * authorsPerPage : page * authorsPerPage"> 
+    <div  class="mx-3 my-3" *ngFor="let author of authorsArray "> 
       <div class="hovereffect">
         <img class="img-responsive rounded-circle" *ngIf="author.photo;else unknown" src="{{author.photo}}" alt=""  width="160" height="160">
        <ng-template #unknown>        <img class="img-responsive rounded-circle"  src="/assets/imgs/unknown_user.png"alt=""  width="160" height="160">
@@ -29,7 +29,8 @@
   <ngb-pagination *ngIf="totalAuthors>authorsPerPage"
     [(page)]="page"
     [pageSize]="authorsPerPage"
-    [collectionSize]="totalAuthors"></ngb-pagination></div>
+    [collectionSize]="totalAuthors"
+    (pageChange)="showPageIndex(page)"></ngb-pagination></div>
   
  
 

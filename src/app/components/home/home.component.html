@@ -9,14 +9,14 @@
       <div class="collapse navbar-collapse col-2" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
           <li class="nav-item col-3  ">
-            <a class="nav-link me-0 " aria-current="page" routerLinkActive="selected"
+            <a class="nav-link me-0 font-weight-bold " aria-current="page" routerLinkActive="selected"
               routerLink="books">Books</a>
           </li>
-          <li class="nav-item col-4 ">
+          <li class="nav-item col-4 font-weight-bold">
             <a class="nav-link  me-0" aria-current="page" routerLinkActive="selected"
               routerLink="categories">Categories</a>
           </li>
-          <li class="nav-item col-4 me-5">
+          <li class="nav-item col-4 me-5 font-weight-bold">
             <a class="nav-link   me-0" aria-current="page" routerLinkActive="selected"
               routerLink="authors">Authors</a>
           </li>
@@ -72,29 +72,39 @@
           <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
 
             <li class="nav-item col-2  ">
-              <a class="nav-link active me-0 font-weight-bold " aria-current="page" routerLinkActive="selected"
+              <a class="nav-link   me-0 font-weight-bold " aria-current="page" routerLinkActive="selected"
                 routerLink="books">Books</a>
             </li>
             <li class="nav-item col-3 ">
-              <a class="nav-link active me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
+              <a class="nav-link   me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
                 routerLink="categories">Categories</a>
             </li>
             <li class="nav-item col-2 me-5">
-              <a class="nav-link active  me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
+              <a class="nav-link    me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
                 routerLink="authors">Authors</a>
             </li>
             <li class="nav-item col-3 me-5 ml-2 ">
-              <a class="nav-link active  me-0 font-weight-bold" aria-current="page" href="#">MyBooks</a>
+              <a class="nav-link    me-0 font-weight-bold" aria-current="page" href="#">MyBooks</a>
             </li>
           </ul>
         </div>
         <div class=" collapse navbar-collapse col-5">
           <div class="input-group">
-            <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search"
-              id="example-search-input">
+            <div class="input-group-prepend">
+              <button class="btn btn-warning dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{SearchOption}}</button>
+              <div class="dropdown-menu bg-dark">
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">All</a>
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Books</a>
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Categories</a>
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Authors</a>
+              </div>
+            </div>
+            <input class="form-control border-end-0 border rounded-right" type="text" placeholder="Search"
+              id="example-search-input" [(ngModel)]="keyWords">
             <span class="input-group-append">
               <button class="btn btn-light border-start-0 border-top-0 border-bottom-0  rounded-pill ms-n5 h-100"
-                type="button">
+                type="button" (click)="Search($event);" routerLinkActive="selected"
+                routerLink="searchResults">
                 <i class="fa fa-search "></i>
               </button>
             </span>

@@ -14,21 +14,16 @@ export class PublicService {
   categoryObservable=this.searchCatChange.asObservable()
   searchedNameObservable = this.searchedNameChange.asObservable()
   constructor(private client: HttpClient) { 
-  /*  this.searchCatChange.subscribe((value)=>{
-      this.searchCategory=value;
-    })
-    this.searchedNameChange.subscribe((value)=>{
-      this.searchedName=value;
-    })*/
+ 
   }
   updateSearch(NewCat:string,NewName:string){
     this.searchCatChange.next(NewCat)
     this.searchedNameChange.next(NewName)
     
   }
-  getAllBooks() {
+  getAllBooks(page:number,perPage:number) {
     //Login
-    return this.client.get(`${config.apiUrl}/books`, { observe: 'response' })
+    return this.client.get(`${config.apiUrl}/books?page=${page}&perPage=${perPage}`, { observe: 'response' })
   }
   getTopBooks(){
     return this.client.get(`${config.apiUrl}/books/top`,{observe:"response"});
@@ -39,8 +34,8 @@ export class PublicService {
   getBookSearchRes(search:string){
     return this.client.get(`${config.apiUrl}/books/search/${search}`,{observe:"response"})
   }
-  getAllAuthors(){
-    return this.client.get(`${config.apiUrl}/authors`,{ observe: 'response' }) 
+  getAllAuthors(page:number,perPage:number){
+    return this.client.get(`${config.apiUrl}/authors?page=${page}&perPage=${perPage}`,{ observe: 'response' }) 
   }
   getTopAuthors(){
     return this.client.get(`${config.apiUrl}/authors/top`,{observe:"response"});
@@ -51,8 +46,8 @@ export class PublicService {
   getAuthorSearchRes(search:string){
     return this.client.get(`${config.apiUrl}/authors/search/${search}`,{observe:"response"})
   }
-  getAllCategories(){
-    return this.client.get(`${config.apiUrl}/categories`,{observe:"response"})
+  getAllCategories(page:number,perPage:number){
+    return this.client.get(`${config.apiUrl}/categories?page=${page}&perPage=${perPage}`,{observe:"response"})
   }
   getTopCategories(){
     return this.client.get(`${config.apiUrl}/categories/top`,{observe:"response"});
