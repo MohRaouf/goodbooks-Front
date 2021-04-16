@@ -32,11 +32,12 @@ export class TokenInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(catchError(error => {
 
-      if (error instanceof HttpErrorResponse && error.status === 401) {
+      if (error instanceof HttpErrorResponse && error.status === 401 && this.authService.isLoggedIn()) {
 
         if(request.url.includes("refresh")) {
           /* Invalid Refresh Token -> Clear Local Storage */
           this.authService.removeTokens() 
+
           /* Navigate to the Parent Route */
           if(this.router.routerState.snapshot.url.includes('/admin'))
             this.router.navigate(['/admins/login']);
