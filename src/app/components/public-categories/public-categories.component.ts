@@ -16,10 +16,20 @@ export class PublicCategoriesComponent implements OnInit {
   constructor(private publicService: PublicService) { }
   ngOnInit(): void {
     this.loading=true;
-    this.subscriber = this.publicService.getAllCategories().subscribe((response: any) => {
+    this.subscriber = this.publicService.getAllCategories(1,this.CategoriesPerPage).subscribe((response: any) => {
       console.log(response.body)
-      this.CategoryArray=response.body
-      this.totalCategories=this.CategoryArray.length
+      this.CategoryArray=response.body.allCategories
+      this.totalCategories=response.body.countCategories
       this.loading=false
   }) }
+  showPageIndex(pageIndex:any){
+    this.page = pageIndex;
+    console.log(this.page);
+    this.subscriber = this.publicService.getAllCategories(this.page,this.CategoriesPerPage).subscribe((response: any) => {
+      console.log(response.body)
+      this.CategoryArray=response.body.allCategories
+      this.totalCategories=response.body.countCategories
+      this.loading=false
+  })
+  }
 }

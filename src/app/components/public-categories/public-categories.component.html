@@ -7,7 +7,7 @@
 <div class="container d-flex justify-content-center">
   <div class="row ml-5 ">
     
-    <div  class="mx-3 my-3" *ngFor="let Category of CategoryArray | slice: (page-1) * CategoriesPerPage : page * CategoriesPerPage"> 
+    <div  class="mx-3 my-3" *ngFor="let Category of CategoryArray "> 
       <div class="card bg-dark" style="width: 10rem;">
       <div class="hovereffect">
         <img class="img-responsive" src="{{Category.photo}}" alt="" width="160" height="200">
@@ -30,4 +30,5 @@
 <ngb-pagination *ngIf="totalCategories>CategoriesPerPage"
   [(page)]="page"
   [pageSize]="CategoriesPerPage"
-  [collectionSize]="totalCategories"></ngb-pagination></div>
+  [collectionSize]="totalCategories"
+  (pageChange)="showPageIndex(page)"></ngb-pagination></div>

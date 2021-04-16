@@ -32,7 +32,8 @@ import { RatingAndShelveComponent } from './components/rating-and-shelve/rating-
 import { PopularBlocksComponent } from './components/popular-books/popular-blocks.component';
 import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
 import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
-import { ErrorComponent } from './components/error/error.component'; 
+import { ErrorComponent } from './components/error/error.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component'; 
  
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ErrorComponent } from './components/error/error.component';
     PopularAuthorsComponent,
     PopularCategoriesComponent,
     ErrorComponent,
+    SearchResultsComponent,
      
   ],
   imports: [
