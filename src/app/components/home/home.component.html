@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark py-2 " *ngIf="!isLoggedIn; else elseBlock">
   <div class="container-fluid">
     <a class="navbar-brand text-warning font-weight-bold ms-3" routerLinkActive="selected" routerLink="">GoodBooks</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+    <button class="navbar-toggler" type="button" data-bs-toggle="" data-bs-target="#navbarScroll"
       aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
               routerLink="books">Books</a>
           </li>
           <li class="nav-item col-4 ">
-            <a class="nav-link  me-0" aria-current="page" routerLinkActive="selected"
+            <a  tabindex="1" class="nav-link  me-0" aria-current="page" routerLinkActive="selected"
               routerLink="categories">Categories</a>
           </li>
           <li class="nav-item col-4 me-5">

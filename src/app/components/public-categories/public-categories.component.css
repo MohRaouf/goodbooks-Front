@@ -111,3 +111,8 @@ ngb-pagination{
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
+  p{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+  }

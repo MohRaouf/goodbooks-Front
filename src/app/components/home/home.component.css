@@ -5,3 +5,15 @@
     background-color:   #1b1d1f;
     
   }
+  a:active {
+    color: yellow;
+  }
+  a[tabindex]:focus {
+    color:rgb(255, 217, 0);
+    outline: none;
+}
+/* @media only screen and (max-width: 768px){
+    example-search-input{
+            width:20px
+    }
+} */
