@@ -63,8 +63,6 @@ export class HomeComponent implements OnInit {
     this.publicService.searchCategory=this.SearchOption
      this.publicService.searchedName = this.keyWords
      this.publicService.updateSearch(this.SearchOption,this.keyWords)
-     console.log("Yes")
-     console.log( this.publicService.searchCategory)
      
     }
   open(content: any, e: any) {

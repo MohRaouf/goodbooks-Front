@@ -36,6 +36,9 @@ export class PublicService {
   getBookById(id:number){
     return this.client.get(`${config.apiUrl}/books/${id}`)
   }
+  getBookSearchRes(search:string){
+    return this.client.get(`${config.apiUrl}/books/search/${search}`,{observe:"response"})
+  }
   getAllAuthors(){
     return this.client.get(`${config.apiUrl}/authors`,{ observe: 'response' }) 
   }
@@ -45,6 +48,9 @@ export class PublicService {
   getAuthorById(id:number){
     return this.client.get(`${config.apiUrl}/authors/${id}`)
   }
+  getAuthorSearchRes(search:string){
+    return this.client.get(`${config.apiUrl}/authors/search/${search}`,{observe:"response"})
+  }
   getAllCategories(){
     return this.client.get(`${config.apiUrl}/categories`,{observe:"response"})
   }
@@ -53,6 +59,9 @@ export class PublicService {
   }
   getCategoryById(id:number){
     return this.client.get(`${config.apiUrl}/categories/${id}`)
+  }
+  getCatSearchRes(search:string){
+    return this.client.get(`${config.apiUrl}/categories/search/${search}`,{observe:"response"})
   }
 }
 /*getBooks(page:number,count:number) {

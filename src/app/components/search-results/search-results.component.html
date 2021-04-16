@@ -1,2 +1,11 @@
 <p class="text-warning">{{searchCat}}</p>
 <p class="text-warning">{{searchedNa}}</p>
+<ul *ngFor="let book of booksArray ">
+    <li class="text-warning">{{book.name}}</li>
+</ul>
+<ul *ngFor="let category of categoryArray ">
+    <li class="text-warning">{{category.name}}</li>
+</ul>
+<ul *ngFor="let author of authorArray ">
+    <li class="text-warning">{{author.fname}} {{author.lname}}</li>
+</ul>
