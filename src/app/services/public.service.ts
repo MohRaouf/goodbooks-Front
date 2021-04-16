@@ -1,12 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { config } from '../config'
+import { Subject } from 'rxjs/Subject';
 @Injectable({
   providedIn: 'root'
 })
 export class PublicService {
+  searchCategory:string=""
+  searchedName:string=""
 
-  constructor(private client: HttpClient) { }
+  searchCatChange: Subject<string> = new Subject<string>();
+  searchedNameChange: Subject<string> = new Subject<string>();
+  categoryObservable=this.searchCatChange.asObservable()
+  searchedNameObservable = this.searchedNameChange.asObservable()
+  constructor(private client: HttpClient) { 
+  /*  this.searchCatChange.subscribe((value)=>{
+      this.searchCategory=value;
+    })
+    this.searchedNameChange.subscribe((value)=>{
+      this.searchedName=value;
+    })*/
+  }
+  updateSearch(NewCat:string,NewName:string){
+    this.searchCatChange.next(NewCat)
+    this.searchedNameChange.next(NewName)
+    
+  }
   getAllBooks() {
     //Login
     return this.client.get(`${config.apiUrl}/books`, { observe: 'response' })
