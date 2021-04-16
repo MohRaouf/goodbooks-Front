@@ -17,45 +17,44 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   public loggedUser: any;
 
-  constructor(private http: HttpClient ,public router:Router) { }
+  constructor(private http: HttpClient, public router: Router) { }
 
   login(userCred: any): Observable<boolean> {
-    // endPoint='admins/login' ? this.router.routerState.snapshot.url.includes('/admin'):'users/login'
+    /* check the current path to set the admin or the user login end Point */
     let endPoint;
-    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/login' : endPoint='users/login'
+    this.router.routerState.snapshot.url.includes('/admin') ?
+      endPoint = 'admins/login' : endPoint = 'users/login'
 
     return this.http.post<any>(`${config.apiUrl}/${endPoint}`, userCred)
       .pipe(
         tap(tokens => this.doLoginUser(userCred.username, tokens)),
         mapTo(true),
-        catchError(error => {
-          alert(error.error);
-          return of(false);
-        }));
+        catchError(error => { return of(false) })
+      );
   }
 
   logout() {
     let endPoint;
-    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/logout' : endPoint='users/logout'
+    this.router.routerState.snapshot.url.includes('/admin') ? endPoint = 'admins/logout' : endPoint = 'users/logout'
 
     return this.http.post(`${config.apiUrl}/${endPoint}`,
-    {'refreshToken': this.getRefreshToken()},{ responseType: 'text'})
-    .pipe(
-      tap((res) => {
-        console.log(res)
-        this.doLogoutUser()
-      }),
-      mapTo(true),
-      catchError(error => {
-        console.log(error)
-        alert(error);
-        return of(false);
-      }));
+      { 'refreshToken': this.getRefreshToken() }, { responseType: 'text' })
+      .pipe(
+        tap((res) => {
+          console.log(res)
+          this.doLogoutUser()
+        }),
+        mapTo(true),
+        catchError(error => {
+          console.log(error)
+          // alert(error);
+          return of(false);
+        }));
   }
 
   refreshToken() {
     let endPoint;
-    this.router.routerState.snapshot.url.includes('/admin')? endPoint='admins/refresh' : endPoint='users/refresh'
+    this.router.routerState.snapshot.url.includes('/admin') ? endPoint = 'admins/refresh' : endPoint = 'users/refresh'
 
     return this.http.post<any>(`${config.apiUrl}/${endPoint}`,
       { 'refreshToken': this.getRefreshToken() })

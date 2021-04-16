@@ -1,4 +1,19 @@
-<div class="spinner-border text-warning loading" role="status" *ngIf="loading">
+<div class=" text-center t-0 row justify-content-md-center mt-3" role="status" *ngIf="actionLoading">
+    <div class="d-inline-block spinner-border text-warning  m-0 p-0" role="status"></div>
+    <span class="d-inline-block text-muted ml-3 pb-1 pt-1">Applying...</span>
+</div>
+
+<div class=" text-center   m-0 h5" role="status" *ngIf="success">
+    <a class="badge badge-success mr-1 ">Success</a>
+    <small class="text-light"> Performed Successfully</small>
+</div>
+
+<div class=" text-center   m-0 h5" role="status" *ngIf="failed">
+    <a class="badge badge-danger mr-2 ">Failed</a>
+    <small class="text-danger">Failed, Server Error</small>
+</div>
+
+<div class="spinner-border mt-2 text-warning loading" role="status" *ngIf="loading">
     <span class="sr-only loading">Loading...</span>
 </div>
 <div class="text-right mb-3 ">
@@ -34,8 +49,6 @@
     </tbody>
 </table>
 
-
-
 <ng-template #content let-modal>
     <div class="form-theme">
         <div class="modal-header text-center">
@@ -58,9 +71,9 @@
 
                     <div class="input-group mb-3">
                         <input type="file" (change)="onImgChange($event)"
-                            class="custom-file-input form-control form-theme" formControlName="photo" id="photo">
-                        <label class="custom-file-label form-theme  text-white"
-                            for="photo">{{authorForm.controls.photo.value||"Choose Photo"}}</label>
+                            class="custom-file-input form-control form-theme" id="photo">
+                        <label class="custom-file-label form-theme  text-white" for="photo">{{img.name||"Choose
+                            Photo"}}</label>
                     </div>
 
 
@@ -90,16 +103,9 @@
                     *ngIf="(!authorForm.controls.fname.valid &&fnameFocused) || (!authorForm.controls.lname.valid && lnameFocused)">
                     <p class=" m-0">First name and last name must be more than 4 characters</p>
                 </div>
-                <!-- <div class="alert alert-danger mb-2"
-                    *ngIf="!authorForm.controls.description.valid && descriptionFocused">
-                    <p class=" m-0">Description must more that 10 characters</p>
-                </div> -->
-                <div class="alert alert-danger mb-2" *ngIf="!authorForm.controls.photo.valid && photoChanged">
-                    <p class=" m-0">Bad Photo</p>
-                </div>
 
-                <div class="alert alert-info mb-2" *ngIf="!imgParsed && photoChanged">
-                    <p class=" m-0">Parsing the Photo . . . </p>
+                <div class="alert alert-danger mb-2" *ngIf="invalidPhoto">
+                    <p class=" m-0">Bad Photo</p>
                 </div>
 
                 <div class="mb-1 mt-3 text-center text-dark">
@@ -110,8 +116,6 @@
         </div>
     </div>
 </ng-template>
-
-
 
 <ng-template #delete let-modal>
     <div class="form-theme">

@@ -1,59 +1,58 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import {
+  NgForm,
+} from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { PublicService } from 'src/app/services/public.service';
+import { convertToBase64 } from '../../helpers/image-helpers';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-
-  subscriber: any
+export class HomeComponent implements OnInit, OnDestroy {
+  subscriber: any;
   invalidCred: boolean = false;
   SearchOption:string="All";
   keyWords:string="";
   constructor(private modalService: NgbModal,private userSevice : UserService, private authService: AuthService,private publicService:PublicService, private router: Router) { }
+  ngOnInit() {
+    
+    /** get user info to populate the profile photo and username */
+    this.userSevice.getUserInfo().subscribe((response: any) => {
+      console.log(response.body);
+      console.log('onInit Triggered');
+      if (this.authService.isLoggedIn()) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+  }
 
   ngOnDestroy(): void {
-    console.log('Login Component Destroy')
+    console.log('Login Component Destroy');
     this.subscriber && this.subscriber.unsubscribe();
   }
-  validatingForm: any;
-  register: boolean = false;
-  closeResult = '';
-  isLoggedIn: boolean = false;
 
-  myForm2 = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    password: new FormControl('', Validators.required),
-  })
-
-  myForm = new FormGroup({
-    fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    lname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
-    Dob: new FormControl('', Validators.required)
-
-  })
   ngOnInit() {
-    console.log('onInit Triggered')
-    if (this.authService.isLoggedIn()){
-      this.isLoggedIn = true
-      /** get user info to populate the profile photo and username */
-      this.userSevice.getUserInfo().subscribe((response: any) => {
-        console.log(response.body) 
-      })
-    }else{
-      this.isLoggedIn=false;
-    }
+    /** get user info to populate the profile photo and username */
+    this.userSevice.getUserInfo().subscribe((response: any) => {
+      console.log(response.body);
+      console.log('onInit Triggered');
+      if (this.authService.isLoggedIn()) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
     this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat )
-     this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
+    this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
   chooseSearch(e:any){
     console.log(e.target.innerText)
@@ -65,14 +64,28 @@ export class HomeComponent implements OnInit {
      this.publicService.updateSearch(this.SearchOption,this.keyWords)
      
     }
+  closeResult: any;
+  isLoggedIn: boolean = false;
+
+
   open(content: any, e: any) {
-    this.register = e.target.id == "SignIn" ? true : false;
-    // console.log(this.register)
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.loading = false;
+    this.success = false;
+    this.duplicatedUsername = false;
+    this.failed = false;
+    this.loginFailed = false;
+    this.loginLoading = false;
+    this.loginSuccess = false;
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
 
   private getDismissReason(reason: any): string {
@@ -84,70 +97,86 @@ export class HomeComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  get FnameStatus() {
-    return this.myForm.controls.fname.valid
-  }
-  get LnameStatus() {
-    return this.myForm.controls.lname.valid
-  }
-  get UsernameStatus() {
-    return this.myForm.controls.username.valid
-  }
-  get EmailStatus() {
-    return this.myForm.controls.email.valid
-  }
-  get PasswordStatus() {
-    return this.myForm.controls.password.valid
-  }
-  get DateStatus() {
-    return this.myForm.controls.Dob.valid
-  }
-  get UsernameStatus2() {
-    return this.myForm2.controls.username.valid
 
-  }
-
-  get PasswordStatus2() {
-    return this.myForm2.controls.password.valid
-  }
-  submitForm() {
-    /* const newStudent: Student = {
-       id: this.myService.maxId + 1,
-       name: this.myForm.controls.name.value,
-       city: this.myForm.controls.name.value,
-       email: this.myForm.controls.name.value
-     }*/
-
-  }
-
-  submitForm2() {
-    const loginInfo = {
-      username: this.myForm2.controls.username.value,
-      password: this.myForm2.controls.password.value,
-    }
-    console.log('login Form Submitted')
-    this.subscriber = this.authService.login(loginInfo).subscribe((success: boolean) => {
-
-      console.log(success)
-      success ? this.ngOnInit() : this.invalidCred = true;
-
-      // if (success) {
-      //    this.router.navigate(['/']);
-      // }
-      // else {
-      //   this.invalidCred = true;
-      // }
-    },
-      (err) => {
-        console.log(err)
-      }, () => {
-        // this.router.navigate(['/']);
+  photo: any;
+  invalidPhoto: boolean = false;
+  img: any = ""
+  onImgChange($event: any) {
+    this.photo=""
+    this.img=""
+    this.invalidPhoto=false;
+    this.img = $event.target.files[0]
+    if (this.img.size<2048090) {
+        convertToBase64(this.img).subscribe((data) => {
+        this.photo=data;
+        // this.invalidPhoto = this.img.size < 2048090 ? (this.bookPhoto = data) : true;
       })
-    console.log(loginInfo)
+    }
+    else{this.invalidPhoto=true;}
   }
+
+  loading: boolean = false;
+  success: boolean = false;
+  duplicatedUsername: boolean = false;
+  failed: boolean = false;
+  submitSignup(signUpForm: NgForm) {
+    this.loading = true;
+    const newUser = {
+      fname: signUpForm.value.firstname,
+      lname: signUpForm.value.lastname,
+      email: signUpForm.value.email,
+      photo: this.photo,
+      gender: signUpForm.value.gender,
+      dob: signUpForm.value.dob,
+      username: signUpForm.value.username,
+      password: signUpForm.value.password,
+    };
+    this.failed=false;
+    this.duplicatedUsername=false;
+    console.log(newUser);
+    this.subscriber = this.userSevice.registerUser(newUser).subscribe(
+      (res) => {
+        this.loading = false
+        res.status === 201 ? (this.success = true) : (this.failed = true);
+        signUpForm.reset()
+      },
+      (err) => {
+        console.log(err);
+        this.loading = false
+        err.status === 409 ? (this.duplicatedUsername = true) : this.failed = true
+        signUpForm.reset()
+      });
+  }
+
+  loginFailed: boolean = false;
+  loginLoading: boolean = false;
+  loginSuccess: boolean = false;
+  submitLogin(signInForm: NgForm) {
+    this.loginSuccess = false;
+    this.loginLoading = true;
+    const loginInfo = {
+      username: signInForm.value.username,
+      password: signInForm.value.password,
+    };
+    console.log(loginInfo)
+    this.subscriber = this.authService.login(loginInfo).subscribe(
+      (success: boolean) => {
+        this.loginSuccess = false;
+        this.loginLoading = false;
+        if (success) {
+          this.loginSuccess = true
+          this.loginFailed = false;
+          this.modalService.dismissAll();
+          this.ngOnInit()
+        } else { this.loginFailed = true }
+        signInForm.reset()
+      });
+    console.log(loginInfo);
+  }
+  /** Sign out Button Action */
   signOut() {
     this.authService.logout().subscribe((loggedOut) => {
-      loggedOut && this.ngOnInit()
-    })
+      loggedOut && this.ngOnInit();
+    });
   }
 }
