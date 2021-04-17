@@ -8,11 +8,9 @@ body {
 }*/
 
 
-body{
-    
+body,html{
     background-color: #1b1d1f;
-    /* padding-bottom: 58px; */
-    
+    /* padding-bottom: 58px; */ 
 }
 
 /*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/

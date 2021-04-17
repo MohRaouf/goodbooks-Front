@@ -12,19 +12,14 @@ export class PopularBlocksComponent implements OnInit,OnDestroy {
   subscriber:any;
   constructor(private myService:PublicService) { }
   ngOnDestroy(): void {
-    console.log("destroy");
     this.subscriber.unsubscribe();
   }
   ngOnInit(): void {
     this.subscriber=this.myService.getTopBooks()
     .subscribe((res:any)=>{
       this.topBooks=res.body
-      console.log(this.topBooks);
     },
-    (err)=>{
-      console.log(err);
-    }
-    )
+    (err)=>{console.log(err)})
   }
 
 

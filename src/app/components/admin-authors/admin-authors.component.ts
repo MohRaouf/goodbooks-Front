@@ -21,19 +21,28 @@ export class AdminAuthorsComponent implements OnInit {
   loading: boolean = true;
   closeResult: any;
   genderEnum = Gender;
+  totalAuthors: number = 0;
+  page: number = 1
+  authorsPerPage: number = 5;
 
   date: Date = new Date("11-22-2115")
 
   ngOnInit(): void {
     this.loading = true;
+    this.adminService.getAllAuthors(this.page, this.authorsPerPage).subscribe((response: any) => {
+      this.authors = response.body.allAuthors
+      this.totalAuthors = response.body.countAuthors
+      this.loading = false;
+    })
+  }
 
-    this.adminService.getAllAuthors().subscribe((response: any) => {
-      this.authors = response.body.allAuthors;
-      console.log(this.authors)
-      this.authors = this.authors.map(({ _id, fname, lname, photo, dob, gender }) => ({
-        _id, fname, lname, photo, dob, gender
-      }))
-      this.loading = false
+  showPageIndex(pageIndex: any) {
+    this.loading = true;
+    this.page = pageIndex;
+    this.subscriber = this.adminService.getAllAuthors(this.page, this.authorsPerPage).subscribe((response: any) => {
+      this.authors = response.body.allAuthors
+      this.totalAuthors = response.body.countAuthors
+      this.loading = false;
     })
   }
 
