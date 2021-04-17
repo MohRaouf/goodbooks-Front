@@ -19,10 +19,8 @@ export class PublicService {
   updateSearch(NewCat:string,NewName:string){
     this.searchCatChange.next(NewCat)
     this.searchedNameChange.next(NewName)
-    
   }
   getAllBooks(page:number,perPage:number) {
-    //Login
     return this.client.get(`${config.apiUrl}/books?page=${page}&perPage=${perPage}`, { observe: 'response' })
   }
   getTopBooks(){
@@ -34,7 +32,7 @@ export class PublicService {
   getBookSearchRes(search:string){
     return this.client.get(`${config.apiUrl}/books/search/${search}`,{observe:"response"})
   }
-  getAllAuthors(page:number,perPage:number){
+  getAllAuthors(page:any=undefined,perPage:any=undefined){
     return this.client.get(`${config.apiUrl}/authors?page=${page}&perPage=${perPage}`,{ observe: 'response' }) 
   }
   getTopAuthors(){
@@ -46,7 +44,7 @@ export class PublicService {
   getAuthorSearchRes(search:string){
     return this.client.get(`${config.apiUrl}/authors/search/${search}`,{observe:"response"})
   }
-  getAllCategories(page:number,perPage:number){
+  getAllCategories(page:any=undefined,perPage:any=undefined){
     return this.client.get(`${config.apiUrl}/categories?page=${page}&perPage=${perPage}`,{observe:"response"})
   }
   getTopCategories(){

@@ -16,26 +16,35 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   subscriber: any
   categories: Array<Category> = []
   loading: boolean = true;
+  totalCategories: number = 0;
+  page: number = 1
+  CategoriesPerPage: number = 5;
 
   constructor(private modalService: NgbModal, private adminService: AdminService, private router: Router) { }
-
   ngOnDestroy(): void {
     console.log('AdminsCategories Component Destroy')
     this.subscriber && this.subscriber.unsubscribe();
   }
-  
+
   nameFocused: boolean = false
   focusName() { this.nameFocused = true }
 
   ngOnInit(): void {
     this.loading = true;
-    this.adminService.getAllCategories().subscribe((response: any) => {
-      this.categories = response.body.allCategories;
-      this.categories = this.categories.map(({ _id, name, photo }) => ({
-        _id, name, photo
-      }))
-      console.log(this.categories)
-      this.loading = false;
+    this.adminService.getAllCategories(this.page, this.CategoriesPerPage).subscribe((response: any) => {
+      this.categories = response.body.allCategories
+      this.totalCategories = response.body.countCategories
+      this.loading = false
+    })
+  }
+
+  showPageIndex(pageIndex: any) {
+    this.loading = true;
+    this.page = pageIndex;
+    this.subscriber = this.adminService.getAllCategories(this.page, this.CategoriesPerPage).subscribe((response: any) => {
+      this.categories = response.body.allCategories
+      this.totalCategories = response.body.countCategories
+      this.loading = false
     })
   }
 
