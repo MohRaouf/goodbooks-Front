@@ -1,18 +1,21 @@
-<div class="container border border-warning rounded-3 mb-3">
-    <h3 class="text-warning my-2">Popular Authors</h3>
-        <div class="row row-cols-1 row-cols-md-6 mb-3"  >
-            <div class="col" *ngFor="let author of topAuthors">
-             
-              <div class="hovereffect ">
-                <img class="img-responsive" *ngIf="author.photo;else unknown" src="{{author.photo}}" alt="" width="160" height="200">
-                 <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown_user.png" alt="" width="160" height="200"></ng-template>
-                <div class="overlay ">
-                   <h2 class="text-warning">{{author.fname}}</h2>
-                   <a class="info"  routerLink="authors/{{author._id}}">View Details</a>
-                </div>
-                 
+<div class=" justify-content-start d-flex container my-3 pl-0"><h3 class="text-warning">Popular Authors</h3></div>
+<div class=" container border border-dark rounded mb-3" style="background: #212529; opacity:0.8">
+        <div class=" row d-flex justify-content-center "  >
+            <div class=" mx-3 my-5" *ngFor="let author of topAuthors">
+              <div class="card" style="width: 10rem; background: rgba(0, 0, 0, 0.486);">
+                <div class="hovereffect">
+                  <img class="img-responsive" *ngIf="author.photo;else unknown" src="{{author.photo}}" alt="" width="160" height="200">
+                  <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown.png" alt="" width="160" height="200"></ng-template>
+                  <div class="overlay">
+                     <a class="info " routerLink="authors/{{author._id}}">View Details</a>
                   </div>
-         
+              </div>
+              
+                <div class =" card-title d-flex justify-content-center mt-3 mb-2">
+                <p><a class="cardlink text-warning"  routerLink="authors/{{author._id}}">{{author.fname}} {{author.lname}}</a></p>
+              </div>
+                  
+            </div>
             </div>
         </div>
   </div>

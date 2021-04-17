@@ -31,8 +31,14 @@ import { RatingAndShelveComponent } from './components/rating-and-shelve/rating-
 import { PopularBlocksComponent } from './components/popular-books/popular-blocks.component';
 import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
 import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
+import { MybooksComponent } from './components/mybooks/mybooks.component';
+import { ShelfMenuComponent } from './components/shelf-menu/shelf-menu.component';
+import { ShelfTableComponent } from './components/shelf-table/shelf-table.component'; 
+import { loggedUserServices } from './services/loggedUser.service';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { ErrorComponent } from './components/error/error.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component'; 
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component'; 
 
 @NgModule({
   declarations: [
@@ -57,7 +63,12 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     PopularAuthorsComponent,
     PopularCategoriesComponent,
     ErrorComponent,
+    MybooksComponent,
+    ShelfMenuComponent,
+    ShelfTableComponent,
+    UserSettingsComponent,
     SearchResultsComponent,
+    AboutusComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -73,6 +84,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 
   ],
   providers: [
+    loggedUserServices,
     AuthGuard,
     AuthService,
     AdminGuard,

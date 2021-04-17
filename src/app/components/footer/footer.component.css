@@ -1,10 +1,4 @@
-footer {
-  
-
-  bottom: 0;
-   position: fixed;
-    width: 100%;
-    /* Set the fixed height of the footer here */
+footer{
+    bottom: 0;
+    position: relative;
 }
- 
-  

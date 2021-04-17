@@ -18,6 +18,7 @@ import { convertToBase64 } from '../../helpers/image-helpers';
 export class HomeComponent implements OnInit, OnDestroy {
   subscriber: any;
   invalidCred: boolean = false;
+
   SearchOption: string = "All";
   keyWords: string = "";
   profilePic: any;
@@ -38,7 +39,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       } else {
         this.isLoggedIn = false;
       }
+      console.log("phoebe"+this.isLoggedIn)
     });
+
     // this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
     // this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
@@ -49,6 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   Search(e: any) {
     this.publicService.searchCategory = this.SearchOption
     this.publicService.searchedName = this.keyWords
+
     // this.publicService.updateSearch(this.SearchOption, this.keyWords)
 
   }

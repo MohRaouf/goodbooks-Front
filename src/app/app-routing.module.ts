@@ -19,6 +19,9 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
 import { ErrorComponent } from './components/error/error.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component'; 
 import {MyShelfGuard} from './guards/my-shelf.guard'
+import { MybooksComponent } from './components/mybooks/mybooks.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   {
@@ -51,24 +54,31 @@ const routes: Routes = [
       }
       , {
         path: "aboutus",
-        component: FooterElementsComponent,
+        component: AboutusComponent,
       },
       {
         path: "contact",
         component: FooterElementsComponent,
-      }, {
-        path: "terms",
-        component: FooterElementsComponent,
+      }, 
+      {
+        path: "myshelf",
+        component: MybooksComponent,
+        //  pathMatch: "full", 
+        canActivate: [MyShelfGuard],
+      },
+      {
+        path: "settings",
+        component: UserSettingsComponent,
+        //  pathMatch: "full", 
+        canActivate: [MyShelfGuard],
       },
       { path: "**", component: ErrorComponent }
     ]
   },
-  {
-    path: "myshelf",
-    component: MyShelfGuard,
-    //  pathMatch: "full", 
-    canActivate: [MyShelfGuard],
-  },
+{
+  path: "user", component: HomeComponent,
+
+},
   {
     path: "admin",
     component: AdminBoardComponent,

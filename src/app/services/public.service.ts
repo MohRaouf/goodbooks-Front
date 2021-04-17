@@ -9,25 +9,27 @@ export class PublicService {
   searchCategory: string = ""
   searchedName: string = ""
 
-  // searchCatChange: Subject<string> = new Subject<string>();
-  // searchedNameChange: Subject<string> = new Subject<string>();
-  // categoryObservable = this.searchCatChange.asObservable()
-  // searchedNameObservable = this.searchedNameChange.asObservable()
+  //searchCatChange: Subject<string> = new Subject<string>();
+  //searchedNameChange: Subject<string> = new Subject<string>();
+  //categoryObservable=Observable.create()
+  //searchedNameObservable = Observable.create()
+  constructor(private client: HttpClient) { 
+ 
+  }
+  /*updateSearch(NewCat:string,NewName:string){
+    this.searchCatChange.next(NewCat)
+    this.searchedNameChange.next(NewName)
+  }*/
+  getAllBooks(page:number,perPage:number) {
 
-  constructor(private client: HttpClient) { }
-  
-  // updateSearch(NewCat: string, NewName: string) {
-  //   this.searchCatChange.next(NewCat)
-  //   this.searchedNameChange.next(NewName)
-  // }
-  getAllBooks(page: number, perPage: number) {
     return this.client.get(`${config.apiUrl}/books?page=${page}&perPage=${perPage}`, { observe: 'response' })
   }
   getTopBooks() {
     return this.client.get(`${config.apiUrl}/books/top`, { observe: "response" });
   }
-  getBookById(id: number) {
-    return this.client.get(`${config.apiUrl}/books/${id}`)
+  getBookById(id:number){
+    return this.client.get(`${config.apiUrl}/books/${id}`, {observe:"response"})
+
   }
   getBookSearchRes(search: string) {
     return this.client.get(`${config.apiUrl}/books/search/${search}`, { observe: "response" })

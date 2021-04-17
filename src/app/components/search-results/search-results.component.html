@@ -13,20 +13,20 @@
     <tbody>
       <tr  *ngFor="let book of booksArray  ">
  
-        <td>   <img class="img-responsive" src="{{book.photo}}" alt="" width="80" height="100"></td>
-        <td class="text-light"> {{book.name}}</td>
+        <td>   <img class="img-responsive" routerLink="/home/books/{{book._id}}"src="{{book.photo}}" alt="" width="80" height="100"></td>
+        <td class="d-flex justify-content-center "><a class="text-light text-decoration-none" routerLink="/home/books/{{book._id}}">{{book.name}}</a></td>
         <td class="text-light">Book</td>
       </tr>
       <tr  *ngFor="let category of categoryArray   ">
         
-        <td>   <img class="img-responsive" src="{{category.photo}}" alt="" width="80" height="100"></td>
-        <td class="text-light"> {{category.name}}</td>
+        <td>   <img class="img-responsive" routerLink="/home/categories/{{category._id}}" src="{{category.photo}}" alt="" width="80" height="100"></td>
+        <td class="d-flex justify-content-center"><a class="text-light text-decoration-none" routerLink="/home/categories/{{category._id}}">{{category.name}}</a> </td>
         <td class="text-light">Category</td>
       </tr>
       <tr  *ngFor="let author of authorArray   ">
           
-        <td>   <img class="img-responsive" src="{{author.photo}}" alt="" width="80" height="100"></td>
-        <td class="text-light"> {{author.fname}} {{author.lname}}</td>
+        <td>   <img class="img-responsive" routerLink="/home/authors/{{author._id}}" src="{{author.photo}}" alt="" width="80" height="100"></td>
+        <td class="d-flex justify-content-center"> <a class="text-light text-decoration-none" routerLink="/home/authors/{{author._id}}">{{author.fname}} {{author.lname}}</a></td>
         <td class="text-light">Author</td>
       </tr>
     </tbody>
