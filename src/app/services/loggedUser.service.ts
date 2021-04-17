@@ -52,7 +52,7 @@ export class loggedUserServices {
 
   updateUserSettings(reqBody:any){
     console.log(`HITTING: ${config.userAPI}/update_userinfo`)
-    return this.client.patch(`${config.userAPI}/update_userinfo/606d1450d54e4b1fd46c7495`, reqBody, {observe: 'response'})
+    return this.client.patch(`${config.userAPI}/update_userinfo`, reqBody, {observe: 'response'})
   }
   assertBook(reqParams:any, reqBody:any){
     console.log(`HITTING: ${config.userAPI}/assert_book/${reqParams.bookId}`)
