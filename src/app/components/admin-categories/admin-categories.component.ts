@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AdminService } from 'src/app/services/admin.service';
 import { Category } from '../../models/admin-models'
 import { convertToBase64 } from '../../helpers/image-helpers'
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-admin-categories',
@@ -20,7 +21,7 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   page: number = 1
   CategoriesPerPage: number = 5;
 
-  constructor(private modalService: NgbModal, private adminService: AdminService, private router: Router) { }
+  constructor(private modalService: NgbModal, private publicService:PublicService, private adminService: AdminService, private router: Router) { }
   ngOnDestroy(): void {
     console.log('AdminsCategories Component Destroy')
     this.subscriber && this.subscriber.unsubscribe();
@@ -38,6 +39,17 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
     })
   }
 
+  /** Search for Books */
+  keyWords: string = "";
+  Search(e: any) {
+    this.loading = true;
+    this.publicService.getCatSearchRes(this.keyWords).subscribe((response: any) => {
+      this.categories = response.body
+      this.loading = false;
+    })
+  }
+
+  /** pagination */
   showPageIndex(pageIndex: any) {
     this.loading = true;
     this.page = pageIndex;
@@ -60,9 +72,12 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
     this.modalService.open(content).result.then((result) => {
       /* Check for the caller either update or insert and execute its method */
       caller.name == "add" ? this.insertCategory() : this.updateCategory(category);
-      this.categoryForm.reset()
+      this.categoryForm.controls.name.setValue('')
+      this.img = ''
     }, (reason) => {
       console.log(reason)
+      this.categoryForm.controls.name.setValue('')
+      this.img = ''
     });
   }
 

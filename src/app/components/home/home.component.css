@@ -1,26 +1,26 @@
 .ms-n5 {
     margin-left: -40px;
 }
-.custom-modals{
-    background-color:   #1b1d1f;
-    
-  }
-.dropdown-item:active{
-    background-color: #ffc107;
+
+.custom-modals {
+    background-color: #1b1d1f;
 }
  
 
+.dropdown-item:active {
+    background-color: #ffc107;
+}
 
-  input.ng-touched.ng-invalid{
-     border:1px solid red
-  }
+input.ng-touched.ng-invalid {
+    border: 1px solid red
+}
 
-  .form-buton{
-      width:30%;
-      padding: 2%;
-  }
+.form-buton {
+    width: 30%;
+    padding: 2%;
+}
 
-  input {
-   font-family: 'FontAwesome'; 
-   font-weight: 520;
-  }
+input {
+    font-family: 'FontAwesome';
+    font-weight: 520;
+}

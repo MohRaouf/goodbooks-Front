@@ -22,7 +22,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     console.log("cons")
     this.searchCat= this.myService.searchCategory;
   this.searchedNa= this.myService.searchedName;
-   
+
   }
   ngOnDestroy(): void {
     console.log("destroy");
@@ -33,6 +33,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.updateSearchResult(this.searchCat,this.searchedNa)  
    /* this.myService.categoryObservable.subscribe(cat => {if(this.searchCat!=cat){this.updateSearchResult(cat,this.searchedNa)}this.searchCat = cat;})
     this.myService.searchedNameObservable.subscribe(name =>{if(this.searchedNa!=name){this.updateSearchResult(this.searchCat,name)}this.searchedNa = name;})*/
+
   }
   updateSearchResult(categ: string, Name: string) {
     console.log(categ,Name)

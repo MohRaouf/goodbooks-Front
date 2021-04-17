@@ -5,6 +5,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AdminService } from 'src/app/services/admin.service';
 import { Book, Category, Author } from '../../models/admin-models'
 import { convertToBase64 } from '../../helpers/image-helpers'
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-admin-books',
@@ -13,7 +14,7 @@ import { convertToBase64 } from '../../helpers/image-helpers'
 })
 export class AdminBooksComponent implements OnInit, OnDestroy {
 
-  constructor(private modalService: NgbModal, private adminService: AdminService, private router: Router) { }
+  constructor(private modalService: NgbModal, private adminService: AdminService, private router: Router, private publicService: PublicService) { }
 
   subscriber: any
   books: Array<Book> = []
@@ -49,6 +50,17 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
     })
   }
 
+  /** Search for Books */
+  keyWords: string = "";
+  Search(e: any) {
+    this.loading=true;
+    this.publicService.getBookSearchRes(this.keyWords).subscribe((response: any) => {
+      this.books = response.body
+      this.loading=false;
+    })
+  }
+
+  /**pagination */
   showPageIndex(pageIndex: any) {
     this.loading = true;
     this.page = pageIndex;
@@ -72,14 +84,24 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
 
     /* Incase of updating book - populate its data in the modal */
     caller.name != "add" && this.bookForm.patchValue({ name: book.name, description: book.description });
-    this.modalService.open(content, { centered: true, animation: true }).result.then((result) => {
+    this.modalService.open(content, { centered: true }).result.then((result) => {
 
       /* Check for the caller either update or insert and execute its method */
       caller.name == "add" ? this.insertBook() : this.updateBook(book);
-      this.bookForm.reset()
+
+      /** clear modal content */
+      this.bookForm.controls.name.setValue('')
+      this.bookForm.controls.description.setValue('')
+      this.img = ''
+
       this.closeResult = `Closed with: ${content}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      /** clear modal content */
+      this.bookForm.controls.name.setValue('')
+      this.bookForm.controls.description.setValue('')
+      this.img = ''
+
       console.log(this.closeResult)
     });
   }
@@ -100,7 +122,7 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
 
   bookForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]),
-    description: new FormControl('', [Validators.required, Validators.maxLength(350), Validators.minLength(4)]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(500), Validators.minLength(4)]),
     author: new FormControl(''),
     category: new FormControl(''),
   })

@@ -6,6 +6,10 @@
     color: rgb(255, 140, 0);
 
 }
+.search-bg{
+    width: 40px;
+    height: 40px;
+}
 .icon-style:hover{
     transform: scale(1.2);
 }

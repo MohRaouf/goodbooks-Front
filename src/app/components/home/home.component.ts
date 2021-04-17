@@ -18,10 +18,11 @@ import { convertToBase64 } from '../../helpers/image-helpers';
 export class HomeComponent implements OnInit, OnDestroy {
   subscriber: any;
   invalidCred: boolean = false;
-  SearchOption:string="All";
-  keyWords:string="";
-  constructor(private modalService: NgbModal,private userSevice : UserService, private authService: AuthService,private publicService:PublicService, private router: Router) { }
-   
+
+  SearchOption: string = "All";
+  keyWords: string = "";
+  profilePic: any;
+  constructor(private modalService: NgbModal, private userSevice: UserService, private authService: AuthService, private publicService: PublicService, private router: Router) { }
   ngOnDestroy(): void {
     console.log('Login Component Destroy');
     this.subscriber && this.subscriber.unsubscribe();
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     /** get user info to populate the profile photo and username */
     this.userSevice.getUserInfo().subscribe((response: any) => {
       console.log(response.body);
+      if (response.body.photo) this.profilePic = response.body.photo
       console.log('onInit Triggered');
       if (this.authService.isLoggedIn()) {
         this.isLoggedIn = true;
@@ -39,8 +41,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       console.log("phoebe"+this.isLoggedIn)
     });
-   /* this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
-    this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)*/
+
+    // this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
+    // this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
   chooseSearch(e: any) {
     console.log(e.target.innerText)
@@ -49,7 +52,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   Search(e: any) {
     this.publicService.searchCategory = this.SearchOption
     this.publicService.searchedName = this.keyWords
-  
+
+    // this.publicService.updateSearch(this.SearchOption, this.keyWords)
+
   }
   closeResult: any;
   isLoggedIn: boolean = false;
