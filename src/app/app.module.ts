@@ -32,8 +32,13 @@ import { RatingAndShelveComponent } from './components/rating-and-shelve/rating-
 import { PopularBlocksComponent } from './components/popular-books/popular-blocks.component';
 import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
 import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
-import { ErrorComponent } from './components/error/error.component'; 
- 
+import { ErrorComponent } from './components/error/error.component';
+import { MybooksComponent } from './components/mybooks/mybooks.component';
+import { ShelfMenuComponent } from './components/shelf-menu/shelf-menu.component';
+import { ShelfTableComponent } from './components/shelf-table/shelf-table.component'; 
+import { loggedUserServices } from './services/loggedUser.service';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +62,10 @@ import { ErrorComponent } from './components/error/error.component';
     PopularAuthorsComponent,
     PopularCategoriesComponent,
     ErrorComponent,
+    MybooksComponent,
+    ShelfMenuComponent,
+    ShelfTableComponent,
+    UserSettingsComponent,
      
   ],
   imports: [
@@ -73,6 +82,7 @@ import { ErrorComponent } from './components/error/error.component';
     
   ],
   providers: [
+    loggedUserServices,
     AuthGuard,
     AuthService,
     AdminGuard,
