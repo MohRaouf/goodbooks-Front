@@ -23,7 +23,7 @@ export class PublicBooksComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true
     this.subscriber = this.publicService.getAllBooks(this.page, this.booksPerPage).subscribe((response: any) => {
-      this.booksArray = response.body
+      this.booksArray = response.body.allBooks
       console.log("IN BOOKS:",response.body)
       this.totalBooks = response.body.countBooks
       this.loading = false
