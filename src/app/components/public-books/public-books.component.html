@@ -35,5 +35,6 @@
 <div class="d-flex justify-content-center">
   <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"
     [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"
-    (pageChange)="showPageIndex(page)"></ngb-pagination>
+    (pageChange)="showPageIndex(page)">
+  </ngb-pagination>
 </div>
