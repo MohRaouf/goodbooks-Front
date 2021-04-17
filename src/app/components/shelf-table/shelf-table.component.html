@@ -1,0 +1,34 @@
+
+<!-- <tr class="h6"  *ngFor="let row of shelf"> -->
+    <th scope="row">
+      <img class="img-fluid"*ngIf="book.photo;else unknown"src={{book.photo}} alt="Random first slide"  width="70px">
+      <ng-template #unknown>
+        <img class="  img-fluid" src="assets/imgs/unknown_book.jpg" alt="Random first slide"  width="70px">
+     </ng-template>
+   <!-- <img src="{{book.photo}}" width="50px" class="img-fluid" alt="Responsive image"> -->
+    </th>
+    <td >{{book.name}}</td>
+    <td>{{category.name}}</td>
+    <td>{{author.fname}} {{author.lname}}</td> 
+
+    <td>
+      <select class="form-select" (change)="editStatus($event)"  >
+        <option value="" selected disabled hidden>{{onScreenStatus}}</option>
+        <option *ngFor="let item of [['r', 'Reding'],['c', 'Currently Reading'],['w', 'Wish to Read']];">{{ item[1] }}</option>
+      </select>
+    </td>
+
+    <td><h4>
+      <div class="form-group">
+        <ngb-rating [(rate)]="ctrl_readonly" [readonly]="true"></ngb-rating>
+      </div>
+  </h4></td>
+
+    <td><h4>
+      <div class="form-group">
+        <ngb-rating [formControl]="ctrl" (click)="editRate($event)" ></ngb-rating>
+      </div>
+  </h4></td>
+    <td><a id="{{filteredShelf.bookId}}" routerLink="" (click)="deleteBook($event)">DELETE</a></td>
+  <!-- </tr> -->
+

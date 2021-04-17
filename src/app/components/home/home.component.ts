@@ -38,19 +38,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.isLoggedIn = false;
       }
     });
-    this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat )
+    this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
     this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
-  chooseSearch(e:any){
+  chooseSearch(e: any) {
     console.log(e.target.innerText)
-    this.SearchOption= e.target.innerText
-      }
-    Search(e:any){
-    this.publicService.searchCategory=this.SearchOption
-     this.publicService.searchedName = this.keyWords
-     this.publicService.updateSearch(this.SearchOption,this.keyWords)
-     
-    }
+    this.SearchOption = e.target.innerText
+  }
+  Search(e: any) {
+    this.publicService.searchCategory = this.SearchOption
+    this.publicService.searchedName = this.keyWords
+    this.publicService.updateSearch(this.SearchOption, this.keyWords)
+
+  }
   closeResult: any;
   isLoggedIn: boolean = false;
 
@@ -89,17 +89,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   invalidPhoto: boolean = false;
   img: any = ""
   onImgChange($event: any) {
-    this.photo=""
-    this.img=""
-    this.invalidPhoto=false;
+    this.photo = ""
+    this.img = ""
+    this.invalidPhoto = false;
     this.img = $event.target.files[0]
-    if (this.img.size<2048090) {
-        convertToBase64(this.img).subscribe((data) => {
-        this.photo=data;
+    if (this.img.size < 2048090) {
+      convertToBase64(this.img).subscribe((data) => {
+        this.photo = data;
         // this.invalidPhoto = this.img.size < 2048090 ? (this.bookPhoto = data) : true;
       })
     }
-    else{this.invalidPhoto=true;}
+    else { this.invalidPhoto = true; }
   }
 
   loading: boolean = false;
@@ -118,8 +118,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       username: signUpForm.value.username,
       password: signUpForm.value.password,
     };
-    this.failed=false;
-    this.duplicatedUsername=false;
+    this.failed = false;
+    this.duplicatedUsername = false;
     console.log(newUser);
     this.subscriber = this.userSevice.registerUser(newUser).subscribe(
       (res) => {

@@ -21,14 +21,16 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
   authors: Array<Author> = []
   categories: Array<Category> = []
   closeResult: any;
+  totalBooks: number = 0;
+  page: number = 1;
+  booksPerPage: number = 5;
 
   ngOnInit(): void {
     this.loading = true;
-    this.adminService.getAllBooks().subscribe((response: any) => {
-      console.log(response)
+    this.adminService.getAllBooks(this.page, this.booksPerPage).subscribe((response: any) => {
       this.books = response.body.allBooks
-      console.log(this.books)
-      this.loading = false;
+      this.totalBooks = response.body.countBooks
+      this.loading = false
     })
 
     this.adminService.getAllAuthors().subscribe((response: any) => {
@@ -44,6 +46,15 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
       this.categories = this.categories.map(({ _id, name, photo }) => ({
         _id, name, photo
       }))
+    })
+  }
+
+  showPageIndex(pageIndex: any) {
+    this.loading = true;
+    this.page = pageIndex;
+    this.subscriber = this.adminService.getAllBooks(this.page, this.booksPerPage).subscribe((response: any) => {
+      this.books = response.body.allBooks
+      this.loading = false
     })
   }
 
