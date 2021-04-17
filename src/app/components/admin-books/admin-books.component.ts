@@ -76,10 +76,20 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
 
       /* Check for the caller either update or insert and execute its method */
       caller.name == "add" ? this.insertBook() : this.updateBook(book);
-      this.bookForm.reset()
+
+      /** clear modal content */
+      this.bookForm.controls.name.setValue('')
+      this.bookForm.controls.description.setValue('')
+      this.img=''
+
       this.closeResult = `Closed with: ${content}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      /** clear modal content */
+      this.bookForm.controls.name.setValue('')
+      this.bookForm.controls.description.setValue('')
+      this.img=''
+
       console.log(this.closeResult)
     });
   }
@@ -100,7 +110,7 @@ export class AdminBooksComponent implements OnInit, OnDestroy {
 
   bookForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]),
-    description: new FormControl('', [Validators.required, Validators.maxLength(350), Validators.minLength(4)]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(500), Validators.minLength(4)]),
     author: new FormControl(''),
     category: new FormControl(''),
   })

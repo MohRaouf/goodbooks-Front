@@ -65,11 +65,19 @@ export class AdminAuthorsComponent implements OnInit {
     });
 
     this.modalService.open(content).result.then((result) => {
-
       /* Check for the caller either update or insert and execute its method */
       caller.name == "add" ? this.insertAuthor() : this.updateAuthor(author);
+
+      /** clear modal content */
+      this.authorForm.controls.fname.setValue('')
+      this.authorForm.controls.lname.setValue('')
+      this.img=''
     }, (reason) => {
       console.log(this.closeResult)
+      /** clear modal content */
+      this.authorForm.controls.fname.setValue('')
+      this.authorForm.controls.lname.setValue('')
+      this.img=''
     });
   }
 
