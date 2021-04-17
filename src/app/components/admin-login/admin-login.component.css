@@ -2,18 +2,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* margin-top: 0%; */
     /* height: 100vh; */
     /* border-radius: 100px; */
 }
 
-/* .custom-container {
-    width: 60%;
-    height: 70%;
-    background-color: rgba(0, 0, 0, 0.7);
+i {
+    margin-right: 10px;
+}
+
+/* #failed-icon {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 5px;
 } */
 
-
-.invalid {
+/* .invalid {
     display: inline-block;
     font-weight: 400;
     font-size: 14px;
@@ -22,13 +27,14 @@
     padding: 5px 5px 5px 5px;
     background-color: rgba(0, 0, 0, 0.76);
 
-}
+} */
 
-html{
-    background-image: url('../../../assets/imgs/login-bg.jpg')  !important;
+html {
+    background-image: url('../../../assets/imgs/login-bg.jpg') !important;
     background-size: cover;
 }
-body{
+
+body {
     padding: 0;
 }
 
@@ -44,7 +50,6 @@ body{
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
 }
-
 
 .login-box h2 {
     margin: 0 0 30px;
@@ -87,7 +92,7 @@ body{
     font-size: 12px;
 }
 
-.login-box form a {
+#light-effect {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -97,7 +102,7 @@ body{
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
+    margin-top: 20px;
     letter-spacing: 4px
 }
 
@@ -112,9 +117,11 @@ button {
     width: 100px;
     padding: 5px;
 }
-button:disabled{
+
+button:disabled {
     color: rgba(146, 137, 137, 0.562);
 }
+
 button:hover:enabled {
     color: white;
 }
@@ -124,19 +131,19 @@ button:active {
     box-shadow: 0 3px 15px -2px;
 }
 
-.login-box a:hover {
+#light-effect:hover {
     background: #ffc117;
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px #ffc117, 0 0 25px #ffc117, 0 0 50px #ffc117, 0 0 100px #ffc117;
 }
 
-.login-box a span {
+#light-effect span {
     position: absolute;
     display: block;
 }
 
-.login-box a span:nth-child(1) {
+#light-effect span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
@@ -154,7 +161,7 @@ button:active {
     }
 }
 
-.login-box a span:nth-child(2) {
+#light-effect span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
@@ -173,7 +180,7 @@ button:active {
     }
 }
 
-.login-box a span:nth-child(3) {
+#light-effect span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
@@ -192,7 +199,7 @@ button:active {
     }
 }
 
-.login-box a span:nth-child(4) {
+#light-effect span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;

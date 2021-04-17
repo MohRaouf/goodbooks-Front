@@ -17,18 +17,20 @@ export class PublicBooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading=true
-    this.subscriber = this.publicService.getAllBooks().subscribe((response: any) => {
+    this.subscriber = this.publicService.getAllBooks(1,this.booksPerPage).subscribe((response: any) => {
       console.log(response.body)
-      this.booksArray=response.body
-      this.totalBooks=this.booksArray.length
+      this.booksArray=response.body.allBooks
+      this.totalBooks=response.body.countBooks
       this.loading=false
   }) }
- /*set page(value:number){
-    this.subscriber = this.publicService.getBooks(value,this.booksPerPage).subscribe((response: any) => {
+  showPageIndex(pageIndex:any){
+    this.page = pageIndex;
+    console.log(this.page);
+    this.subscriber = this.publicService.getAllBooks(this.page,this.booksPerPage).subscribe((response: any) => {
       console.log(response.body)
-      this.booksArray=response.body
-      this.totalBooks=this.booksArray.length
-  })
-  }*/
+      this.booksArray=response.body.allBooks
+      this.loading=false
+  }) 
+  }
  
 }

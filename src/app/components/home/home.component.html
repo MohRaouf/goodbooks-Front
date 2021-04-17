@@ -9,33 +9,44 @@
       <div class="collapse navbar-collapse col-2" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
           <li class="nav-item col-3  ">
-            <a class="nav-link me-0 " aria-current="page" routerLinkActive="selected"
+            <a class="nav-link me-0 font-weight-bold " aria-current="page" routerLinkActive="selected"
               routerLink="books">Books</a>
           </li>
-          <li class="nav-item col-4 ">
+          <li class="nav-item col-4 font-weight-bold">
             <a class="nav-link  me-0" aria-current="page" routerLinkActive="selected"
               routerLink="categories">Categories</a>
           </li>
-          <li class="nav-item col-4 me-5">
+          <li class="nav-item col-4 me-5 font-weight-bold">
             <a class="nav-link   me-0" aria-current="page" routerLinkActive="selected"
+
               routerLink="authors">Authors</a>
           </li>
         </ul>
       </div>
       <div class=" collapse navbar-collapse col-5">
         <div class="input-group">
-          <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search"
-            id="example-search-input">
+          <div class="input-group-prepend">
+            <button class="btn btn-warning dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{SearchOption}}</button>
+            <div class="dropdown-menu bg-dark">
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">All</a>
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Books</a>
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Categories</a>
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Authors</a>
+            </div>
+          </div>
+          <input class="form-control border-end-0 border rounded-right" type="text" placeholder="Search"
+            id="example-search-input" [(ngModel)]="keyWords">
           <span class="input-group-append">
             <button class="btn btn-light border-start-0 border-top-0 border-bottom-0  rounded-pill ms-n5 h-100"
-              type="button">
+              type="button" (click)="Search($event);" routerLinkActive="selected"
+              routerLink="searchResults">
               <i class="fa fa-search "></i>
             </button>
           </span>
         </div>
       </div>
       <div class="collapse navbar-collapse col-3">
-        <button class="btn btn-warning" type="button" id="SignIn" (click)=open(content2,$event)>
+        <button class="btn btn-warning" type="button" id="SignIn" (click)=open(login,$event)>
           Sign in
         </button>
         <button class="btn btn-outline-warning ml-3 " type="button" id="SignUp" (click)=open(content,$event)>
@@ -46,6 +57,8 @@
     </div>
   </div>
 </nav>
+
+
 
 <ng-template #elseBlock>
   <nav class="navbar navbar-expand-lg  navbar-dark bg-dark py-2   ">
@@ -60,29 +73,39 @@
           <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
 
             <li class="nav-item col-2  ">
-              <a class="nav-link active me-0 font-weight-bold " aria-current="page" routerLinkActive="selected"
+              <a class="nav-link   me-0 font-weight-bold " aria-current="page" routerLinkActive="selected"
                 routerLink="books">Books</a>
             </li>
             <li class="nav-item col-3 ">
-              <a class="nav-link active me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
+              <a class="nav-link   me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
                 routerLink="categories">Categories</a>
             </li>
             <li class="nav-item col-2 me-5">
-              <a class="nav-link active  me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
+              <a class="nav-link    me-0 font-weight-bold" aria-current="page" routerLinkActive="selected"
                 routerLink="authors">Authors</a>
             </li>
             <li class="nav-item col-3 me-5 ml-2 ">
-              <a class="nav-link active  me-0 font-weight-bold" aria-current="page" href="#">MyBooks</a>
+              <a class="nav-link    me-0 font-weight-bold" aria-current="page" href="#">MyBooks</a>
             </li>
           </ul>
         </div>
         <div class=" collapse navbar-collapse col-5">
           <div class="input-group">
-            <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search"
-              id="example-search-input">
+            <div class="input-group-prepend">
+              <button class="btn btn-warning dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{SearchOption}}</button>
+              <div class="dropdown-menu bg-dark">
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">All</a>
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Books</a>
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Categories</a>
+                <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Authors</a>
+              </div>
+            </div>
+            <input class="form-control border-end-0 border rounded-right" type="text" placeholder="Search"
+              id="example-search-input" [(ngModel)]="keyWords">
             <span class="input-group-append">
               <button class="btn btn-light border-start-0 border-top-0 border-bottom-0  rounded-pill ms-n5 h-100"
-                type="button">
+                type="button" (click)="Search($event);" routerLinkActive="selected"
+                routerLink="searchResults">
                 <i class="fa fa-search "></i>
               </button>
             </span>
@@ -99,34 +122,62 @@
   </nav>
 </ng-template>
 
-<ng-template #content2 let-modal class="SigninModal ">
 
-  <div class="modal-header border-0 SigninModal ">
+<ng-template #login let-modal class="custom-modals ">
+
+  <!-- ====================== Login Modal ======================= -->
+  <div class="modal-header border-0 custom-modals ">
     <h4 class="modal-title   text-warning" id="modal-basic-title">Sign in</h4>
     <button type="button" class="close text-warning" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body SigninModal">
-    <form [formGroup]=myForm2 (ngSubmit)="submitForm2()">
+  <div class="modal-body custom-modals">
+
+    <form #signInForm="ngForm" (ngSubmit)="submitLogin(signInForm)">
       <div class="form-group  ml-3">
-        <label for="username" class="text-warning my-3">User name</label>
+
+        <label for="username" class="text-warning my-3">Username</label>
         <div class="input-group ">
-          <input id="username" type="text" class="form-control " placeholder="Username" formControlName="username">
+          <input id="username" name="username" #username="ngModel" ngModel type="text" class="form-control"
+            placeholder="&#61447;  Username" required minlength="4">
+          <small class="m-0 text-danger input-group" *ngIf="username.invalid && (username.dirty || username.touched)">
+            Username min length is 4 characters !
+          </small>
         </div>
-        <p class="invalid text-warning" *ngIf="!UsernameStatus2">Username is required and min length is 4</p>
+
         <label for="password" class="text-warning my-3">Password</label>
         <div class="input-group ">
-          <input id="Password" type="password" class="form-control" placeholder="Password" formControlName="password">
+          <input id="password" name="password" ngModel #password="ngModel" type="password" class="form-control"
+            placeholder="&#xf023;  Password" minlength="4" required>
 
+          <small class="m-0 text-danger input-group" *ngIf="password.invalid && (password.dirty || password.touched)">
+            Password min length is 4 characters !
+          </small>
         </div>
-        <p class="invalid text-warning" *ngIf="!PasswordStatus2">Password is required </p>
       </div>
-      <div class="modal-footer border-0 SigninModal">
-        <button type="submit" class="btn btn-warning" (click)="modal.close('Save click') "
-          [disabled]="myForm2.invalid">Login</button>
+
+      <div class=" text-center mt-3 h6 row justify-content-md-center mt-3" role="status" *ngIf="loginLoading">
+        <div class="d-inline-block spinner-border text-warning  m-0 p-0" role="status"></div>
+        <span class="d-inline-block text-muted ml-3 pb-1 pt-1">Signing in...</span>
       </div>
+      <hr>
+
+      <div class=" text-center   mt-3 h5" role="status" *ngIf="loginFailed">
+        <a class="badge badge-danger mr-2 ">Failed</a>
+        <small class="text-danger">Wrong username or password</small>
+      </div>
+
+
+      <hr>
+      <div class=" border-0 custom-modals text-center ">
+        <button type="submit" class="btn btn-warning form-buton font-weight-bold" 
+          [disabled]="signInForm.invalid">Login</button>
+      </div>
+
+      
     </form>
+
   </div>
 
 
@@ -134,101 +185,152 @@
 </ng-template>
 
 
-<ng-template #content let-modal class="SigninModal ">
-  <div class="modal-header border-0 SigninModal ">
-    <h4 class="modal-title   text-warning" id="modal-basic-title">Sign up</h4>
+<!-- ====================== Sign up Modal ======================= -->
+<ng-template #content let-modal class="custom-modals ">
+  <div class="modal-header border-0 custom-modals  ">
+    <h4 class="modal-title text-warning" id="modal-basic-title">Sign up</h4>
 
     <button type="button" class="close text-warning" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
+
   </div>
-  <div class="modal-body SigninModal">
-    <form [formGroup]=myForm (ngSubmit)="submitForm()">
-      <div class="form-group  ml-3">
-        <div class="row">
-          <div class="col-6">
-            <label for="fname" class="text-warning my-3">First name</label>
-            <div class="input-group  ">
-              <input id="fname" type="text" class="form-control " placeholder="fname" formControlName="fname">
-            </div>
-            <p class="invalid text-warning" *ngIf="!FnameStatus">First name is required and min length is 3</p>
+  <div class="modal-body custom-modals">
+    <form #signUpForm="ngForm" (ngSubmit)="submitSignup(signUpForm)">
+      <div class=" m-3">
+        <div class="form-group row mr-1 mb-0">
+          <label for="firstname" class="col-3 text-warning pb-0 pt-2 h6">Firstname</label>
+          <input id="firstname" type="text" class="form-control col-9   " placeholder="&#xf105;  Firstname"
+            name="firstname" ngModel #firstname="ngModel" required minlength="4">
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger ">
+            Firstname min length is 4 characters !
+          </small>
+        </div>
+
+        <div class="form-group row mr-1 mt-3 mb-0">
+          <label for="lastname" class="col-3 text-warning pb-0 pt-2 h6">Lastname</label>
+          <input id="lastname" type="text" class="form-control col-9  " placeholder="&#xf101;  Lastname" name="lastname"
+            ngModel #lastname="ngModel" required minlength="4">
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger ">
+            Lastname min length is 4 characters !
+          </small>
+        </div>
+
+        <div class="form-group row mr-1 mt-3 mb-0">
+          <label for="email" class="col-3 text-warning pb-0 pt-2 h6">Email</label>
+          <input id="email" type="text" class="form-control col-9  " placeholder="&#xf0e0;  Email" name="email" ngModel
+            #email="ngModel" required email>
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger">
+            Valid Email address is reqiured !
+          </small>
+        </div>
+
+        <div class="form-group row mr-1 mt-3 mb-0 ">
+          <p for="photo" class=" col-3 text-warning pb-0 pt-2 h6">Photo</p>
+          <div class="col-9">
+            <input id="photo" type="file" class=" custom-file-input  form-control" (change)="onImgChange($event)"
+              placeholder="Choose Photo" name="photo" ngModel name="photo" accept="image/*">
+            <label class="custom-file-label" for="photo">{{img.name||"Choose Photo"}}</label>
           </div>
-          <div class="col-6">
-            <label for="lname" class="text-warning my-3">Last name</label>
-            <div class="input-group ">
-              <input id="lname" type="text" class="form-control " placeholder="lname" formControlName="lname">
-            </div>
-            <p class="invalid text-warning" *ngIf="!LnameStatus">Last name is required and min length is 3</p>
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="invalidPhoto ">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger">
+            Invalid Photo | too big
+          </small>
+        </div>
+
+        <div class="input-group  mb-0 mt-3">
+          <label for="gender" class="text-warning mr-5 h6">Gender</label>
+          <div class="form-check gender">
+            <input class="form-check-input" type="radio" value="f" name="gender" ngModel id="female" #gender="ngModel"
+              required>
+            <label class="form-check-label text-light mr-3 h6" for="female"> Female </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="m" name="gender" ngModel id="male" #gender="ngModel"
+              required>
+            <label class="form-check-label h6 text-light" for="male"> Male </label>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-6">
-            <label for="username" class="text-warning my-3">User name</label>
-            <div class="input-group ">
-              <input id="username" type="text" class="form-control " placeholder="Username" formControlName="username">
-            </div>
-            <p class="invalid text-warning" *ngIf="!UsernameStatus">Username is required and min length is 4</p>
-          </div>
-          <div class="col-6">
-            <label for="Gender" class="text-warning my-3">Gender</label>
-            <div class="form-check Gender">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label text-light" for="flexRadioDefault1">
-                Female
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label  text-light" for="flexRadioDefault2">
-                Male
-              </label>
-            </div>
-          </div>
+        <div class="row mt-0 mr-1" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger">
+            Choose your gender
+          </small>
         </div>
-        <div class="row">
-          <div class="col-6">
-            <label for="Email" class="text-warning my-3">Email</label>
-            <div class="input-group ">
-              <input id="Email" type="email" class="form-control " placeholder="Email" formControlName="email">
-            </div>
-            <p class="invalid text-warning" *ngIf="!EmailStatus">Email is required and valid</p>
-          </div>
-          <div class="col-6">
-            <label for="lname" class="text-warning my-3">Password</label>
-            <div class="input-group ">
-              <input id="Password" type="password" class="form-control" placeholder="Password"
-                formControlName="password">
 
-            </div>
-            <p class="invalid text-warning" *ngIf="!PasswordStatus">Password is required </p>
-          </div>
+        <div class="form-group row mr-1 mt-3 mb-0">
+          <label for="dob" class="col-3 text-warning pb-0 pt-2 h6">Birth Date</label>
+          <input id="dob" type="date" class="form-control col-9  " placeholder="Birth Date" name="dob" ngModel
+            #dob="ngModel" required date>
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="dob.invalid && (dob.dirty || dob.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger">
+            Valid Birth date is required
+          </small>
         </div>
 
 
+        <div class="form-group row mr-1 mt-3 mb-0">
+          <label for="username" class="col-3 text-warning pb-0 pt-2 h6">Username</label>
+          <input id="username" type="text" class="form-control col-9" placeholder="&#61447;  Username"
+            name="username" ngModel #username="ngModel" required minlength="4">
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="username.invalid && (username.dirty || username.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger ">
+            Username min length is 4 characters !
+          </small>
+        </div>
 
-        <div class="row">
-          <div class="col-6">
-            <label for="example-date-input" class="text-warning my-3">Date</label>
-            <div class="input-group">
-              <input class="form-control" type="date" value="2011-08-19" id="example-date-input" formControlName="Dob">
-            </div>
-            <p class="invalid text-warning" *ngIf="!DateStatus">Date of birth is required </p>
-          </div>
-          <div class="col-6">
-            <label class="text-warning my-3" for="customFile">Upload your Photo</label>
-            <div class="input-group">
-              <input type="file" class="form-control" id="customFile" />
-            </div>
-          </div>
+
+        <div class="form-group row mr-1 mt-3 mb-0">
+          <label for="password" class="col-3 text-warning pb-0 pt-2 h6">Password</label>
+          <input id="password" type="password" class="form-control col-9  " placeholder="&#xf023;  Password"
+            name="password" ngModel #password="ngModel" required minlength="4">
+        </div>
+        <div class="row mt-0 mr-1" *ngIf="password.invalid && (password.dirty || password.touched)">
+          <small class="col-md-9 ml-md-auto p-0 m-0 text-danger ">
+            Password min length is 4 characters !
+          </small>
+        </div>
+
+        <div class=" text-center mt-3 h6 row justify-content-md-center mt-3" role="status" *ngIf="loading">
+          <div class="d-inline-block spinner-border text-warning  m-0 p-0" role="status"></div>
+          <span class="d-inline-block text-muted ml-3 pb-1 pt-1">Registering...</span>
+        </div>
+
+        <div class=" text-center   mt-3 h5" role="status" *ngIf="success">
+          <a class="badge badge-success mr-1 ">Success</a>
+          <small class="text-light"> Registered successfully, you can login now !</small>
+        </div>
+
+        <div class=" text-center   mt-3 h5" role="status" *ngIf="failed">
+          <a class="badge badge-danger mr-2 ">Failed</a>
+          <small class="text-danger">Failed to register new user, contact the admins</small>
+        </div>
+
+        <div class=" text-center   mt-3 h5" role="status" *ngIf="duplicatedUsername">
+          <a class="badge badge-danger mr-2 ">Duplicated</a>
+          <small class="text-danger">Username Exists</small>
+        </div>
+
+        <div class=" border-0  mt-4 mb-3 custom-modals text-center text-dark" *ngIf="!loading && !success">
+          <button type="submit" class="btn btn-warning form-buton font-weight-bold"
+            [disabled]="signUpForm.invalid">Register</button>
+        </div>
+
+        <div class=" border-0  mt-4 mb-3 custom-modals text-center text-dark" *ngIf="success">
+          <button type="button" class="btn btn-warning form-buton font-weight-bold"
+            (click)="modal.close('Save click')">Done</button>
         </div>
       </div>
-
     </form>
-  </div>
-  <div class="modal-footer border-0 SigninModal">
-    <button type="submit" class="btn btn-warning" (click)="modal.close('Save click') "
-      [disabled]="myForm.invalid">Register</button>
   </div>
 </ng-template>
 <router-outlet></router-outlet>

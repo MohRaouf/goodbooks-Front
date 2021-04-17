@@ -30,7 +30,7 @@ table tr {
 .add-effect{
     cursor: pointer;
     padding: 7px;
-    width:180px;
+    width:190px;
 }
 .add-effect:hover{
     transform: scale(1.05);

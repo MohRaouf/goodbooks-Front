@@ -7,9 +7,9 @@
   </div>
   </div>
 <div class="container">
-  <div class="row ml-5 ">
+  <div class="row ml-5 " >
     
-    <div  class="mx-3 my-3" *ngFor="let book of booksArray | slice: (page-1) * booksPerPage : page * booksPerPage"> 
+    <div  class="mx-3 my-3" *ngFor="let book of booksArray"> 
         
       <div class="card bg-dark" style="width: 10rem;">
       <div class="hovereffect ">
@@ -29,5 +29,5 @@
 </div>
  
  <div class="d-flex justify-content-center">
-  <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"  (pageChange)="showPageIndex(page)"></ngb-pagination>
 </div>
