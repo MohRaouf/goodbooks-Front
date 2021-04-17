@@ -37,7 +37,8 @@ import { ShelfTableComponent } from './components/shelf-table/shelf-table.compon
 import { loggedUserServices } from './services/loggedUser.service';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { ErrorComponent } from './components/error/error.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component'; 
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component'; 
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     ShelfTableComponent,
     UserSettingsComponent,
     SearchResultsComponent,
+    AboutusComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
