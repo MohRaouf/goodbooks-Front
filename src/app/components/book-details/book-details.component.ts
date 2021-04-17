@@ -54,15 +54,19 @@ export class BookDetailsComponent implements OnInit {
 
 
   postReview(e:any){
+    if(!this.comment)
+      return
+
     console.log(this.comment)
     const reqParams = {bookId: this.book._id}
-
     const reqBody={
       reviewBody: this.comment
     }
     console.log(reqBody)
     this.userService.addReview(reqParams, reqBody)
     .subscribe((data:any)=>{
+      // this.reviews.push({body: this.comment, userId:{fname:"asd"}})
+      this.comment=""
       console.log(data);
     }, (err)=>{
         console.log(err);
