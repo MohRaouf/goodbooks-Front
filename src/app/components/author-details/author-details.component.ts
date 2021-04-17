@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PublicService } from 'src/app/services/public.service';
 import { Author } from '../../models/authors';
 import { Book } from '../../models/books';
-
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-author-details',
   templateUrl: './author-details.component.html',
@@ -21,8 +22,11 @@ export class AuthorDetailsComponent implements OnInit {
   AuthorDate:string="";
   AuthorGender:string="";
   constructor(private myService:PublicService,
-   private myActivatedRoute:ActivatedRoute, private router:Router) { }
-
+   private myActivatedRoute:ActivatedRoute, private router:Router,config: NgbRatingConfig) { 
+    config.max = 5;
+    config.readonly=true;
+   }
+   ctrl = new FormControl(null, Validators.required);
   ngOnInit(): void {
     this.subscriber=this.myService.getAuthorById(this.myActivatedRoute.snapshot.params.id)
     .subscribe((data:any)=>{
