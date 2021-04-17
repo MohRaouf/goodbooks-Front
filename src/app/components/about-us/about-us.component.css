@@ -1,5 +1,6 @@
+
 .single-item{
-    margin:15px
+    margin:15px;
 }
 .header{
     margin-top: 20px;
@@ -36,7 +37,7 @@ z-index: 1;
 }
 
 .team-area .item .thumb::after {
-background: #232323 none repeat scroll 0 0;
+background: #535353 none repeat scroll 0 0;
 content: "";
 height: 100%;
 left: 0;
@@ -87,7 +88,7 @@ text-transform: uppercase;
 }
 
 .team-area .info {
-background: #ffffff none repeat scroll 0 0;
+background: rgb(255, 255, 255) none repeat scroll 0 0;
 -moz-box-shadow: 0 0 10px #cccccc;
 -webkit-box-shadow: 0 0 10px #cccccc;
 -o-box-shadow: 0 0 10px #cccccc;
@@ -127,9 +128,28 @@ line-height: 50px;
 width: 50px;
 }
 
+
 .team-area .info span {
 color: #ffbb00;
 font-family: "Poppins",sans-serif;
 font-weight: 600;
 text-transform: uppercase;
+}
+@media only screen and (max-width: 780px){
+    .img-responsive{
+    }
+    .single-item{
+      width:170px;     
+    }
+}
+
+@media only screen and (max-width: 900px){
+  .img-responsive{
+    width: 170px;
+  }
+  .single-item{
+    width:170px;
+    flex-direction: column;     
+  }
+  
 }

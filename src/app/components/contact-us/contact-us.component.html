@@ -1,0 +1,38 @@
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Well done</strong> You has been submitted to our admins sucessfully.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<div class="container" router-outlet>
+    <div class="row">
+        <div class="col col-md-6 ">
+            <h1 class="">
+                Contact Us
+            </h1>
+            <p>
+                feel free to contact us in any time, we are waiting your 
+            </p>
+        </div>
+        <div class="col col-md-6 messages">
+            <h3>
+                Leave your info here 
+            </h3>
+            <label for="">Your Name</label>
+            <input type="text" name="" id="" [value]="inputName" placeholder="Enter your name" required>
+            <br/>
+            <br/>
+            <label for="">Your Email</label>
+            <input type="text" name="" id="" [value]="inputEmail" placeholder="Enter your Email" required>
+            <br/>
+            <br/>
+            <label for="">Your Message</label> 
+            <textarea name="" id="" cols="30" [value]="inputTextField" rows="4" placeholder="Leave A message here" required>
+            </textarea>
+            <input type="submit" value="submit" class="btn btn-warning submit" (click)="submitSuccessfully()">
+        </div>
+    </div>
+</div>
+<div class="container2">
+
+</div>

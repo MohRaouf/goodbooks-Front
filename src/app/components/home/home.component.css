@@ -1,3 +1,7 @@
+.sidenav {
+  width: 200px;
+}
+
 .ms-n5 {
     margin-left: -40px;
 }
@@ -8,9 +12,10 @@
   a:active {
     color: yellow;
   }
-  a[tabindex]:focus {
-    color:rgb(255, 217, 0);
-    outline: none;
+a:focus{
+  color: #ffc107;
+  font-size: 17px;
+  outline: none;
 }
 /* @media only screen and (max-width: 768px){
     example-search-input{
@@ -21,3 +26,15 @@
     background-color: #ffc107;
 }
 
+.burger-item{
+  display:none
+}
+.AllSearchInput{
+  margin-left: 80px;
+}
+@media only screen and (max-width: 988px){
+  .burger-item{
+    display:inline-block
+  }
+ 
+}

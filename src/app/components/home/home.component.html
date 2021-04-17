@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark py-2 " *ngIf="!isLoggedIn; else elseBlock">
   <div class="container-fluid">
     <a class="navbar-brand text-warning font-weight-bold ms-3" routerLinkActive="selected" routerLink="">GoodBooks</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="" data-bs-target="#navbarScroll"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
       aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="container-fluid row">
-      <div class="collapse navbar-collapse col-2" id="navbarScroll">
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
-          <li class="nav-item col-3  ">
+    <div class="container-fluid row ">
+      <div class="collapse navbar-collapse col-2 sidenav" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll burger-list" style="--bs-scroll-height: 100px;">
+          <li class="nav-item col-4  ">
             <a class="nav-link me-0 " aria-current="page" routerLinkActive="selected"
               routerLink="books">Books</a>
           </li>
@@ -20,12 +20,24 @@
             <a class="nav-link   me-0" aria-current="page" routerLinkActive="selected"
               routerLink="authors">Authors</a>
           </li>
+          <li class="nav-item col-4 me-5 burger-item">
+            <a class="nav-link   me-0" aria-current="page" routerLinkActive="selected"
+              routerLink="authors ">Find</a>
+          </li>
+          <li class="nav-item col-4 me-5 burger-item">
+            <a class="nav-link   me-0" aria-current="page" routerLinkActive="selected"
+            (click)=open(content2,$event)>SignIn</a>
+          </li>
+          <li class="nav-item col-4 me-5 burger-item">
+            <a class="nav-link   me-0" aria-current="page" routerLinkActive="selected"
+            (click)=open(content,$event)>SignUp</a>
+          </li>
         </ul>
       </div>
       <div class=" collapse navbar-collapse col-5">
         <div class="input-group">
-          <div class="input-group-prepend">
-            <button class="btn btn-warning dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{SearchOption}}</button>
+          <div class="input-group-prepend AllSearchInput">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{SearchOption}}</button>
             <div class="dropdown-menu bg-dark">
               <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">All</a>
               <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Books</a>
@@ -33,7 +45,7 @@
               <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Authors</a>
             </div>
           </div>
-          <input class="form-control border-end-0 border rounded-right" type="text" placeholder="Search"
+          <input class="form-control border-end-0 border rounded-right " type="text" placeholder="Search"
             id="example-search-input" [(ngModel)]="keyWords">
           <span class="input-group-append">
             <button class="btn btn-light border-start-0 border-top-0 border-bottom-0  rounded-pill ms-n5 h-100"
