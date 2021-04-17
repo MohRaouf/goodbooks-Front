@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
 import { Book } from 'src/app/models/books';
+import { FormControl, Validators } from '@angular/forms';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-public-books',
   templateUrl: './public-books.component.html',
@@ -13,7 +15,11 @@ export class PublicBooksComponent implements OnInit {
    totalBooks:number=0;
    page:number=1;
    booksPerPage:number=10;
-  constructor(private publicService: PublicService) { }
+   ctrl = new FormControl(null, Validators.required);
+  constructor(config: NgbRatingConfig,private publicService: PublicService) { 
+    config.max = 5;
+     config.readonly=true;
+  }
 
   ngOnInit(): void {
     this.loading=true

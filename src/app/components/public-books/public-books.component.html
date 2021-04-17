@@ -21,6 +21,9 @@
           </div>
           <div class =" card-title d-flex justify-content-center mt-3 mb-2">
           <p class=" text-warning font-weight-bold h6"  >{{book.name}}</p></div>
+          <div class="form-group" style="text-align: center;">
+            <h4> <ngb-rating [rate]="book.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating></h4>
+          </div>
         </div>  
        
     </div>
