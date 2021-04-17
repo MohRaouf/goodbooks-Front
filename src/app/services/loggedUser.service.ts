@@ -47,7 +47,7 @@ export class loggedUserServices {
   
   getUser(){
     console.log(`HITTING: ${config.userAPI}/get_user`)
-    return this.client.get(`${config.userAPI}/get_user/606d1450d54e4b1fd46c7495`, {observe: 'response'})
+    return this.client.post(`${config.userAPI}/get_user/606d1450d54e4b1fd46c7495`, {observe: 'response'})
   }
 
   updateUserSettings(reqBody:any){
