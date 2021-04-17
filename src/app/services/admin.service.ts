@@ -14,8 +14,8 @@ export class AdminService {
     return this.client.get(`${config.apiUrl}/admins/login`,{ observe: 'response' })
   }
 
-  getAllBooks() {
-    return this.client.get(`${config.apiUrl}/books`,{ observe: 'response' })
+  getAllBooks(page:number,perPage:number) {
+    return this.client.get(`${config.apiUrl}/books?page=${page}&perPage=${perPage}`, { observe: 'response' })
   }
 
   insertBook(newBook:any) {

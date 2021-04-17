@@ -1,70 +1,76 @@
-<div class="d-flex justify-content-center main" >
-    <div class="align-self-center custom">
-        <div class="card text-center theme text-white">
-            <div class="header ">
-                  <h1 class="text-warning text-center mt-2" style="font-size: 35px; font-weight: bolder;">ADMIN DASHBORAD</h1>
+<div class="d-flex justify-content-center main">
+  <div class="align-self-center custom">
+    <div class="card text-center theme text-white">
+      <div class="header ">
+        <h1 class="text-warning text-center mt-2" style="font-size: 35px; font-weight: bolder;">ADMIN DASHBORAD</h1>
+      </div>
+      <div class="card-header m-0">
+        <ul class="nav nav-tabs card-header-tabs nav-theme w-100  ">
+          <li class="nav-item  ">
+            <a class="nav-link h5 text-white " routerLinkActive="selected" routerLink="books">BOOKS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  h5 text-white " routerLinkActive="selected" routerLink="authors">AUTHORS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h5 text-white " routerLinkActive="selected" routerLink="categories">CATEGORIES</a>
+          </li>
+          <div class="d-flex justify-content-center">
+            <div class="wrapper m-0 align-self-center  ">
+              <button class=" add-effect btn btn-dark mr-4 " (click)="signOut()">
+                <span class="text-warning h5 font-weight-bold ">Sign out</span>
+                <i class="fa fa-sign-out h5 add-style text-warning m-0 ml-2"></i>
+              </button>
             </div>
-            <div class="card-header m-0">
-                <ul class="nav nav-tabs card-header-tabs nav-theme w-100  ">
-                    <li class="nav-item  ">
-                        <a class="nav-link h5 text-white " routerLinkActive="selected" routerLink="books">BOOKS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  h5 text-white " routerLinkActive="selected" routerLink="authors">AUTHORS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link h5 text-white " routerLinkActive="selected" routerLink="categories">CATEGORIES</a>
-                    </li>
-                    <div class="d-flex justify-content-center">
-                      <div class="wrapper m-0 align-self-center  ">
-                        <button class=" add-effect btn btn-dark mr-4 " (click)="signOut()">
-                            <span class="text-warning h5 font-weight-bold ">Sign out</span>
-                            <i class="fa fa-sign-out h5 add-style text-warning m-0 ml-2"></i>
-                        </button>
-                      </div>
-                    </div>
-                </ul>
+          </div>
+        </ul>
 
-            </div>
-            
-            <div class="card-body mt-1">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+      </div>
 
-        <footer class="footer">
-            <div class="footer-left col-md-4 col-sm-6">
-                <h3 class="text-warning font-weight-bold">ABOUT ME</h3>
-              <p class="about">
-               Iam a developer from Egypt, student at the Information technology institute, Smart Village branch, Open Source | IoT Track, I developed this Dashboard for practice on a project of a clone of goodreads website as part of my practice on Angular2 and NodeJs Courses    </p>
-            </div>
-            <div class="footer-center col-md-4 col-sm-6">
-              <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span> Alagamy , Elbetash</span> Alexandria, Egypt</p>
-              </div>
-              <div>
-                <i class="fa fa-phone"></i>
-                <p> (+20) 01286 621 760</p>
-              </div>
-              <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="mailto:moh.proff@gmail.com"> Moh.Proff@gmail.com</a></p>
-              </div>
-            </div>
-            <div class="footer-right col-md-4 col-sm-6">
-              <h3 class="text-warning font-weight-bold"> MOHAMED ABDELRAOUF</h3>
-              <p class="name text-light">ITI | Open Source | IoT &copy; 2021</p>
-              <div class="icons">
-                <a  href="https://www.facebook.com/M.AbdulRaoufff" rel="noreferrer noopener" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="https://twitter.com/MohRaoufff" rel="noreferrer noopener" target="_blank"><i class="fa fa-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/mohraouf/" rel="noreferrer noopener" target="_blank"><i class="fa fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/m.abdulraouff/" rel="noreferrer noopener" target="_blank"><i class="fa fa-instagram"></i></a>
-              </div>
-            </div>
-            
-          </footer>
+      <div class="card-body mt-1">
+        <router-outlet></router-outlet>
+      </div>
     </div>
 
-   
+    <footer class="footer">
+      <div class="footer-left col-md-4 col-sm-6">
+        <h3 class="text-warning font-weight-bold">ABOUT ME</h3>
+        <p class="about">
+          Iam a developer from Egypt, student at the Information technology institute, Smart Village branch, Open Source
+          | IoT Track, I developed this Dashboard for practice on a project of a clone of goodreads website as part of
+          my practice on Angular2 and NodeJs Courses </p>
+      </div>
+      <div class="footer-center col-md-4 col-sm-6">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span> Alagamy , Elbetash</span> Alexandria, Egypt</p>
+        </div>
+        <div>
+          <i class="fa fa-phone"></i>
+          <p> (+20) 01286 621 760</p>
+        </div>
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="mailto:moh.proff@gmail.com"> Moh.Proff@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-right col-md-4 col-sm-6">
+        <h3 class="text-warning font-weight-bold"> MOHAMED ABDELRAOUF</h3>
+        <p class="name text-light">ITI | Open Source | IoT &copy; 2021</p>
+        <div class="icons">
+          <a href="https://www.facebook.com/M.AbdulRaoufff" rel="noreferrer noopener" target="_blank"><i
+              class="fa fa-facebook"></i></a>
+          <a href="https://twitter.com/MohRaoufff" rel="noreferrer noopener" target="_blank"><i
+              class="fa fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/mohraouf/" rel="noreferrer noopener" target="_blank"><i
+              class="fa fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/m.abdulraouff/" rel="noreferrer noopener" target="_blank"><i
+              class="fa fa-instagram"></i></a>
+        </div>
+      </div>
+
+    </footer>
+  </div>
+
+
 </div>

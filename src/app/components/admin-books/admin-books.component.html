@@ -54,6 +54,13 @@
     </tbody>
 </table>
 
+<div class="d-flex justify-content-center">
+    <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"
+        [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"
+        (pageChange)="showPageIndex(page)">
+    </ngb-pagination>
+</div>
+
 <ng-template #content let-modal>
     <div class="form-theme">
         <div class="modal-header text-center">
