@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PublicService } from 'src/app/services/public.service';
 import { Book } from '../../models/books';
+import {Review} from '../../models/reviews'
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { loggedUserServices } from 'src/app/services/loggedUser.service';
@@ -38,6 +39,7 @@ export class BookDetailsComponent implements OnInit {
       this.author=data.authorId
       this.category=data.categoryId
       this.reviews = data.reviews
+      console.log(this.reviews)
       },
       (err)=>{
         console.log(err);
@@ -51,7 +53,9 @@ export class BookDetailsComponent implements OnInit {
       this.ctrl.disable();
     }
   }
-
+  setComment(e:any){
+    this.comment = e.target.value
+  }
 
   postReview(e:any){
     if(!this.comment)

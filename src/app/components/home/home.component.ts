@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       } else {
         this.isLoggedIn = false;
       }
+      console.log("phoebe"+this.isLoggedIn)
     });
     this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
     this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
