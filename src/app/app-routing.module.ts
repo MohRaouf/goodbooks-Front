@@ -21,7 +21,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import {MyShelfGuard} from './guards/my-shelf.guard'
 import { MybooksComponent } from './components/mybooks/mybooks.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
-
+import { AboutusComponent } from './components/aboutus/aboutus.component';
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   {
@@ -54,15 +54,12 @@ const routes: Routes = [
       }
       , {
         path: "aboutus",
-        component: FooterElementsComponent,
+        component: AboutusComponent,
       },
       {
         path: "contact",
         component: FooterElementsComponent,
-      }, {
-        path: "terms",
-        component: FooterElementsComponent,
-      },
+      }, 
       {
         path: "myshelf",
         component: MybooksComponent,
