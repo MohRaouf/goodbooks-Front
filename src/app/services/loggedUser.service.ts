@@ -8,14 +8,14 @@ import { config } from '../config'
 
 export class loggedUserServices {
   constructor(private client:HttpClient) { 
-    console.log("[UserBookShelfConstructor] called")
-    let sub = this.getBookSehlf("a")
-    .subscribe((data:any)=>{
-      this.userShelf = data.body
-      console.log(this.userShelf)
-    },(err)=>{
-      console.log(err)
-    })
+    // console.log("[UserBookShelfConstructor] called")
+    // let sub = this.getBookSehlf("a")
+    // .subscribe((data:any)=>{
+    //   this.userShelf = data.body
+    //   console.log(this.userShelf)
+    // },(err)=>{
+    //   console.log(err)
+    // })
   }
 
   getBookSehlf(status:String){
@@ -41,10 +41,19 @@ export class loggedUserServices {
   }
 
   getUserBook(reqParams:any){
-    console.log(`HITTING: ${config.userAPI}/getbook/${reqParams.bookId}`)
-    return this.client.get(`${config.userAPI}/getbook/${reqParams.bookId}`, {observe: 'response'})
+    console.log(`HITTING: ${config.userAPI}/get_book/${reqParams.bookId}`)
+    return this.client.get(`${config.userAPI}/get_book/${reqParams.bookId}`, {observe: 'response'})
+  }
+  
+  getUser(){
+    console.log(`HITTING: ${config.userAPI}/get_user`)
+    return this.client.get(`${config.userAPI}/get_user/606d1450d54e4b1fd46c7495`, {observe: 'response'})
   }
 
+  updateUserSettings(reqBody:any){
+    console.log(`HITTING: ${config.userAPI}/update_userinfo`)
+    return this.client.patch(`${config.userAPI}/update_userinfo/606d1450d54e4b1fd46c7495`, reqBody, {observe: 'response'})
+  }
   assertBook(reqParams:any, reqBody:any){
     console.log(`HITTING: ${config.userAPI}/assert_book/${reqParams.bookId}`)
     return this.client.patch(`${config.userAPI}/assert_book/${reqParams.bookId}`, reqBody, {observe: 'response'})
