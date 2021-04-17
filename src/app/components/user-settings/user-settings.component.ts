@@ -11,7 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 
 export class UserSettingsComponent implements OnInit, OnDestroy {
-  user={fname:"", lname:"", dob:"", gender:"", username:"", email:"", bookshelf:[]}
+
+  user={photo:"", fname:"", lname:"", dob:"", gender:"", username:"", email:"", bookshelf:[]}
   constructor(    
     private userData: loggedUserServices,
     ) { }
@@ -28,9 +29,9 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     console.log("############################ USER SETTINGS ####################################\n")
     this.subscriber=this.userData.getUser()
     .subscribe((data:any)=>{
-      console.log("USER DATA:", data)
         if(data.status == 200){
-        this.user = data.body.result
+        this.user = data.result.doc[0]
+        console.log("USER DATA:", this.user)
       }
   },(err)=>{
       console.log("ERR")
