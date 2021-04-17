@@ -15,13 +15,15 @@ export class MybooksComponent implements OnInit {
 
   constructor(
     private userShelfSerivce: loggedUserServices,
-    private menuSerivce: MenuService) { }
+    private menuSerivce: MenuService){
+      
+    }
 
   ngOnInit(): void {
     this.shelf = this.userShelfSerivce.userShelf;
     this.menu = this.menuSerivce.options;
 
-    this.userShelfSerivce.getBookSehlf("a")
+    this.userShelfSerivce.getBookSehlf("c")
     .subscribe((data:any)=>{
       console.log(data)
       if(data.status == 200){
@@ -38,7 +40,10 @@ export class MybooksComponent implements OnInit {
     console.log(e)
     this.userShelfSerivce.getBookSehlf(e.target.id)
     .subscribe((data:any)=>{
-      this.shelf = data.body
+      if(data.status == 200){
+        this.shelf = data.body.result
+        this.userShelfSerivce.userShelf = data.body.result
+    }
       console.log(this.shelf)
     },(err)=>{
       console.log(err)

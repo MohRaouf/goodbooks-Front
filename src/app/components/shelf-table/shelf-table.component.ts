@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, Validators} from '@angular/forms';
 import { loggedUserServices } from 'src/app/services/loggedUser.service';
@@ -8,7 +8,7 @@ import { loggedUserServices } from 'src/app/services/loggedUser.service';
   templateUrl: './shelf-table.component.html',
   styleUrls: ['./shelf-table.component.css']
 })
-export class ShelfTableComponent implements OnInit {
+export class ShelfTableComponent implements OnInit, OnDestroy {
 
   selectedStatus: String=""
   constructor(private userShelfSerivce: loggedUserServices, config: NgbRatingConfig) {
@@ -25,6 +25,12 @@ export class ShelfTableComponent implements OnInit {
   onScreenStatus:String=""
   ctrl:any
   ctrl_readonly:any
+  subscriber:any
+
+  ngOnDestroy(): void {
+    // console.log("destroy");
+    // this.subscriber.unsubscribe();
+  }
   ngOnInit(): void {
     this.ctrl = new FormControl(this.filteredShelf.rate, Validators.required);
     this.ctrl_readonly = this.filteredShelf.bookId.avgRating
@@ -49,7 +55,7 @@ export class ShelfTableComponent implements OnInit {
     console.log("IN REVIEW:", reqBody)
 
     const reqParams = {bookId: this.book._id}
-    this.userShelfSerivce.editRating(reqParams, reqBody)
+    this.subscriber=this.userShelfSerivce.editRating(reqParams, reqBody)
       .subscribe((data: any) => {
         this.response = data.body
         console.log(this.response)
@@ -64,7 +70,7 @@ export class ShelfTableComponent implements OnInit {
     const reqBody = {status: status[e.target.selectedIndex-1]}
     const reqParams = {bookId: this.book._id}
     console.log(reqBody, reqParams)
-    this.userShelfSerivce.editStatus(reqParams, reqBody)
+    this.subscriber=this.userShelfSerivce.editStatus(reqParams, reqBody)
       .subscribe((data: any) => {
         this.response = data.body
         console.log(this.response)
@@ -77,7 +83,7 @@ export class ShelfTableComponent implements OnInit {
     console.log(e.target.id)
     const reqParams = {bookId: this.book._id, userRate: this.user.rate, avgRate: this.book.avgRating };
     console.log(reqParams)
-    this.userShelfSerivce.removeBook(reqParams)
+    this.subscriber=this.userShelfSerivce.removeBook(reqParams)
       .subscribe((data: any) => {
         this.response = data.body
         console.log(this.response)
