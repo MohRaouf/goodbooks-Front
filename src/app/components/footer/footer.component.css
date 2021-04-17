@@ -1,8 +1,8 @@
 footer {
+ 
   
-
   bottom: 0;
-   position: fixed;
+   position: sticky;
     width: 100%;
     /* Set the fixed height of the footer here */
 }

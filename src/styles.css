@@ -7,12 +7,20 @@ body {
     height: 100vh;
 }*/
 
-
+ngb-pagination{
+    z-index: 00000;
+      margin-bottom: 50px;
+      bottom: 50px; 
+    
+}
 body{
     
     background-color: #1b1d1f;
     /* padding-bottom: 58px; */
     
+       
 }
-
+.cardlink{
+    word-wrap: break-word;
+  }
 /*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/

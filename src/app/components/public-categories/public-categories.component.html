@@ -1,16 +1,17 @@
-<h1 class="text-warning mx-5 my-3" style="font-family: Georgia"> Categories</h1>
+<div class="justify-content-start d-flex container my-3 pl-0"><h1 class="text-warning">Categories</h1></div>
 <div class = "d-flex justify-content-center ">
   <div class="spinner-border text-warning loading " role="status" *ngIf="loading">
     <span class="sr-only loading">Loading...</span>
   </div>
   </div>
-<div class="container d-flex justify-content-center">
-  <div class="row ml-5 ">
+<div class="container  border border-dark rounded  mb-3" style="background: #212529; opacity:0.8">
+  <div class="row  d-flex justify-content-center">
     
     <div  class="mx-3 my-3" *ngFor="let Category of CategoryArray "> 
-      <div class="card bg-dark" style="width: 10rem;">
+      <div class="card my-3" style="width: 10rem;background: rgba(0, 0, 0, 0.486);">
       <div class="hovereffect">
-        <img class="img-responsive" src="{{Category.photo}}" alt="" width="160" height="200">
+        <img class="img-responsive" src="{{Category.photo}}" *ngIf="Category.photo;else unknown" alt="" width="160" height="200">
+        <ng-template #unknown> <img class="img-responsive "  src="/assets/imgs/unknown.png" alt="" width="160" height="200"></ng-template>
             <div class="overlay ">
                 <h2 class="text-warning"> </h2>
 				<p>
@@ -18,17 +19,18 @@
 				</p>
             </div>
     </div>
-    <div class =" card-title d-flex justify-content-center mt-3 mb-2">
-      <p class=" text-warning font-weight-bold h6"  >{{Category.name}}</p></div>
-       </div>
+    <div class =" card-title   d-flex justify-content-center mt-3 mb-2">
+      <a class="cardlink text-warning" routerLink="{{Category._id}}">{{Category.name}}</a></div>
+  </div>
     </div>
 
 </div>
+<div class="d-flex justify-content-center ">
+  <ngb-pagination *ngIf="totalCategories>CategoriesPerPage"
+    [(page)]="page"
+    [pageSize]="CategoriesPerPage"
+    [collectionSize]="totalCategories"
+    (pageChange)="showPageIndex(page)"></ngb-pagination></div>
+  
 </div>
 
-<div class="d-flex justify-content-center ">
-<ngb-pagination *ngIf="totalCategories>CategoriesPerPage"
-  [(page)]="page"
-  [pageSize]="CategoriesPerPage"
-  [collectionSize]="totalCategories"
-  (pageChange)="showPageIndex(page)"></ngb-pagination></div>

@@ -111,3 +111,9 @@ ngb-pagination{
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
+  ngb-pagination{
+    z-index: 00000;
+      margin-bottom: 50px;
+      bottom: 50px; 
+    
+}
