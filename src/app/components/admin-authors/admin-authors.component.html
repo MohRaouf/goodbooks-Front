@@ -1,4 +1,18 @@
 <div class="row justify-content-end">
+
+    <div class=" col-4 ">
+        <div class="input-group row d-flex pl-3 justify-content-start">
+          <input class="form-control border-end-0 border rounded-right" type="text" placeholder="Search"
+            id="example-search-input" [(ngModel)]="keyWords" (keyup.enter)="Search($event);">
+          <span class="input-group-append">
+            <button class="btn btn-warning border-start-0 border-top-0 border-bottom-0  search-bg h-100"
+              type="button" (click)="Search($event);" >
+              <i class="fa fa-search text-dark "></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
     <div class="col-4 justify-content-start  mb-2">
         <div class=" text-center t-0 row justify-content-md-center" role="status" *ngIf="actionLoading">
             <div class="d-inline-block spinner-border text-warning  m-0 p-0" role="status"></div>

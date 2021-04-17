@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AdminService } from 'src/app/services/admin.service';
 import { Author, Gender } from '../../models/admin-models'
 import { convertToBase64 } from '../../helpers/image-helpers'
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-admin-authors',
@@ -14,7 +15,7 @@ import { convertToBase64 } from '../../helpers/image-helpers'
 })
 export class AdminAuthorsComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private adminService: AdminService, private router: Router) { }
+  constructor(private modalService: NgbModal,private publicService :PublicService, private adminService: AdminService, private router: Router) { }
   subscriber: any
   authors: Array<Author> = []
   insert: boolean = false;
@@ -36,6 +37,15 @@ export class AdminAuthorsComponent implements OnInit {
     })
   }
 
+  /** Search for Books */
+  keyWords: string = "";
+  Search(e: any) {
+    this.publicService.getAuthorSearchRes(this.keyWords).subscribe((response: any) => {
+      this.authors = response.body
+    })
+  }
+
+  /** pagination */
   showPageIndex(pageIndex: any) {
     this.loading = true;
     this.page = pageIndex;
@@ -71,13 +81,13 @@ export class AdminAuthorsComponent implements OnInit {
       /** clear modal content */
       this.authorForm.controls.fname.setValue('')
       this.authorForm.controls.lname.setValue('')
-      this.img=''
+      this.img = ''
     }, (reason) => {
       console.log(this.closeResult)
       /** clear modal content */
       this.authorForm.controls.fname.setValue('')
       this.authorForm.controls.lname.setValue('')
-      this.img=''
+      this.img = ''
     });
   }
 
