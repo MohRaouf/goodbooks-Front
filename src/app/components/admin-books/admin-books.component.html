@@ -118,7 +118,7 @@
                     <p class=" m-0">Name must be more than 3 characters</p>
                 </div>
                 <div class="alert alert-danger mb-2" *ngIf="!bookForm.controls.description.valid && descriptionFocused">
-                    <p class=" m-0">Description must more that 10 characters</p>
+                    <p class=" m-0">Description must be in range 10:500 characters</p>
                 </div>
                 <div class="alert alert-danger mb-2" *ngIf="invalidPhoto">
                     <p class=" m-0">Invalid Photo | Too Big</p>

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   invalidCred: boolean = false;
   SearchOption: string = "All";
   keyWords: string = "";
+  profilePic: any;
   constructor(private modalService: NgbModal, private userSevice: UserService, private authService: AuthService, private publicService: PublicService, private router: Router) { }
   ngOnDestroy(): void {
     console.log('Login Component Destroy');
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     /** get user info to populate the profile photo and username */
     this.userSevice.getUserInfo().subscribe((response: any) => {
       console.log(response.body);
+      if (response.body.photo) this.profilePic = response.body.photo
       console.log('onInit Triggered');
       if (this.authService.isLoggedIn()) {
         this.isLoggedIn = true;
