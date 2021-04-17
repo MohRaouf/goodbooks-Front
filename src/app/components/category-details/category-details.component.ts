@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PublicService } from 'src/app/services/public.service';
 import { Category } from '../../models/categories';
+import { Book } from 'src/app/models/books';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, Validators } from '@angular/forms';
 @Component({
@@ -17,7 +18,7 @@ export class CategoryDetailsComponent implements OnInit {
   page:number=1;
   booksPerPage:number=10;
   loading: boolean = true;
-  categoryBooks:Array<any>=[]
+  categoryBooks:Array<Book>=[]
   constructor(private myService:PublicService,
     private myActivatedRoute:ActivatedRoute, private router:Router,config: NgbRatingConfig) {
       config.max = 5;
