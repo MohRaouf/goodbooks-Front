@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.isLoggedIn = false;
       }
     });
-    this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
-    this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
+    // this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
+    // this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
   chooseSearch(e: any) {
     console.log(e.target.innerText)
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   Search(e: any) {
     this.publicService.searchCategory = this.SearchOption
     this.publicService.searchedName = this.keyWords
-    this.publicService.updateSearch(this.SearchOption, this.keyWords)
+    // this.publicService.updateSearch(this.SearchOption, this.keyWords)
 
   }
   closeResult: any;
