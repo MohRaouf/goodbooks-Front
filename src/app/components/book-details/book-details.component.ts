@@ -31,18 +31,23 @@ export class BookDetailsComponent implements OnInit {
 
   ctrl = new FormControl(null, Validators.required);
   ngOnInit(): void {
-    this.subscriber=this.myService.getBookById(this.myActivatedRoute.snapshot.params.id)
-    .subscribe((data:any)=>{
-      console.log("THIS IS THE THING",data);
-      this.book=data;
-      this.author=data.authorId
-      this.category=data.categoryId
-      this.reviews = data.reviews
+    this.myService.getBookById(this.myActivatedRoute.snapshot.params.id)
+    .subscribe((res:any)=>{
+      this.subscriber = res
+        console.log("THIS In review page",res.body);
+        this.book=res.body;
+        this.author=res.body.authorId
+        this.category=res.body.categoryId
+        this.reviews = res.body.reviews  
       },
       (err)=>{
         console.log(err);
       }
       )
+    }
+
+  setComment(e:any){
+      this.comment = e.target.value
     }
   toggle() {
     if (this.ctrl.disabled) {

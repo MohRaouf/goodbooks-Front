@@ -24,8 +24,10 @@ export class RatingAndShelveComponent implements OnInit {
    }
 
    ctrl:any
-
+   subscriber:any
    Shelve:String="Choose Shelve";
+
+
   ngOnInit(): void {
     const reqParams = {bookId: this.myActivatedRoute.snapshot.params.id}
     this.userService.getUserBook(reqParams)

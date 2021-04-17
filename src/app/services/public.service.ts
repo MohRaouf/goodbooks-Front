@@ -27,7 +27,7 @@ export class PublicService {
     return this.client.get(`${config.apiUrl}/books/top`,{observe:"response"});
   }
   getBookById(id:number){
-    return this.client.get(`${config.apiUrl}/books/${id}`)
+    return this.client.get(`${config.apiUrl}/books/${id}`, {observe:"response"})
   }
   getBookSearchRes(search:string){
     return this.client.get(`${config.apiUrl}/books/search/${search}`,{observe:"response"})

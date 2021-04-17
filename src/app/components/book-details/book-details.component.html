@@ -43,7 +43,7 @@
 
              <div class="card p-3 mb-2 bg-dark">
                 <div class="d-flex justify-content-between align-items-center">
-                   <textarea class="form-control col-9  " placeholder="write a comment..." rows="2" [(ngModel)]="comment"></textarea>
+                   <textarea class="form-control col-9  " placeholder="write a comment..." rows="2" (keyup)="setComment($event)"></textarea>
                    <br>
                    <button type="button" class="btn btn-warning pull-right col-2" (click)="postReview($event)">Post</button> 
                 </div>

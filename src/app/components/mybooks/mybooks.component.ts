@@ -23,7 +23,7 @@ export class MybooksComponent implements OnInit {
     this.shelf = this.userShelfSerivce.userShelf;
     this.menu = this.menuSerivce.options;
 
-    this.userShelfSerivce.getBookSehlf("c")
+    this.userShelfSerivce.getBookSehlf("a")
     .subscribe((data:any)=>{
       console.log(data)
       if(data.status == 200){
