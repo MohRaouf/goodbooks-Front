@@ -34,6 +34,15 @@ import { PopularAuthorsComponent } from './components/popular-authors/popular-au
 import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AboutUsComponent } from './components/footer-elements/aboutUs/about-us/about-us.component'; 
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list'; 
+
  
 @NgModule({
   declarations: [
@@ -59,7 +68,8 @@ import { AboutUsComponent } from './components/footer-elements/aboutUs/about-us/
     PopularCategoriesComponent,
     ErrorComponent,
     AboutUsComponent,
-     
+    SearchResultsComponent,
+    MainNavComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -71,7 +81,13 @@ import { AboutUsComponent } from './components/footer-elements/aboutUs/about-us/
     HttpClientModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
     
   ],
   providers: [

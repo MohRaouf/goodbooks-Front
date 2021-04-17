@@ -24,11 +24,21 @@
       </div>
       <div class=" collapse navbar-collapse col-5">
         <div class="input-group">
-          <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search"
-            id="example-search-input">
+          <div class="input-group-prepend">
+            <button class="btn btn-warning dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{SearchOption}}</button>
+            <div class="dropdown-menu bg-dark">
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">All</a>
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Books</a>
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Categories</a>
+              <a class="dropdown-item text-warning" (click)=" chooseSearch($event)">Authors</a>
+            </div>
+          </div>
+          <input class="form-control border-end-0 border rounded-right" type="text" placeholder="Search"
+            id="example-search-input" [(ngModel)]="keyWords">
           <span class="input-group-append">
             <button class="btn btn-light border-start-0 border-top-0 border-bottom-0  rounded-pill ms-n5 h-100"
-              type="button">
+              type="button" (click)="Search($event);" routerLinkActive="selected"
+              routerLink="searchResults">
               <i class="fa fa-search "></i>
             </button>
           </span>
@@ -46,6 +56,8 @@
     </div>
   </div>
 </nav>
+
+
 
 <ng-template #elseBlock>
   <nav class="navbar navbar-expand-lg  navbar-dark bg-dark py-2   ">
@@ -99,6 +111,8 @@
   </nav>
 </ng-template>
 
+
+
 <ng-template #content2 let-modal class="SigninModal ">
 
   <div class="modal-header border-0 SigninModal ">
@@ -132,6 +146,9 @@
 
 
 </ng-template>
+
+
+
 
 
 <ng-template #content let-modal class="SigninModal ">
@@ -231,5 +248,7 @@
       [disabled]="myForm.invalid">Register</button>
   </div>
 </ng-template>
+ 
+
 <router-outlet></router-outlet>
 <app-footer></app-footer>

@@ -4,16 +4,19 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { PublicService } from 'src/app/services/public.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  
   subscriber: any
   invalidCred: boolean = false;
-  constructor(private modalService: NgbModal,private userSevice : UserService, private authService: AuthService, private router: Router) { }
+  SearchOption:string="All";
+  keyWords:string="";
+  constructor(private modalService: NgbModal,private userSevice : UserService, private authService: AuthService,private publicService:PublicService, private router: Router) { }
 
   ngOnDestroy(): void {
     console.log('Login Component Destroy')
@@ -49,8 +52,19 @@ export class HomeComponent implements OnInit {
     }else{
       this.isLoggedIn=false;
     }
+    this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat )
+     this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
-
+  chooseSearch(e:any){
+    console.log(e.target.innerText)
+    this.SearchOption= e.target.innerText
+      }
+    Search(e:any){
+    this.publicService.searchCategory=this.SearchOption
+     this.publicService.searchedName = this.keyWords
+     this.publicService.updateSearch(this.SearchOption,this.keyWords)
+     
+    }
   open(content: any, e: any) {
     this.register = e.target.id == "SignIn" ? true : false;
     // console.log(this.register)

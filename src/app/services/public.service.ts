@@ -1,12 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { config } from '../config'
+import { Subject } from 'rxjs/Subject';
 @Injectable({
   providedIn: 'root'
 })
 export class PublicService {
+  searchCategory:string=""
+  searchedName:string=""
 
-  constructor(private client: HttpClient) { }
+  searchCatChange: Subject<string> = new Subject<string>();
+  searchedNameChange: Subject<string> = new Subject<string>();
+  categoryObservable=this.searchCatChange.asObservable()
+  searchedNameObservable = this.searchedNameChange.asObservable()
+  constructor(private client: HttpClient) { 
+  /*  this.searchCatChange.subscribe((value)=>{
+      this.searchCategory=value;
+    })
+    this.searchedNameChange.subscribe((value)=>{
+      this.searchedName=value;
+    })*/
+  }
+  updateSearch(NewCat:string,NewName:string){
+    this.searchCatChange.next(NewCat)
+    this.searchedNameChange.next(NewName)
+    
+  }
   getAllBooks() {
     //Login
     return this.client.get(`${config.apiUrl}/books`, { observe: 'response' })
@@ -17,6 +36,9 @@ export class PublicService {
   getBookById(id:number){
     return this.client.get(`${config.apiUrl}/books/${id}`)
   }
+  getBookSearchRes(search:string){
+    return this.client.get(`${config.apiUrl}/books/search/${search}`,{observe:"response"})
+  }
   getAllAuthors(){
     return this.client.get(`${config.apiUrl}/authors`,{ observe: 'response' }) 
   }
@@ -26,6 +48,9 @@ export class PublicService {
   getAuthorById(id:number){
     return this.client.get(`${config.apiUrl}/authors/${id}`)
   }
+  getAuthorSearchRes(search:string){
+    return this.client.get(`${config.apiUrl}/authors/search/${search}`,{observe:"response"})
+  }
   getAllCategories(){
     return this.client.get(`${config.apiUrl}/categories`,{observe:"response"})
   }
@@ -34,6 +59,9 @@ export class PublicService {
   }
   getCategoryById(id:number){
     return this.client.get(`${config.apiUrl}/categories/${id}`)
+  }
+  getCatSearchRes(search:string){
+    return this.client.get(`${config.apiUrl}/categories/search/${search}`,{observe:"response"})
   }
 }
 /*getBooks(page:number,count:number) {

@@ -20,9 +20,9 @@
            <a class="info" routerLink={{book._id}}>View Details</a>
         </div> 
           </div>
-          <div class =" card-title d-flex justify-content-center mt-3 mb-2">
-          <p class=" "  >{{book.name}}</p>
-        </div>
+          <div class ="row card-title d-flex justify-content-center mt-3 mb-2">
+            <p class=""> {{book.name}}<br/> <ngb-rating [rate]="book.avgRating" class="text-warning" ></ngb-rating></p>
+            </div>
         </div>  
        
     </div>
