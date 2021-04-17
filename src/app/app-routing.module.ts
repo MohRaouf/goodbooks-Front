@@ -17,6 +17,7 @@ import { CategoryDetailsComponent } from './components/category-details/category
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { ErrorComponent } from './components/error/error.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component'; 
 import {MyShelfGuard} from './guards/my-shelf.guard'
 import { MybooksComponent } from './components/mybooks/mybooks.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
@@ -29,6 +30,9 @@ const routes: Routes = [
       {
         path: '',
         component: HomePublicViewComponent,
+      },{
+        path: "searchResults",
+        component: SearchResultsComponent,
       }, {
         path: "books",
         component: PublicBooksComponent,
@@ -86,7 +90,8 @@ const routes: Routes = [
     children: [
       {
         path: '', // child route path
-        component: AdminBooksComponent,// child route component that the router renders
+        redirectTo:'books',
+        pathMatch:'full'
       },
       {
         path: 'books', // child route path

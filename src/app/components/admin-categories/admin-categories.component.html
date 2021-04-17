@@ -1,11 +1,33 @@
-<div class="spinner-border text-warning loading" role="status" *ngIf="loading">
-    <span class="sr-only loading">Loading...</span>
-</div>
-<div class="text-right mb-3 ">
-    <button class="add-effect btn btn-warning m-0 pb-0" name="add" #add (click)="open(content, add,null)">
-        <span class="text-warning h5 text-dark font-weight-bold mt-0">Add Category</span>
-        <i class="fa fa-plus-circle h5 add-style text-dark  ml-2"></i>
-    </button>
+<div class="row justify-content-end">
+    <div class="col-4 justify-content-start  mb-2">
+        <div class=" text-center t-0 row justify-content-md-center" role="status" *ngIf="actionLoading">
+            <div class="d-inline-block spinner-border text-warning  m-0 p-0" role="status"></div>
+            <span class="d-inline-block text-muted ml-3 pb-1 pt-1">Applying...</span>
+        </div>
+
+        <div class="  h5" role="status" *ngIf="success">
+            <a class="badge badge-success mr-2 ">Success</a>
+            <small class="text-light"> Performed Successfully</small>
+        </div>
+
+        <div class="  h5" role="status" *ngIf="failed">
+            <a class="badge badge-danger mr-2 ">Failed</a>
+            <small class="text-danger">Failed, Server Error</small>
+        </div>
+
+        <div class=" text-center  row justify-content-md-center " role="status" *ngIf="loading">
+            <div class="d-inline-block spinner-border text-warning  m-0 p-0" role="status"></div>
+            <span class="d-inline-block text-muted ml-3 pb-1 pt-1">Loading...</span>
+        </div>
+    </div>
+
+    <div class=" col-4 align-items-center d-flex justify-content-end mb-2">
+        <button class="add-effect btn btn-warning m-0 pb-0 text-center" name="add" #add
+            (click)="open(content, add,null)">
+            <span class="text-warning h5 text-dark font-weight-bold mt-0 ">Add Category</span>
+            <i class="fa fa-plus-circle h5 add-style text-dark  ml-2"></i>
+        </button>
+    </div>
 </div>
 
 <table class="table table-bordered table-dark ">
@@ -31,47 +53,57 @@
     </tbody>
 </table>
 
-<ng-template #content let-modal >
-    <div class="form-theme">
-    <div class="modal-header text-center">
-        <h2 class="modal-title h1 font-weight-bold text-warning" id="modal-basic-title ">NEW CATEGORY</h2>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span class="text-warning" aria-hidden="true ">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body ">
-        <form [formGroup]=categoryForm >
-            <div class="form-group">
-                <div class="input-group mb-2">
-                    <input id="name" placeholder="Category Name" (focus)="focusName()"class="form-control form-theme text-white" formControlName="name">
-                </div>
-
-                <div class="input-group mb-2">
-                  <input type="file" (change)="onImgChange($event)" class="custom-file-input form-control form-theme" formControlName="photo" id="photo">
-                  <label class="custom-file-label form-theme  text-white" for="photo">{{categoryForm.controls.photo.value||"Choose Photo"}}</label>
-                </div>
-      
-            </div>
-
-            <hr>
-            <div class="alert alert-danger  mb-2" *ngIf="!categoryForm.controls.name.valid && nameFocused">
-                <p class=" m-0" >Name must be more than 3 characters</p>
-            </div>
-
-            <div class="alert alert-danger mb-2"  *ngIf="!categoryForm.controls.photo.valid && photoChanged">
-                <p class=" m-0">Bad Photo</p>
-            </div>
-
-            <div class="alert alert-info mb-2"  *ngIf="!imgParsed && photoChanged">
-                <p class=" m-0">Parsing the Photo . . . </p>
-            </div>
-
-            <div class="mb-1 mt-3 text-center text-dark">
-                <button type="submit" class="btn btn-warning text-dark font-weight-bold " (click)="modal.close('Save click')" [disabled]="categoryForm.invalid">Submit</button>
-            </div>
-        </form>
-    </div>
+<div class="d-flex justify-content-center ">
+    <ngb-pagination *ngIf="totalCategories>CategoriesPerPage" [(page)]="page" [pageSize]="CategoriesPerPage"
+        [collectionSize]="totalCategories" (pageChange)="showPageIndex(page)">
+    </ngb-pagination>
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="form-theme">
+        <div class="modal-header text-center">
+            <h2 class="modal-title h1 font-weight-bold text-warning" id="modal-basic-title ">NEW CATEGORY</h2>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span class="text-warning" aria-hidden="true ">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body ">
+            <form [formGroup]=categoryForm>
+                <div class="form-group">
+                    <div class="input-group mb-2">
+                        <input id="name" placeholder="Category Name" (focus)="focusName()"
+                            class="form-control form-theme text-white" formControlName="name">
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <input type="file" (change)="onImgChange($event)"
+                            class="custom-file-input form-control form-theme" id="photo" accept="image/*">
+                        <label class="custom-file-label form-theme  text-white" for="photo">{{img.name||"Choose
+                            Photo"}}</label>
+                    </div>
+
+                </div>
+
+                <hr>
+                <div class="alert alert-danger  mb-2" *ngIf="!categoryForm.controls.name.valid && nameFocused">
+                    <p class=" m-0">Name must be more than 3 characters</p>
+                </div>
+
+                <div class="alert alert-danger mb-2" *ngIf="invalidPhoto">
+                    <p class=" m-0">Bad Photo | Too Big</p>
+                </div>
+
+
+
+                <div class="mb-1 mt-3 text-center text-dark">
+                    <button type="submit" class="btn btn-warning text-dark font-weight-bold "
+                        (click)="modal.close('Save click')"
+                        [disabled]="categoryForm.invalid && invalidPhoto">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </ng-template>
 
 <ng-template #delete let-modal>

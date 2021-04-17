@@ -14,8 +14,8 @@ export class AdminService {
     return this.client.get(`${config.apiUrl}/admins/login`,{ observe: 'response' })
   }
 
-  getAllBooks() {
-    return this.client.get(`${config.apiUrl}/books`,{ observe: 'response' })
+  getAllBooks(page:number,perPage:number) {
+    return this.client.get(`${config.apiUrl}/books?page=${page}&perPage=${perPage}`, { observe: 'response' })
   }
 
   insertBook(newBook:any) {
@@ -29,8 +29,8 @@ export class AdminService {
     return this.client.delete(`${config.apiUrl}/books/${bookId}`,{ observe: 'response' })
   }
 
-  getAllAuthors(){
-    return this.client.get(`${config.apiUrl}/authors`,{observe:'response'})
+  getAllAuthors(page:any=undefined,perPage:any=undefined){
+    return this.client.get(`${config.apiUrl}/authors?page=${page}&perPage=${perPage}`,{ observe: 'response' }) 
   }
 
   insertAuthor(newAuthor:any) {
@@ -43,11 +43,9 @@ export class AdminService {
   deleteAuthor(authorId:any) {
     return this.client.delete(`${config.apiUrl}/authors/${authorId}`,{ observe: 'response' })
   }
-
-  getAllCategories(){
-    return this.client.get(`${config.apiUrl}/categories`,{observe:'response'})
+  getAllCategories(page:any=undefined,perPage:any=undefined){
+    return this.client.get(`${config.apiUrl}/categories?page=${page}&perPage=${perPage}`,{observe:"response"})
   }
-
   insertCategory(newCategory:any) {
     return this.client.post(`${config.apiUrl}/categories`, newCategory,{ observe: 'response' })
   }

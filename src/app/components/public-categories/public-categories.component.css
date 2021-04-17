@@ -81,7 +81,7 @@ ngb-pagination{
     text-transform: uppercase;
     text-align: center;
     position: relative;
-    font-size: 17px;
+    font-size: 20px;
     background-color: transparent;
     color: #FFF;
     padding: 1em 0;
@@ -102,6 +102,7 @@ ngb-pagination{
     transition: opacity 0.35s, transform 0.35s;
     -webkit-transform: translate3d(0,100%,0);
     transform: translate3d(0,100%,0);
+     
   }
   
   .hovereffect:hover a, .hovereffect:hover p, .hovereffect:hover h2 {

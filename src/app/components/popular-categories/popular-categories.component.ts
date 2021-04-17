@@ -9,22 +9,17 @@ import { Category } from '../../models/categories';
 })
 export class PopularCategoriesComponent implements OnInit {
 
-  topCategories:Array<Category>=[]
-  subscriber:any;
-  constructor(private myService:PublicService) { }
+  topCategories: Array<Category> = []
+  subscriber: any;
+  constructor(private myService: PublicService) { }
   ngOnDestroy(): void {
-    console.log("destroy");
     this.subscriber.unsubscribe();
   }
   ngOnInit(): void {
-    this.subscriber=this.myService.getTopCategories()
-    .subscribe((res:any)=>{
-      this.topCategories=res.body
-      console.log(this.topCategories);
-    },
-    (err)=>{
-      console.log(err);
-    }
-    )
+    this.subscriber = this.myService.getTopCategories()
+      .subscribe((res: any) => {
+        this.topCategories = res.body
+        console.log(this.topCategories);
+      }, (err) => { console.log(err) })
   }
 }

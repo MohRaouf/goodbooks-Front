@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -8,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { AdminBoardComponent } from './components/admin-board/admin-board.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule ,NgModel} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
@@ -21,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePublicViewComponent } from './components/home-public-view/home-public-view.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PublicBooksComponent } from './components/public-books/public-books.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { PublicCategoriesComponent } from './components/public-categories/public-categories.component';
 import { PublicAuthorsComponent } from './components/public-authors/public-authors.component';
 import { FooterElementsComponent } from './components/footer-elements/footer-elements.component';
@@ -32,12 +31,13 @@ import { RatingAndShelveComponent } from './components/rating-and-shelve/rating-
 import { PopularBlocksComponent } from './components/popular-books/popular-blocks.component';
 import { PopularAuthorsComponent } from './components/popular-authors/popular-authors.component';
 import { PopularCategoriesComponent } from './components/popular-categories/popular-categories.component';
-import { ErrorComponent } from './components/error/error.component';
 import { MybooksComponent } from './components/mybooks/mybooks.component';
 import { ShelfMenuComponent } from './components/shelf-menu/shelf-menu.component';
 import { ShelfTableComponent } from './components/shelf-table/shelf-table.component'; 
 import { loggedUserServices } from './services/loggedUser.service';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { ErrorComponent } from './components/error/error.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component'; 
 
 @NgModule({
   declarations: [
@@ -66,7 +66,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
     ShelfMenuComponent,
     ShelfTableComponent,
     UserSettingsComponent,
-     
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -79,7 +79,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
     BrowserAnimationsModule,
     NgxPaginationModule,
     FormsModule
-    
+
   ],
   providers: [
     loggedUserServices,
@@ -91,6 +91,6 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
       useClass: TokenInterceptor,
       multi: true
     }
-  ],  bootstrap: [AppComponent]
+  ], bootstrap: [AppComponent]
 })
 export class AppModule { }

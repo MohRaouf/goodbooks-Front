@@ -5,6 +5,7 @@
       <button id = "c" ngbDropdownItem (click)=" editStatusFromBookView($event)" class=" btn-warning  text-warning">Currently reading</button>
       <button id = "r" ngbDropdownItem (click)=" editStatusFromBookView($event)" class=" btn-warning text-warning">   Read   </button>
     </div>
+
   </div>
   <div class="form-group  d-flex justify-content-center RatingPart  mt-2 ">
     <h4> <ngb-rating (click)="editRateFromBookView($event)"  class="text-warning "[formControl]="ctrl"></ngb-rating></h4>
@@ -13,3 +14,4 @@
       <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>--> 
     </div>
   </div>
+

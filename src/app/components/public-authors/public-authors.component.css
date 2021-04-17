@@ -1,32 +1,5 @@
-ngb-pagination ::ng-deep .page-link {
-    background-color: #343A40;
-    color: #FFC107;
-}
-ngb-pagination ::ng-deep .page-item.active .page-link{
-    border-block-color: #FFC107;
-      border-left-color: #FFC107;
-      border-right-color: #FFC107;
-    background-color: #343A40;
-    color: #FFC107;
-}
-ngb-pagination ::ng-deep .page-item.disabled .page-link{
-    background-color: #343A40;
-    color: #FFC107;
-}
- 
-ngb-pagination ::ng-deep .page-link:focus,
-ngb-pagination ::ng-deep .page-link:hover{
-    background-color: #FFC107;
-    color: #343A40;
-    border-color: #FFC107;
-} 
-ngb-pagination{
-    z-index: 00000;
-      margin-bottom: 20px;
-      bottom: 30px;
-  
-    
-}
+@import '../../global-style/pagenation.css';
+
 .hovereffect {
     width: 100%;
     height: 100%;
@@ -43,9 +16,9 @@ ngb-pagination{
     opacity: 0;
     filter: alpha(opacity=0);
     width: 80%;
-    height: 81%;
+    height: 70%;
     left: 10%;
-    top: 10%;
+    top: 9%;
     border-radius: 80%;
     border: 2px solid #FFF;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
@@ -89,7 +62,8 @@ ngb-pagination{
   }
   
   .hovereffect a, .hovereffect p {
-    color: #FFF;
+    
+    color: #FFC107;
     padding: 1em 0;
     opacity: 0;
     filter: alpha(opacity=0);
@@ -104,4 +78,13 @@ ngb-pagination{
     filter: alpha(opacity=100);
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
+  }
+  .AuthorName{
+    text-align: center;
+  }
+  .loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
   }

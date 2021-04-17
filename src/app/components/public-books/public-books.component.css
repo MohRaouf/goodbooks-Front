@@ -1,25 +1,5 @@
-ngb-pagination ::ng-deep .page-link {
-    background-color: #343A40;
-    color: #FFC107;
-}
-ngb-pagination ::ng-deep .page-item.active .page-link{
-    border-block-color: #FFC107;
-      border-left-color: #FFC107;
-      border-right-color: #FFC107;
-    background-color: #343A40;
-    color: #FFC107;
-}
-ngb-pagination ::ng-deep .page-item.disabled .page-link{
-    background-color: #343A40;
-    color: #FFC107;
-}
- 
-ngb-pagination ::ng-deep .page-link:focus,
-ngb-pagination ::ng-deep .page-link:hover{
-    background-color: #FFC107;
-    color: #343A40;
-    border-color: #FFC107;
-} 
+@import '../../global-style/pagenation.css';
+
 .hovereffect {
     width: 100%;
     height: 100%;
@@ -77,7 +57,7 @@ ngb-pagination ::ng-deep .page-link:hover{
     filter: alpha(opacity=0);
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    margin: 50px 0 0;
+    margin: 70px 0 0;
     padding: 7px 14px;
   }
   
@@ -111,7 +91,9 @@ ngb-pagination ::ng-deep .page-link:hover{
   ngb-pagination{
     z-index: 00000;
       margin-bottom: 20px;
-      bottom: 30px;
-  
+      bottom: 30px; 
     
+}
+.container{
+justify-content: center;
 }

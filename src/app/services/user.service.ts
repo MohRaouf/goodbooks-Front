@@ -11,4 +11,7 @@ export class UserService {
   getUserInfo() {
     return this.client.get(`${config.apiUrl}/users/login`,{ observe: 'response' })
   }
+  registerUser(userInfo:any) {
+    return this.client.post(`${config.apiUrl}/users/signup`,userInfo,{ observe: 'response' })
+  }
 }
