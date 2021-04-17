@@ -20,7 +20,7 @@ export class PublicService {
     this.searchCatChange.next(NewCat)
     this.searchedNameChange.next(NewName)
   }
-  getAllBooks(page:number,perPage:number) {
+  getAllBooks(page:any=undefined,perPage:any=undefined) {
     return this.client.get(`${config.apiUrl}/books?page=${page}&perPage=${perPage}`, { observe: 'response' })
   }
   getTopBooks(){

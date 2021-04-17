@@ -51,6 +51,7 @@ export class RatingAndShelveComponent implements OnInit {
 }
 
   editStatusFromBookView(e:any){
+    this.Shelve= e.target.innerText
     const newStatus = e.target.id
     console.log("[Selected Status]: ",e.target.id, newStatus)
     const reqBody = { status: newStatus, ratings:{ avgRating:this.book.avgRating, oldRate:this.userDetails.rate, newRate: this.userDetails.rate, ratingCount:this.book.ratingCount}}

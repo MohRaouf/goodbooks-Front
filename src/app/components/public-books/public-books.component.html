@@ -18,7 +18,8 @@
            <a class="info" routerLink={{book._id}}>View Details</a>
         </div> 
           </div>
-          <div class =" card-title   d-flex justify-content-center mt-3 mb-2">
+          <div class="d-flex justify-content-center"><h3><ngb-rating [rate]="book.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating></h3></div>
+          <div class =" card-title   d-flex justify-content-center mt-1 mb-2">
             <a class="cardlink text-warning" routerLink="{{book._id}}">{{book.name}}</a></div>
         </div>  
        
@@ -29,4 +30,3 @@
   <ngb-pagination *ngIf="totalBooks>booksPerPage" [collectionSize]="totalBooks" [(page)]="page"  [pageSize]="booksPerPage" [maxSize]="5" [rotate]="false" [ellipses]="false" [boundaryLinks]="true"  (pageChange)="showPageIndex(page)"></ngb-pagination>
 </div>
 </div>
- 

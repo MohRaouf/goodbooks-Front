@@ -15,10 +15,10 @@
     overflow: hidden;
     opacity: 0;
     filter: alpha(opacity=0);
-    width: 80%;
-    height: 70%;
-    left: 10%;
-    top: 9%;
+    width: 90%;
+    height: 80%;
+    left: 4%;
+    top: 3%;
     border-radius: 80%;
     border: 2px solid #FFF;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
@@ -48,7 +48,7 @@
     text-transform: uppercase;
     text-align: center;
     position: relative;
-    font-size: 17px;
+    font-size: 20px;
     padding: 10px;
     background-color: transparent;
     color: #FFF;

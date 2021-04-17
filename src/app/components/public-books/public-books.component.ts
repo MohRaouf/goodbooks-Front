@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService } from 'src/app/services/public.service';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, Validators } from '@angular/forms';
 import { Book } from 'src/app/models/books';
 @Component({
   selector: 'app-public-books',
@@ -13,12 +15,16 @@ export class PublicBooksComponent implements OnInit {
   totalBooks: number = 0;
   page: number = 1;
   booksPerPage: number = 10;
-  constructor(private publicService: PublicService) { }
-
+  constructor(private publicService: PublicService,config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly=true;
+   }
+   ctrl = new FormControl(null, Validators.required);
   ngOnInit(): void {
     this.loading = true
     this.subscriber = this.publicService.getAllBooks(this.page, this.booksPerPage).subscribe((response: any) => {
-      this.booksArray = response.body.allBooks
+      this.booksArray = response.body
+      console.log("IN BOOKS:",response.body)
       this.totalBooks = response.body.countBooks
       this.loading = false
     })
