@@ -1,3 +1,8 @@
+.bookName{
+    word-wrap: inherit;
+    font-weight: normal;
+}
+
 ngb-pagination ::ng-deep .page-link {
     background-color: #343A40;
     color: #FFC107;

@@ -16,7 +16,7 @@ footer {
       height: 17px;
     }
     a{
-      font-size: small;
+      font-size: smaller;
     }
     .row{
       margin: auto;
@@ -25,5 +25,6 @@ footer {
     hr{
       display: none;
     }
+
 }
 

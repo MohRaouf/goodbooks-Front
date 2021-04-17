@@ -19,6 +19,8 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
 import { ErrorComponent } from './components/error/error.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component'; 
 import {MyShelfGuard} from './guards/my-shelf.guard'
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   {
@@ -51,13 +53,13 @@ const routes: Routes = [
       }
       , {
         path: "aboutus",
-        component: FooterElementsComponent,
+        component: AboutUsComponent,
       },
       {
         path: "contact",
-        component: FooterElementsComponent,
+        component: ContactUsComponent,
       }, {
-        path: "terms",
+        path: "Terms",
         component: FooterElementsComponent,
       },
       { path: "**", component: ErrorComponent }

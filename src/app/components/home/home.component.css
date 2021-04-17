@@ -1,5 +1,5 @@
 .sidenav {
-  width: 200px;
+  width: 300px;
 }
 
 .ms-n5 {
@@ -32,9 +32,23 @@ a:focus{
 .AllSearchInput{
   margin-left: 80px;
 }
+.searchHumbureger{
+  display: none;
+}
+
 @media only screen and (max-width: 988px){
   .burger-item{
-    display:inline-block
+    display:inline-block;
+  }
+  .searchHumbureger{
+    display: block;
+  }
+  .searchHumbureger .dropdown-menu{
+    width:10px;
+    height: 10px;
+  }
+  .searchHumbureger input{
+    width: 20px;
   }
  
 }

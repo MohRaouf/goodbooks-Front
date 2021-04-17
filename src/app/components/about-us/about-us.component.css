@@ -8,7 +8,9 @@
 h2{
     color: white;
 }
-
+h4{
+  color: white;
+}
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   outline: none;
@@ -88,11 +90,7 @@ text-transform: uppercase;
 }
 
 .team-area .info {
-background: rgb(255, 255, 255) none repeat scroll 0 0;
--moz-box-shadow: 0 0 10px #cccccc;
--webkit-box-shadow: 0 0 10px #cccccc;
--o-box-shadow: 0 0 10px #cccccc;
-box-shadow: 0 0 10px #cccccc;
+background: rgb(73, 73, 73) none repeat scroll 0 0;
 padding: 40px 20px 20px;
 position: relative;
 text-align: center;
