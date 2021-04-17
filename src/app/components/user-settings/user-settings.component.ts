@@ -15,6 +15,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   user={photo:"", fname:"", lname:"", dob:"", gender:"", username:"", email:"", bookshelf:[]}
   constructor(    
     private userData: loggedUserServices,
+    
     ) { }
     subscriber:any;
 
@@ -24,7 +25,9 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     }
   toggle(){
     console.log("EDIT CLICKED")
+    // this.signUpForm.get("")
   }
+
   ngOnInit(): void {    
     console.log("############################ USER SETTINGS ####################################\n")
     this.subscriber=this.userData.getUser()
@@ -58,18 +61,19 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   success: boolean = false;
   duplicatedUsername: boolean = false;
   failed: boolean = false;
-  submitSignup(signUpForm: NgForm) {
+
+  submitChanges(signUpForm: NgForm) {
     this.loading = true;
     const newUser = {
       fname: signUpForm.value.firstname,
       lname: signUpForm.value.lastname,
       email: signUpForm.value.email,
-      photo: this.photo,
       gender: signUpForm.value.gender,
       dob: signUpForm.value.dob,
       username: signUpForm.value.username,
       password: signUpForm.value.password,
     };
+    // photo: this.photo,
     this.failed = false;
     this.duplicatedUsername = false;
     console.log(newUser);
