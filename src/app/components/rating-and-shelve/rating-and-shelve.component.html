@@ -1,5 +1,5 @@
 <div ngbDropdown class="d-inline-block d-flex ShelvePart justify-content-center"   >
-    <button class="btn btn-outline-warning  btn-block" style="width: 12rem;" id="dropdownBasic1" ngbDropdownToggle [(ngModel)]="Shelve" ngDefaultControl >{{Shelve}}</button>
+    <button class="btn btn-outline-warning  btn-block" style="width: 11rem;" id="dropdownBasic1" ngbDropdownToggle [(ngModel)]="Shelve" ngDefaultControl >{{Shelve}}</button>
     <div ngbDropdownMenu  aria-labelledby="dropdownBasic1" class="bg-dark  ">
       <button id = "w" ngbDropdownItem (click)=" editStatusFromBookView($event)" class=" btn-warning  text-warning">Want to read</button>
       <button id = "c" ngbDropdownItem (click)=" editStatusFromBookView($event)" class=" btn-warning  text-warning">Currently reading</button>
@@ -7,7 +7,7 @@
     </div>
 
   </div>
-  <div class="form-group  d-flex justify-content-center RatingPart  mt-2 ">
+  <div class="form-group  d-flex justify-content-center pr-5 RatingPart  mt-2 ">
     <h4> <ngb-rating (click)="editRateFromBookView($event)"  class="text-warning "[formControl]="ctrl"></ngb-rating></h4>
     <div class="form-text ">
   <!--   <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
