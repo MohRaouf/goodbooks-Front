@@ -13,12 +13,13 @@ ngb-pagination{
       bottom: 50px; 
     
 }
+
 body{
     width: 100%;
     background-color: #1b1d1f;
     /* padding-bottom: 58px; */
-    
-       
+    display:flex; 
+    flex-direction:column; 
 }
 .cardlink{
     word-wrap: break-word;

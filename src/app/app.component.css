@@ -1,3 +1,10 @@
 /* .bg-image{
     background-image: url('../assets/imgs/login-bg.jpg');
 } */
+
+/* Trick */
+body{ 
+    display:flex; 
+    flex-direction:column; 
+  }
+  
