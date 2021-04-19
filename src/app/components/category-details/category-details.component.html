@@ -9,29 +9,33 @@
 <div class="container border border-dark rounded  mb-3" style="background: #212529; opacity:0.8">
   <div class="row  d-flex justify-content-center ">
 
-    <div class="mx-3 my-3" *ngFor="let mybook of categoryBooks | slice: (page-1) * booksPerPage : page * booksPerPage">
-
-      <div class="card my-3" style="width: 10rem;  background: rgba(0, 0, 0, 0.486);">
-        <div class="hovereffect ">
-          <img class="img-responsive " *ngIf="mybook.photo;else unknown" src="{{mybook.photo}}" alt="" width="160"
-            height="200">
-          <ng-template #unknown> <img class="img-responsive " src="/assets/imgs/unknown.png" alt="" width="160"
-              height="200"></ng-template>
-          <div class="overlay ">
-            <a class="info" routerLink="/home/books/{{mybook._id}}">View Details</a>
+    <div *ngIf="categoryBooks.length>0;else noBooks">
+      <div class="mx-3 my-3"
+        *ngFor="let mybook of categoryBooks | slice: (page-1) * booksPerPage : page * booksPerPage">
+        <div class="card my-3" style="width: 10rem;  background: rgba(0, 0, 0, 0.486);">
+          <div class="hovereffect ">
+            <img class="img-responsive " [src]="mybook.photo||'/assets/imgs/unknown.png'" alt="" width="160"
+              height="200">
+            <div class="overlay ">
+              <a class="info" routerLink="/home/books/{{mybook._id}}">View Details</a>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <h3>
+              <ngb-rating [rate]="mybook.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating>
+            </h3>
+          </div>
+          <div class=" card-title   d-flex justify-content-center mt-1 mb-2">
+            <a class="cardlink text-warning" routerLink="/home/books/{{mybook._id}}">{{mybook.name}}</a>
           </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <h3>
-            <ngb-rating [rate]="mybook.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating>
-          </h3>
-        </div>
-        <div class=" card-title   d-flex justify-content-center mt-1 mb-2">
-          <a class="cardlink text-warning" routerLink="/home/books/{{mybook._id}}">{{mybook.name}}</a>
-        </div>
-      </div>
 
+      </div>
     </div>
+
+    <ng-template #noBooks>
+      <p class="h5 text-danger p-4"> No books found for this category </p>
+    </ng-template>
 
   </div>
   <div class=" d-flex justify-content-center">
