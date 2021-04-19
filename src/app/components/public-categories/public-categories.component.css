@@ -117,3 +117,13 @@ ngb-pagination{
       bottom: 50px; 
     
 }
+a{
+  text-decoration: none;
+  color: rgb(255, 255, 255) !important
+}
+a:focus{
+  color: rgb(255, 196, 0) !important;
+}
+a:hover{
+  color: rgb(255, 196, 0) !important;
+}

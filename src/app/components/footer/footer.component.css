@@ -6,7 +6,10 @@ footer{
 }
 a{
     text-decoration: none;
-    color: rgb(255, 174, 0) !important
+    color: rgb(255, 255, 255) !important
+}
+a:focus{
+    color: rgb(255, 196, 0) !important;
 }
 hr{
     background-color: white;
