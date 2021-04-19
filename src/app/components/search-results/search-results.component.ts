@@ -10,7 +10,7 @@ import { Author } from '../../models/authors';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  searchCat: string ="";
+  searchCat: string = "";
   searchedNa: string = "";
   bookSubscriber: any;
   categorySubscriber: any;
@@ -22,7 +22,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     console.log("cons")
     this.searchCat= this.myService.searchCategory;
   this.searchedNa= this.myService.searchedName;
-
+  this.updateSearchResult(this.searchCat,this.searchedNa)
   }
   ngOnDestroy(): void {
     console.log("destroy");
@@ -31,8 +31,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log("Yaraaaaaaaaab")
     this.updateSearchResult(this.searchCat,this.searchedNa)  
-   /* this.myService.categoryObservable.subscribe(cat => {if(this.searchCat!=cat){this.updateSearchResult(cat,this.searchedNa)}this.searchCat = cat;})
-    this.myService.searchedNameObservable.subscribe(name =>{if(this.searchedNa!=name){this.updateSearchResult(this.searchCat,name)}this.searchedNa = name;})*/
+   this.myService.categoryObservable.subscribe(cat => {if(this.searchCat!=cat){this.updateSearchResult(cat,this.searchedNa)}this.searchCat = cat;})
+    this.myService.searchedNameObservable.subscribe(name =>{if(this.searchedNa!=name){this.updateSearchResult(this.searchCat,name)}this.searchedNa = name;})
 
   }
   updateSearchResult(categ: string, Name: string) {
