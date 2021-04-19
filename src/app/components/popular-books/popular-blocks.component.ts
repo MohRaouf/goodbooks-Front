@@ -1,4 +1,6 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PublicService } from 'src/app/services/public.service';
 import { Book } from '../../models/books';
 @Component({
@@ -7,10 +9,13 @@ import { Book } from '../../models/books';
   styleUrls: ['./popular-blocks.component.css']
 })
 export class PopularBlocksComponent implements OnInit,OnDestroy {
-
   topBooks:Array<Book>=[]
   subscriber:any;
-  constructor(private myService:PublicService) { }
+  constructor(private myService:PublicService,config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly=true;
+   }
+   ctrl = new FormControl(null, Validators.required);
   ngOnDestroy(): void {
     this.subscriber.unsubscribe();
   }
