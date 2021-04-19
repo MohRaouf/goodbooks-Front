@@ -3,6 +3,7 @@ footer{
     color: white;
     bottom: 0;
     position: relative;
+    width :100%
 }
 a{
     text-decoration: none;
