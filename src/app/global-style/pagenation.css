@@ -20,3 +20,10 @@ ngb-pagination ::ng-deep .page-link:hover{
     color: #343A40;
     border-color: #FFC107;
 } 
+
+.footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}

@@ -112,6 +112,9 @@ ngb-pagination ::ng-deep .page-link:hover{
     z-index: 00000;
       margin-bottom: 20px;
       bottom: 30px;
-  
-    
+}
+
+img{
+  box-shadow: 0 4px 8px 0 rgba(216, 151, 0, 0.2), 0 6px 20px 0 rgba(216, 61, 0, 0.19);
+  border-radius: 10px;
 }
