@@ -9,6 +9,7 @@ import { Book } from '../../models/books';
   styleUrls: ['./popular-blocks.component.css']
 })
 export class PopularBlocksComponent implements OnInit,OnDestroy {
+  loading: boolean = true;
   topBooks:Array<Book>=[]
   subscriber:any;
   constructor(private myService:PublicService,config: NgbRatingConfig) {
@@ -20,9 +21,11 @@ export class PopularBlocksComponent implements OnInit,OnDestroy {
     this.subscriber.unsubscribe();
   }
   ngOnInit(): void {
+    this.loading = true;
     this.subscriber=this.myService.getTopBooks()
     .subscribe((res:any)=>{
-      this.topBooks=res.body
+      this.topBooks=res.body;
+      this.loading = false;
     },
     (err)=>{console.log(err)})
   }

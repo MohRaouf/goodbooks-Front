@@ -8,7 +8,7 @@ import { Category } from '../../models/categories';
   styleUrls: ['./popular-categories.component.css']
 })
 export class PopularCategoriesComponent implements OnInit {
-
+  loading: boolean = true;
   topCategories: Array<Category> = []
   subscriber: any;
   constructor(private myService: PublicService) { }
@@ -16,10 +16,12 @@ export class PopularCategoriesComponent implements OnInit {
     this.subscriber.unsubscribe();
   }
   ngOnInit(): void {
+    this.loading = true;
     this.subscriber = this.myService.getTopCategories()
       .subscribe((res: any) => {
         this.topCategories = res.body
         console.log(this.topCategories);
+        this.loading = false;
       }, (err) => { console.log(err) })
   }
 }
