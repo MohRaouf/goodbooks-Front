@@ -8,7 +8,7 @@ import { Author } from '../../models/authors';
   styleUrls: ['./popular-authors.component.css']
 })
 export class PopularAuthorsComponent implements OnInit ,OnDestroy{
-
+  loading: boolean = true;
   topAuthors:Array<Author>=[];
   subscriber:any;
   constructor(private myService:PublicService) { }
@@ -17,10 +17,12 @@ export class PopularAuthorsComponent implements OnInit ,OnDestroy{
     this.subscriber.unsubscribe();
   }
   ngOnInit(): void {
+    this.loading = true;
     this.subscriber=this.myService.getTopAuthors()
     .subscribe((res:any)=>{
       this.topAuthors=res.body
       console.log(this.topAuthors);
+      this.loading = false;
     },
     (err)=>{
       console.log(err);
