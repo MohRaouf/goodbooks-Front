@@ -87,3 +87,13 @@
   -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
+a:focus{
+  color: #ffc107 !important;
+}
+a{
+  text-decoration: none;
+  color: rgb(255, 255, 255) !important;
+}
+a:hover{
+  color: rgb(255, 196, 0) !important;
+}

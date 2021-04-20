@@ -1,4 +1,4 @@
 export const config = {
-  apiUrl: 'http://localhost:3000',
-  userAPI: 'http://localhost:3000/users'
+  apiUrl: 'https://goodbooksback.herokuapp.com',
+  userAPI: 'https://goodbooksback.herokuapp.com/users'
 };

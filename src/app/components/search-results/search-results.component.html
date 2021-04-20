@@ -1,35 +1,35 @@
 
-<h2 class="text-warning col-3 mx-5 my-5" style="font-family: Georgia"> Search Results</h2>
-<div class="d-flex justify-content-center">
-<table class="table col-8">
-    <thead class="thead-dark">
-      <tr>
-         
-        <th class="text-warning"scope="col">Image</th>
-        <th class="text-warning"scope="col">Name</th>
-        <th class="text-warning"scope="col">Type</th>
-      </tr>
+<h2 class="text-warning col-3 mx-5 my-5"  > Search Results</h2>
+<div class="d-flex justify-content-center " >
+  <table class="table table-bordered table-dark  col-8">
+    <thead class="text-warning">
+        <tr class="h5">
+          <th class="text-warning"scope="col">Image</th>
+          <th class="text-warning"scope="col">Name</th>
+          <th class="text-warning"scope="col">Type</th>
+        </tr>
     </thead>
     <tbody>
+  
       <tr  *ngFor="let book of booksArray  ">
- 
+   
         <td>   <img class="img-responsive" routerLink="/home/books/{{book._id}}"src="{{book.photo}}" alt="" width="80" height="100"></td>
-        <td class="d-flex justify-content-center "><a class="text-light text-decoration-none" routerLink="/home/books/{{book._id}}">{{book.name}}</a></td>
-        <td class="text-light">Book</td>
+        <td class="h5 "><a class="text-light text-decoration-none" routerLink="/home/books/{{book._id}}">{{book.name}}</a></td>
+        <td class="text-light h5">Book</td>
       </tr>
       <tr  *ngFor="let category of categoryArray   ">
         
         <td>   <img class="img-responsive" routerLink="/home/categories/{{category._id}}" src="{{category.photo}}" alt="" width="80" height="100"></td>
-        <td class="d-flex justify-content-center"><a class="text-light text-decoration-none" routerLink="/home/categories/{{category._id}}">{{category.name}}</a> </td>
-        <td class="text-light">Category</td>
+        <td class="h5"><a class="text-light text-decoration-none" routerLink="/home/categories/{{category._id}}">{{category.name}}</a> </td>
+        <td class="text-light h5">Category</td>
       </tr>
       <tr  *ngFor="let author of authorArray   ">
           
         <td>   <img class="img-responsive" routerLink="/home/authors/{{author._id}}" src="{{author.photo}}" alt="" width="80" height="100"></td>
-        <td class="d-flex justify-content-center"> <a class="text-light text-decoration-none" routerLink="/home/authors/{{author._id}}">{{author.fname}} {{author.lname}}</a></td>
-        <td class="text-light">Author</td>
+        <td class="h5"> <a class="text-light text-decoration-none" routerLink="/home/authors/{{author._id}}">{{author.fname}} {{author.lname}}</a></td>
+        <td class="text-light h5">Author</td>
       </tr>
     </tbody>
   </table>
 </div>
-  
+

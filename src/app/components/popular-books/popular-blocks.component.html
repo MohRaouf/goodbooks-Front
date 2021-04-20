@@ -1,26 +1,34 @@
-<div class="justify-content-start d-flex container my-3 pl-0"><h3 class="text-warning">Popular Books</h3></div>
-<div class="d-flex justify-content-center ">
-  <div class="spinner-border text-warning loading " role="status" *ngIf="loading">
+<div class="justify-content-start d-flex container my-3 pl-0">
+  <h3 class="text-warning">Popular Books</h3>
+</div>
+<div class="d-flex justify-content-center  mb-5 " *ngIf="loading">
+  <div class="spinner-border text-warning loading " role="status" >
     <span class="sr-only loading">Loading...</span>
   </div>
 </div>
+<div class="d-flex justify-content-center ">
 <div class="container border border-dark rounded mb-3" style="background: #212529; opacity:0.8">
-  <div class="row  d-flex justify-content-center"  >
+  <div class="row  d-flex justify-content-center">
     <div class="mx-3 my-5" *ngFor="let book of topBooks">
       <div class="card  " style="width: 10rem;  background: rgba(0, 0, 0, 0.486);">
         <div class="hovereffect ">
-          <img class="img-responsive" *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160" height="200">
-          <ng-template #unknown> <img class="img-responsive"  src="/assets/imgs/unknown.png" alt="" width="160" height="200"></ng-template>
-            <div class="overlay ">
-                <a class="info" routerLink="books/{{book._id}}">View Details</a>
-            </div>
+          <img class="img-responsive" *ngIf="book.photo;else unknown" src="{{book.photo}}" alt="" width="160"
+            height="200">
+          <ng-template #unknown> <img class="img-responsive" src="/assets/imgs/unknown.png" alt="" width="160"
+              height="200"></ng-template>
+          <div class="overlay ">
+            <a class="info" routerLink="books/{{book._id}}">View Details</a>
+          </div>
         </div>
-        <div class="d-flex justify-content-center"><h3><ngb-rating [rate]="book.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating></h3></div>
-        <div class =" card-title d-flex justify-content-center  mb-2">
-            <p><a class="cardlink text-warning" routerLink="books/{{book._id}}">{{book.name}}</a></p>
+        <div class="d-flex justify-content-center pt-2">
+          <h3>
+            <ngb-rating [rate]="book.avgRating" class="text-warning " [formControl]="ctrl"></ngb-rating>
+          </h3>
+        </div>
+        <div class=" card-title d-flex justify-content-center mb-1 ">
+          <p><a class="cardlink text-warning" routerLink="books/{{book._id}}">{{book.name}}</a></p>
         </div>
       </div>
     </div>
   </div>
 </div>
- 

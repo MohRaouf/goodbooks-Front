@@ -1,5 +1,5 @@
 .ms-n5 {
-    margin-left: -40px;
+    margin-left: -2px;
 }
 
 .custom-modals {
@@ -24,3 +24,20 @@ input {
     font-family: 'FontAwesome';
     font-weight: 520;
 }
+
+.footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}
+a:focus{
+    color: #ffc107 !important;
+}
+a{
+    text-decoration: none;
+    color: rgb(255, 255, 255) !important;
+}
+a:hover{
+    color: rgb(255, 196, 0) !important;
+  }

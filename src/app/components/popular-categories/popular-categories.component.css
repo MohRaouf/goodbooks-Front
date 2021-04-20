@@ -80,3 +80,13 @@
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
+  a:focus{
+    color: #ffc107 !important;
+}
+a{
+    text-decoration: none;
+    color: rgb(255, 255, 255) !important;
+}
+a:hover{
+    color: rgb(255, 196, 0) !important;
+  }

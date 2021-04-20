@@ -42,20 +42,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log("phoebe"+this.isLoggedIn)
     });
 
-    // this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
-    // this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
+    this.publicService.categoryObservable.subscribe(cat => this.SearchOption = cat)
+    this.publicService.searchedNameObservable.subscribe(name => this.keyWords = name)
   }
-  chooseSearch(e: any) {
+  chooseSearch(e:any){
     console.log(e.target.innerText)
-    this.SearchOption = e.target.innerText
-  }
-  Search(e: any) {
-    this.publicService.searchCategory = this.SearchOption
-    this.publicService.searchedName = this.keyWords
-
-    // this.publicService.updateSearch(this.SearchOption, this.keyWords)
-
-  }
+    this.SearchOption= e.target.innerText
+      }
+    Search(e:any){
+    this.publicService.searchCategory=this.SearchOption
+     this.publicService.searchedName = this.keyWords
+     this.publicService.updateSearch(this.SearchOption,this.keyWords)
+     
+    }
   closeResult: any;
   isLoggedIn: boolean = false;
 
